@@ -1,0 +1,4 @@
+* Inria Trace Archive
+This is the Inria Trace Archive.
+* Directory structure
+TODO
