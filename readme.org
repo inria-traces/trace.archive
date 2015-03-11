@@ -1,3 +1,4 @@
+#+options:toc:2
 * Inria Trace Archive
 This is the Inria Trace Archive.
 * Directory structure
