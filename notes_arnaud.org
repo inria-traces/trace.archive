@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+#+STARTUP: overview indent inlineimages logdrawer
+#+TITLE:       Blog
+
+* Directory organisation
+- README.org (repository home page)
+  - Link to traces organized by use case
+  - Explanations on how to get the traces from zenodo 
+- Guidelines.org -> guidelines for generating traces
+  - directory organization
+  - generating metadata
+  - putting and getting from zenodo
+  - analysis and discussions
+- data
+  - starpu/.../dt16/
+    - index.org (written by hand, file with discussion, link with
+      files, see template below)
+    - t.paje -> zenodo
+    - t.dot -> zenodo
+    - info.org (metadata automatically generated, read-only file)
+    - image.png -> e.g., screenshot gantt
+  - ...
+- src
+  - meta_data_gen.sh . This is a simple bash script that generate
+    info.org. We will provide a template for starpu (do not forget to
+    wrap with begin/end_example). This script can be modified/updated
+    or forked to adapt to particular needs
+  - scripts for format conversion
+  - get/put script from/to zenodo
+
+* Typical data/trace/index.org:
+** General information
+*** Author
+- Luka Stanisic <luka.stanisic@imag.fr>
+- Arnaud Legrand <arnaud.legrand@imag.fr>
+*** Application 
+This a trace from =qrm_starpu=, a specific implementation of
+[[http://buttari.perso.enseeiht.fr/qr_mumps/][the QR MUMPS approach]] using [[http://starpu.gforge.inria.fr/][StarPU]]. In this particular example, we run
+qrm_starpu on the [[http://www.cise.ufl.edu/research/sparse/matrices/JGD_Forest/TF16.html][tf16 matrix]]. StarPU was configured to use the default
+[[http://starpu.gforge.inria.fr/doc/html/HowToOptimizePerformanceWithStarPU.html][dmda]] scheduler.
+*** Machine description 
+This trace was acquired on the [[https://plafrim.bordeaux.inria.fr/doku.php?id%3Dplateforme:configurations:fourmi][fourmi cluster]] in PLAFRIM (Bordeaux).
+*** Purpose of the experiment
+This execution makes a good usage of the CPU resources with very
+little idle time but exhibits some imbalance toward the end. It should
+thus be possible to slightly improve the makespan. We think the memory
+peak is reached after 15432 ms and that the different kernels contend
+on memory access in L3.
+*** Acquisition
+I used fxt v1.4. See [[info.org]] for details. I obtained the =myfoo.bin_fxt= file.
+*** Post-processing
+I converted the =myfoo.bin_fxt= trace to =paje.trace= and =dag.dot= using
+the following commands
+#+begin_src sh :results output :exports both
+starpu_fxt_convert myfoo.bin_fxt -o blbala -fs kjsdkfj
+#+end_src
+** Content
+- [[file:info.org][Metadata]]
+- http://zenodo.org/mydata.../myfoo.bin_fxt
+- http://zenodo.org/mydata.../paje.trace
+- [[dag.dot]]
+** Discussions
+*** Analysis by Generoso Pagano <generoso.pagano@inria.fr>
+#+begin_src sh :results output :exports both
+LANG=C ; date
+#+end_src
+
+#+RESULTS:
+: Wed Mar 11 16:03:45 CET 2015
+
+I've loaded the trace in framesoc. To this end, I had to convert the
+paje trace in the following way:
+#+begin_src sh :results output :exports both
+pj_dump -n paje.trace > foo.csv
+#+end_src
+I used the following version of pjdump
+#+begin_src sh :results output :exports both
+# pj_dump --version # Crap this does not work
+cd ~generoso/pj_dump; 
+git log -1
+#+end_src 
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+commit 5a97de8c98502af9f74cfceb924fa02e0fd80925
+Merge: 89edccc 3e1505d
+Author: Arnaud Legrand <arnaud.legrand@imag.fr>
+Date:   Wed Feb 18 10:05:16 2015 +0100
+
+    Merge branch 'master' of git+ssh://scm.gforge.inria.fr//gitroot//simgrid/simgrid
+#+END_EXAMPLE
+
+Then I used framesoc version:
+#+begin_src sh :results output :exports both
+framesoc --version
+#+end_src
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+stable version 1.3.2 (2015-03-12)
+#+END_EXAMPLE
+
+Once loaded in framesoc, I could open the ocelotl view and get the
+following graph
+[[foo_screenshot1.png]]
+**** Reply by Emmanuel Agullo
+**** Reply by Luka
+**** ...
+*** Analysis by ....
+
