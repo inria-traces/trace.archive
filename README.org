@@ -1,6 +1,6 @@
 * Inria Parallel Program Trace Archive
 This is the Inria Parallel Program Trace Archive. This is joint project between the 
-Grenoble [[MESCAL][http://mescal.imag.fr/]] team and the Bordeaux 
-[[Hiepacs][https://team.inria.fr/hiepacs/]] and [[Storm/Runtime][http://runtime.bordeaux.inria.fr/]] teams.
+Grenoble [[http://mescal.imag.fr/][MESCAL]] team and the Bordeaux 
+[[https://team.inria.fr/hiepacs/][Hiepacs]] and [[http://runtime.bordeaux.inria.fr/][Storm/Runtime]] teams.
 * Directory structure
 TODO
