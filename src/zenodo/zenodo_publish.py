@@ -25,10 +25,9 @@ def parse_arguments():
 def zenodo_api_check(url, token):
     """Verify the correct access to the API"""
     r = requests.get("%s?access_token=%s" % (url, token))
-    print r.status_code
     if r.status_code != 200:
-        return False
-    return True
+        return False, r.status_code
+    return True, r.status_code
 
 def load_user_conf():
     """ Load Zenodo User's Configuration"""
@@ -69,8 +68,10 @@ affiliation=config['affiliation']
 token=config['token']
 
 # Check REST API
-if zenodo_api_check(DEPOSIT_URL, token) == False:
-    print("Impossible to use the REST API. Check the content of '" + ZENODO_CONF_FILE + "'.")
+ok, code = zenodo_api_check(DEPOSIT_URL, token)
+if ok == False:
+    print("Impossible to use the REST API (Code " + str(code) + ").")
+    print("Check the content of '" + ZENODO_CONF_FILE + "'.")
     exit()
 else:
     log(verbose, "REST API access: OK")
@@ -110,8 +111,7 @@ log(True, "- Deposition Id: " + str(deposition_id))
 
 # 2. Upload the file
 # [Deposition files::Create(upload)]
-filename = os.path.basename(filepath)
-data = {'filename': filename}
+data = {'filename': os.path.basename(filepath)}
 files = {'file': open(filepath, 'rb')}
 r = requests.post("%s/%s/files?access_token=%s" % (DEPOSIT_URL, deposition_id, token), data=data, files=files)
 log(verbose, "Deposition files::Create(upload): " + str(r.status_code))
