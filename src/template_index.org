@@ -2,21 +2,9 @@
 ** Output file
 See [[../data/testing/info.org][info.org]] for details.
 ** Authors
-#+BEGIN_EXAMPLE
-Luka Stanisic
-#+END_EXAMPLE
 ** Application
-#+BEGIN_EXAMPLE
-
-#+END_EXAMPLE
 ** Machine description 
-#+BEGIN_EXAMPLE
-
-#+END_EXAMPLE
 ** Purpose of the experiment
-#+BEGIN_EXAMPLE
-Testing
-#+END_EXAMPLE
 * ZENODO content (written automatically)
 * Discussions
 
