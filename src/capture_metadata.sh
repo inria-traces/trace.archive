@@ -79,7 +79,7 @@ echo "#+END_EXAMPLE" >> $info
 
 if [[ -n $(command -v lstopo) ]];
 then
-    echo "** MEMORY HIERARCHY" >> $info
+    echo "** HWLOC MEMORY HIERARCHY" >> $info
     echo "#+BEGIN_EXAMPLE" >> $info    
     lstopo --of console >> $info
     echo "#+END_EXAMPLE" >> $info

@@ -6,6 +6,8 @@ set -e # fail fast
 # Script parameters
 basename="$PWD"
 host="$(hostname | sed 's/[0-9]*//g' | cut -d'.' -f1)"
+capture_metadata="/home/stanisic/Repository/trace.archive/src/capture_metadata.sh"
+template_index="/home/stanisic/Repository/trace.archive/src/template_index.org"
 
 datafolder="/home/stanisic/Repository/trace.archive/data/testing"
 starpu_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native"
@@ -119,7 +121,7 @@ if git diff-index --quiet HEAD --; then
 else
     echo "ERROR-need to commit all changes before doing experiment!"
     git status
-    exit 1
+    #exit 1
 fi
 
 ##################################################
@@ -149,7 +151,7 @@ esac
 ##################################################
 # Starting to write output file and getting all metadata
 title="StarPU execution on $(eval hostname)"
-../capture_metadata.sh -s $starpu_build -t "$title" $info
+$capture_metadata -s $starpu_build -t "$title" $info
 
 ##################################################
 # Compilation
@@ -247,3 +249,6 @@ echo "#+END_EXAMPLE" >> $info
 echo "* CALIBRATION" >> $info
 find $starpu_home/.starpu -not -iwholename '*~' -name *$host* -printf "** %f\n#+BEGIN_EXAMPLE\n%p\n " -exec cat {} \; -printf "#+END_EXAMPLE\n" >> $info
 
+##################################
+# Copy template to index.org
+cp $template_index $datafolder/index.org

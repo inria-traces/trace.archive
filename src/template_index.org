@@ -1,0 +1,24 @@
+* General information
+** Output file
+#+BEGIN_EXAMPLE
+See [[info.org]] for details.
+#+END_EXAMPLE
+** Authors
+#+BEGIN_EXAMPLE
+
+#+END_EXAMPLE
+** Application
+#+BEGIN_EXAMPLE
+
+#+END_EXAMPLE
+** Machine description 
+#+BEGIN_EXAMPLE
+
+#+END_EXAMPLE
+** Purpose of the experiment
+#+BEGIN_EXAMPLE
+
+#+END_EXAMPLE
+* ZENODO content (written automatically)
+* Discussions
+
