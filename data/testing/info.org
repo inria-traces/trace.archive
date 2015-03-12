@@ -1,19 +1,20 @@
 #+TITLE: StarPU execution on winnetou
-#+DATE: Thu Mar 12 14:30:53 CET 2015
+#+DATE: Thu Mar 12 15:22:17 CET 2015
 #+AUTHOR: stanisic
 #+MACHINE: winnetou
 #+FILE: info.org
  
-* MACHINE INFO:
-** PEOPLE LOGGED WHEN EXPERIMENT STARTED:
+* MACHINE INFO
+** PEOPLE LOGGED WHEN EXPERIMENT STARTED
 #+BEGIN_EXAMPLE
 stanisic :0           2015-03-12 14:03 (:0)
 stanisic pts/13       2015-03-12 14:03 (:0)
 stanisic pts/1        2015-03-12 14:04 (:0)
 stanisic pts/16       2015-03-12 14:04 (:0)
 stanisic pts/25       2015-03-12 14:04 (:0)
+stanisic pts/26       2015-03-12 14:35 (:0)
 #+END_EXAMPLE
-** ENVIRONMENT VARIABLES:
+** ENVIRONMENT VARIABLES
 #+BEGIN_EXAMPLE
 XDG_VTNR=7
 LC_PAPER=en_US.UTF-8
@@ -28,7 +29,6 @@ GPG_AGENT_INFO=/run/user/1000/keyring-m01dFm/gpg:0:1
 TERM=xterm
 VTE_VERSION=3409
 SHELL=/bin/bash
-STARPU_SIZE=9600
 WINDOWID=67108876
 LC_NUMERIC=en_US.UTF-8
 UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1884
@@ -38,21 +38,17 @@ USER=stanisic
 LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:
 LC_TELEPHONE=en_US.UTF-8
 LD_LIBRARY_PATH=:/home/stanisic/Repository/FxT/lib
-STARPU_PROGRAM=cholesky
 XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
-STARPU_BLK=10
 XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
 SSH_AUTH_SOCK=/run/user/1000/keyring-m01dFm/ssh
 DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
 XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
 FXT_PATH=/home/stanisic/Repository/FxT
-STARPU_NOPECL=0
 DESKTOP_SESSION=ubuntu
 PATH=/home/stanisic/Repository/git-subrepo/lib:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 QT_IM_MODULE=ibus
 QT_QPA_PLATFORMTHEME=appmenu-qt5
 LC_IDENTIFICATION=en_US.UTF-8
-STARPU_SCHED=dmda
 PWD=/home/stanisic/Repository/trace.archive/src/starpu
 JOB=gnome-session
 XMODIFIERS=@im=ibus
@@ -74,7 +70,6 @@ GNOME_DESKTOP_SESSION_ID=this-is-deprecated
 UPSTART_INSTANCE=
 UPSTART_EVENTS=started starting
 LOGNAME=stanisic
-STARPU_NCPU=4
 DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-xXh5jUhIkd
 XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/
 QT4_IM_MODULE=xim
@@ -84,23 +79,21 @@ TEXTDOMAIN=im-config
 UPSTART_JOB=unity-settings-daemon
 XDG_RUNTIME_DIR=/run/user/1000
 DISPLAY=:0
-STARPU_NCUDA=0
 XDG_CURRENT_DESKTOP=Unity
 GTK_IM_MODULE=ibus
 LESSCLOSE=/usr/bin/lesspipe %s %s
 LC_TIME=en_US.UTF-8
 TEXTDOMAINDIR=/usr/share/locale/
-STARPU_CALIBRATE=1
 LC_NAME=en_US.UTF-8
 XAUTHORITY=/home/stanisic/.Xauthority
 COLORTERM=gnome-terminal
 _=/usr/bin/env
 #+END_EXAMPLE
-** HOSTNAME:
+** HOSTNAME
 #+BEGIN_EXAMPLE
 winnetou
 #+END_EXAMPLE
-** MEMORY HIERARCHY:
+** MEMORY HIERARCHY
 #+BEGIN_EXAMPLE
 Machine (7936MB)
   Socket L#0 + L3 L#0 (6144KB)
@@ -129,10 +122,34 @@ Machine (7936MB)
       Block L#3 "sda"
       Block L#4 "sr0"
 #+END_EXAMPLE
-** STARPU MACHINE DISPLAY:
+** STARPU MACHINE DISPLAY
 #+BEGIN_EXAMPLE
+StarPU has found :
+	4 CPU threads
+		CPU 0
+		CPU 1
+		CPU 2
+		CPU 3
+	0 CUDA devices
+	0 OpenCL devices
+
+topology ...
+core 0	PU 0	CPU 0	
+	PU 1	
+core 1	PU 2	CPU 1	
+	PU 3	
+core 2	PU 4	CPU 2	
+	PU 5	
+core 3	PU 6	CPU 3	
+	PU 7	
+
+bandwidth and latency ...
+from/to	RAM	
+RAM	0	
+
+RAM	0	
 #+END_EXAMPLE
-** CPU INFO:
+** CPU INFO
 #+BEGIN_EXAMPLE
 processor	: 0
 vendor_id	: GenuineIntel
@@ -141,7 +158,7 @@ model		: 58
 model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
 stepping	: 9
 microcode	: 0x12
-cpu MHz		: 2100.000
+cpu MHz		: 1200.000
 cache size	: 6144 KB
 physical id	: 0
 siblings	: 8
@@ -193,7 +210,7 @@ model		: 58
 model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
 stepping	: 9
 microcode	: 0x12
-cpu MHz		: 2601.000
+cpu MHz		: 1300.000
 cache size	: 6144 KB
 physical id	: 0
 siblings	: 8
@@ -219,7 +236,7 @@ model		: 58
 model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
 stepping	: 9
 microcode	: 0x12
-cpu MHz		: 1200.000
+cpu MHz		: 2200.000
 cache size	: 6144 KB
 physical id	: 0
 siblings	: 8
@@ -245,7 +262,7 @@ model		: 58
 model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
 stepping	: 9
 microcode	: 0x12
-cpu MHz		: 1200.000
+cpu MHz		: 2601.000
 cache size	: 6144 KB
 physical id	: 0
 siblings	: 8
@@ -343,20 +360,20 @@ address sizes	: 36 bits physical, 48 bits virtual
 power management:
 
 #+END_EXAMPLE
-** CPU GOVERNOR:
+** CPU GOVERNOR
 #+BEGIN_EXAMPLE
 ondemand
 #+END_EXAMPLE
-** CPU FREQUENCY:
+** CPU FREQUENCY
 #+BEGIN_EXAMPLE
-2100000
+1200000
 #+END_EXAMPLE
-** GPU INFO FROM NVIDIA-SMI:
+** GPU INFO FROM NVIDIA-SMI
 #+BEGIN_EXAMPLE
 
 ==============NVSMI LOG==============
 
-Timestamp                           : Thu Mar 12 14:30:53 2015
+Timestamp                           : Thu Mar 12 15:22:17 2015
 Driver Version                      : 331.113
 
 Attached GPUs                       : 1
@@ -404,8 +421,8 @@ GPU 0000:01:00.0
     Clocks Throttle Reasons         : N/A
     FB Memory Usage
         Total                       : 1023 MiB
-        Used                        : 443 MiB
-        Free                        : 580 MiB
+        Used                        : 475 MiB
+        Free                        : 548 MiB
     BAR1 Memory Usage
         Total                       : N/A
         Used                        : N/A
@@ -453,7 +470,7 @@ GPU 0000:01:00.0
         Double Bit ECC              : N/A
         Pending                     : N/A
     Temperature
-        Gpu                         : 60 C
+        Gpu                         : 61 C
     Power Readings
         Power Management            : N/A
         Power Draw                  : N/A
@@ -479,20 +496,20 @@ GPU 0000:01:00.0
     Compute Processes               : N/A
 
 #+END_EXAMPLE
-** LINUX AND GCC VERSIONS:
+** LINUX AND GCC VERSIONS
 #+BEGIN_EXAMPLE
 Linux version 3.13.0-46-generic (buildd@orlo) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #79-Ubuntu SMP Tue Mar 10 20:06:50 UTC 2015
 #+END_EXAMPLE
-* CODE REVISIONS:
-** GIT REVISION OF REPOSITORY:
+* CODE REVISIONS
+** GIT REVISION OF REPOSITORY
 #+BEGIN_EXAMPLE
-commit bee33ba8cbe79819214e61500d7e58063ece626b
-Author: Generoso Pagano <generoso.pagano@inria.fr>
-Date:   Thu Mar 12 11:27:12 2015 +0100
+commit f24f76820677241d925ebef6f3368baa2c4fb9a1
+Author: Luka Stanisic <luka.stanisic@imag.fr>
+Date:   Thu Mar 12 15:22:03 2015 +0100
 
-    metadata
+    cosmetics
 #+END_EXAMPLE
-** SVN REVISION OF ORIGINAL STARPU CODE:
+** SVN REVISION OF ORIGINAL STARPU CODE
 #+BEGIN_EXAMPLE
 Path: /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU
 Working Copy Root Path: /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU
@@ -508,7 +525,7 @@ Last Changed Rev: 14405
 Last Changed Date: 2015-01-29 10:23:15 +0100 (Thu, 29 Jan 2015)
 
 #+END_EXAMPLE
-* COMPILATION:
+* COMPILATION
 ** CONFIGURATION OF STARPU:
 #+BEGIN_EXAMPLE
 checking build system type... x86_64-unknown-linux-gnu
@@ -980,13 +997,13 @@ configure:
                ayudame enabled:                             no
 
 #+END_EXAMPLE
-** COMPILATION OF STARPU:
+** COMPILATION OF STARPU
 #+BEGIN_EXAMPLE
 Making all in src
 make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src'
 make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src'
-  CC       libstarpu_1.3_la-barrier.lo
   CC       libstarpu_1.3_la-barrier_counter.lo
+  CC       libstarpu_1.3_la-barrier.lo
   CC       libstarpu_1.3_la-bitmap.lo
   CC       libstarpu_1.3_la-hash.lo
   CC       libstarpu_1.3_la-rwlock.lo
@@ -1202,8 +1219,8 @@ make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid
   CC       cache.o
   CC       commute.o
   CC       commute2.o
-  CC       copy.o
   CC       data_implicit_deps.o
+  CC       copy.o
   CC       data_lookup.o
   CC       scratch.o
   CC       sync_and_notify_data.o
@@ -1415,8 +1432,8 @@ make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid
   CCLD     datawizard/interfaces/coo/coo_interface
   CCLD     datawizard/interfaces/csr/csr_interface
   CCLD     datawizard/interfaces/matrix/matrix_interface
-  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_cuda_opencl
   CCLD     datawizard/interfaces/multiformat/multiformat_interface
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_cuda_opencl
   CCLD     datawizard/interfaces/multiformat/advanced/multiformat_data_release
   CCLD     datawizard/interfaces/multiformat/advanced/multiformat_worker
   CCLD     datawizard/interfaces/multiformat/advanced/multiformat_handle_conversion
@@ -1493,8 +1510,8 @@ make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid
   CCLD     perfmodels/regression_based
   CCLD     perfmodels/non_linear_regression_based
   CCLD     perfmodels/feed
-  CCLD     perfmodels/user_base
   CCLD     perfmodels/valid_model
+  CCLD     perfmodels/user_base
   CCLD     perfmodels/value_nan
   CCLD     perfmodels/memory
   CCLD     sched_policies/data_locality
@@ -1522,13 +1539,13 @@ Making all in src
 make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/src'
 make  all-am
 make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/src'
-  CC       starpu_mpi.lo
   CC       starpu_mpi_helper.lo
   CC       starpu_mpi_datatype.lo
+  CC       starpu_mpi.lo
   CC       starpu_mpi_task_insert.lo
   CC       starpu_mpi_collective.lo
-  CC       starpu_mpi_stats.lo
   CC       starpu_mpi_private.lo
+  CC       starpu_mpi_stats.lo
   CC       starpu_mpi_cache.lo
   CC       starpu_mpi_select_node.lo
   CC       starpu_mpi_cache_stats.lo
@@ -1687,8 +1704,8 @@ make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid
   CC       life.o
   CC       stencil-kernels.o
   CC       stencil-tasks.o
-  CC       stencil.o
   CC       stencil-blocks.o
+  CC       stencil.o
   CCLD     stencil
 make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples/stencil'
 make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
@@ -1972,7 +1989,7 @@ g++ -m64 -Wl,-O1 -o starpu_top main.o mainwindow.o configurationmanager.o widget
 make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/starpu-top'
 make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native'
 #+END_EXAMPLE
-** PROGRAM SCRIPT:
+** PROGRAM SCRIPT
 #+BEGIN_EXAMPLE
 #! /bin/bash
 
@@ -2203,68 +2220,75 @@ func_exec_program ()
   fi
 fi
 #+END_EXAMPLE
-** PROGRAM BINARY LIBRARIES:
+** PROGRAM BINARY LIBRARIES
 #+BEGIN_EXAMPLE
-	linux-vdso.so.1 =>  (0x00007fff9ffed000)
-	libblas.so.3 => /usr/lib/libblas.so.3 (0x00007f224bd48000)
-	libstarpu-1.3.so.0 => /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/lib/libstarpu-1.3.so.0 (0x00007f224ba1f000)
-	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f224b719000)
-	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f224b4fb000)
-	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f224b135000)
-	libhwloc.so.5 => /usr/lib/x86_64-linux-gnu/libhwloc.so.5 (0x00007f224aef5000)
-	libfxt.so.0 => /home/stanisic/Repository/FxT/lib/libfxt.so.0 (0x00007f224ace3000)
-	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f224aada000)
-	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f224a8c4000)
-	/lib64/ld-linux-x86-64.so.2 (0x00007f224bfed000)
-	libnuma.so.1 => /usr/lib/x86_64-linux-gnu/libnuma.so.1 (0x00007f224a6b9000)
-	libltdl.so.7 => /usr/lib/x86_64-linux-gnu/libltdl.so.7 (0x00007f224a4ae000)
-	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f224a2aa000)
+	linux-vdso.so.1 =>  (0x00007fff1e9fb000)
+	libblas.so.3 => /usr/lib/libblas.so.3 (0x00007ff01254c000)
+	libstarpu-1.3.so.0 => /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/lib/libstarpu-1.3.so.0 (0x00007ff012223000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff011f1d000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ff011cff000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff011939000)
+	libhwloc.so.5 => /usr/lib/x86_64-linux-gnu/libhwloc.so.5 (0x00007ff0116f9000)
+	libfxt.so.0 => /home/stanisic/Repository/FxT/lib/libfxt.so.0 (0x00007ff0114e7000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007ff0112de000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff0110c8000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007ff0127f1000)
+	libnuma.so.1 => /usr/lib/x86_64-linux-gnu/libnuma.so.1 (0x00007ff010ebd000)
+	libltdl.so.7 => /usr/lib/x86_64-linux-gnu/libltdl.so.7 (0x00007ff010cb2000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007ff010aae000)
 #+END_EXAMPLE
-* RUNNING OPTIONS:
+* RUNNING OPTIONS
 #+BEGIN_EXAMPLE
-STARPU_HOME=/home/stanisic/Repository/trace.archive/src/starpu STARPU_HOSTNAME=winnetou STARPU_HISTORY_MAX_ERROR=5 STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=1 STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPENCL=0 STARPU_SCHED=dmda /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native//examples/cholesky/cholesky_implicit -size 9600 -nblocks 10
+STARPU_HOME=/home/stanisic/Repository/trace.archive/data/testing STARPU_HOSTNAME=winnetou STARPU_HISTORY_MAX_ERROR=5 STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=1 STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPENCL=0 STARPU_SCHED=dmda /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples/cholesky/cholesky_implicit -size 9600 -nblocks 10
 #+END_EXAMPLE
-* ELAPSED TIME:
+* ELAPSED TIME
 #+BEGIN_EXAMPLE
-Elapsed:    41.569466474 seconds
+Elapsed:    39.918313679 seconds
 #+END_EXAMPLE
-* STDERR OUTPUT:
+* STDERR OUTPUT
 #+BEGIN_EXAMPLE
 [starpu][starpu_initialize] Warning: StarPU was configured with --with-fxt, which slows down a bit
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 554315.852000 vs average 441870.800000, 1 such errors against 1 samples (+25.447496%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 735394.814000 vs average 850752.390667, 6 such errors against 6 samples (-13.559477%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 738179.663000 vs average 698894.054000, 1 such errors against 1 samples (+5.621111%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 682625.023000 vs average 754297.513387, 31 such errors against 31 samples (-9.501886%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 713562.487000 vs average 676512.436000, 1 such errors against 1 samples (+5.476625%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 464404.983000 vs average 558960.370400, 10 such errors against 10 samples (-16.916295%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 769626.637000 vs average 732258.565647, 17 such errors against 17 samples (+5.103125%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 470150.785000 vs average 505865.312500, 2 such errors against 2 samples (-7.060086%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 1050840.775000 vs average 704870.190000, 1 such errors against 1 samples (+49.082879%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 447397.797000 vs average 479080.014000, 2 such errors against 2 samples (-6.613137%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 1025406.042000 vs average 857819.135000, 1 such errors against 1 samples (+19.536392%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 796101.665000 vs average 724333.964500, 8 such errors against 8 samples (+9.908095%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 467556.951000 vs average 440599.086000, 1 such errors against 1 samples (+6.118457%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 443331.247000 vs average 485219.230000, 1 such errors against 1 samples (-8.632795%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 1006450.244000 vs average 807510.344000, 2 such errors against 2 samples (+24.636205%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 744288.474000 vs average 694254.744000, 1 such errors against 1 samples (+7.206826%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 658112.912000 vs average 724177.144333, 3 such errors against 3 samples (-9.122662%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 941644.183000 vs average 676095.574000, 1 such errors against 1 samples (+39.276786%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 1010269.401000 vs average 770963.446000, 1 such errors against 1 samples (+31.039857%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 806361.506000 vs average 755992.762000, 1 such errors against 1 samples (+6.662596%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 717889.005000 vs average 1019329.147000, 1 such errors against 1 samples (-29.572405%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 793770.332000 vs average 751494.527000, 1 such errors against 1 samples (+5.625564%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
-[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 816948.627000 vs average 689605.787286, 7 such errors against 7 samples (+18.466034%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][check_bus_config_file] No performance model for the bus, calibrating...
+[starpu][check_bus_config_file] ... done
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 926428.713000 vs average 755575.655000, 1 such errors against 1 samples (+22.612303%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 744763.301000 vs average 676375.058000, 1 such errors against 1 samples (+10.110994%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 665563.084000 vs average 721852.198333, 3 such errors against 3 samples (-7.797873%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 672731.699000 vs average 771382.473000, 1 such errors against 1 samples (-12.788828%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 700012.584000 vs average 757822.639000, 1 such errors against 1 samples (-7.628441%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 719077.292000 vs average 774115.187857, 7 such errors against 7 samples (-7.109781%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 482058.914000 vs average 538715.899286, 7 such errors against 7 samples (-10.517043%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 678509.086000 vs average 769001.567071, 14 such errors against 14 samples (-11.767529%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 710285.161000 vs average 776369.402000, 1 such errors against 1 samples (-8.511958%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 689305.369000 vs average 761185.634000, 1 such errors against 1 samples (-9.443198%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 1018138.011000 vs average 687574.718833, 6 such errors against 6 samples (+48.076708%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 683010.367000 vs average 774443.275500, 4 such errors against 4 samples (-11.806276%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_11 on cpu0_impl0 (Comb0): 112684.400000 vs average 124512.528000, 1 such errors against 1 samples (-9.499549%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 535067.464000 vs average 448183.720000, 2 such errors against 2 samples (+19.385743%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 465760.049000 vs average 548869.411000, 2 such errors against 2 samples (-15.141919%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 659804.059000 vs average 895600.977000, 1 such errors against 1 samples (-26.328345%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 870912.154000 vs average 675536.289000, 1 such errors against 1 samples (+28.921594%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 702465.945000 vs average 797514.212000, 1 such errors against 1 samples (-11.918066%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 701246.030000 vs average 901645.383000, 1 such errors against 1 samples (-22.225961%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 787353.687000 vs average 704536.023182, 11 such errors against 11 samples (+11.754923%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 680830.216000 vs average 897826.968000, 1 such errors against 1 samples (-24.169106%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 698499.685000 vs average 858746.996000, 1 such errors against 1 samples (-18.660596%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 741834.788000 vs average 695992.258000, 1 such errors against 1 samples (+6.586644%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 682532.342000 vs average 908463.763000, 1 such errors against 1 samples (-24.869613%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 647359.942000 vs average 706385.702000, 4 such errors against 4 samples (-8.356024%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_11 on cpu0_impl0 (Comb0): 127620.677000 vs average 115547.157000, 2 such errors against 2 samples (+10.448998%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 407799.298000 vs average 461727.043333, 9 such errors against 9 samples (-11.679573%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_11 on cpu0_impl0 (Comb0): 120495.479000 vs average 112847.352000, 1 such errors against 1 samples (+6.777409%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
 #+END_EXAMPLE
-* STDOUT OUTPUT:
+* STDOUT OUTPUT
 #+BEGIN_EXAMPLE
 Makespan (in ms): # size	ms	GFlops
-9600	40897	7.2
+9600	39226	7.5
 #+END_EXAMPLE
-* CALIBRATION:
+* CALIBRATION
+** chol_model_11.winnetou
 #+BEGIN_EXAMPLE
-** File: chol_model_11.winnetou
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/codelets/44/chol_model_11.winnetou
-##################
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/codelets/44/chol_model_11.winnetou
+ ##################
 # Performance Model Version
 44
 
@@ -2300,11 +2324,13 @@ Makespan (in ms): # size	ms	GFlops
 # a		b		c
 nan            	nan            	nan            
 # hash		size		flops		mean (us)	dev (us)	sum		sum2		n
-617e5fe6	3686400        	2.953730e+08   	1.148074e+05   	1.992505e+03   	8.036515e+05   	9.229289e+10   	7
+617e5fe6	3686400        	2.953730e+08   	1.076217e+05   	0.000000e+00   	1.076217e+05   	1.158243e+10   	1
 
-** File: chol_model_21.winnetou
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/codelets/44/chol_model_21.winnetou
-##################
+#+END_EXAMPLE
+** chol_model_21.winnetou
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/codelets/44/chol_model_21.winnetou
+ ##################
 # Performance Model Version
 44
 
@@ -2340,11 +2366,13 @@ nan            	nan            	nan
 # a		b		c
 nan            	nan            	nan            
 # hash		size		flops		mean (us)	dev (us)	sum		sum2		n
-ff82dda0	7372800        	8.856576e+08   	4.341845e+05   	1.057818e+04   	3.039291e+06   	1.320396e+12   	7
+ff82dda0	7372800        	8.856576e+08   	3.966804e+05   	4.361238e+03   	1.586721e+06   	6.294973e+11   	4
 
-** File: chol_model_22.winnetou
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/codelets/44/chol_model_22.winnetou
-##################
+#+END_EXAMPLE
+** chol_model_22.winnetou
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/codelets/44/chol_model_22.winnetou
+ ##################
 # Performance Model Version
 44
 
@@ -2380,18 +2408,22 @@ ff82dda0	7372800        	8.856576e+08   	4.341845e+05   	1.057818e+04   	3.03929
 # a		b		c
 nan            	nan            	nan            
 # hash		size		flops		mean (us)	dev (us)	sum		sum2		n
-24c84a50	11059200       	1.769472e+09   	6.771825e+05   	1.582568e+04   	1.354365e+06   	9.176532e+11   	2
+24c84a50	11059200       	1.769472e+09   	6.852271e+05   	1.751798e+04   	1.438977e+07   	9.866704e+12   	21
 
-** File: winnetou.bandwidth
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/bus/winnetou.bandwidth
-# to 0		to 1		to 2		to 3		
+#+END_EXAMPLE
+** winnetou.bandwidth
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.bandwidth
+ # to 0		to 1		to 2		to 3		
 0.000000	nan	nan	nan
 nan	nan	nan	nan
 nan	nan	nan	nan
 nan	nan	nan	nan
-** File: winnetou.platform.xml
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/bus/winnetou.platform.xml
-<?xml version='1.0'?>
+#+END_EXAMPLE
+** winnetou.platform.xml
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.platform.xml
+ <?xml version='1.0'?>
  <!DOCTYPE platform SYSTEM 'http://simgrid.gforge.inria.fr/simgrid.dtd'>
  <platform version='3'>
  <config id='General'>
@@ -2412,19 +2444,22 @@ nan	nan	nan	nan
 
  </AS>
  </platform>
-** File: winnetou.config
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/bus/winnetou.config
-# Current configuration
+#+END_EXAMPLE
+** winnetou.config
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.config
+ # Current configuration
 4 # Number of CPUs
 0 # Number of CUDA devices
 0 # Number of OpenCL devices
 0 # Number of MIC devices
-** File: winnetou.latency
-/home/stanisic/Repository/trace.archive/src/starpu/.starpu/sampling/bus/winnetou.latency
-# to 0		to 1		to 2		to 3		
+#+END_EXAMPLE
+** winnetou.latency
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.latency
+ # to 0		to 1		to 2		to 3		
 0.000000	nan	nan	nan
 nan	nan	nan	nan
 nan	nan	nan	nan
 nan	nan	nan	nan
-#! End of calibration
 #+END_EXAMPLE
