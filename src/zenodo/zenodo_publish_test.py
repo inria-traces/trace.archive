@@ -1,3 +1,7 @@
+# Author: Generoso Pagano
+# Description: this is only a sample code to interact with Zenodo using
+# the REST API. This code won't work without setting a valid TOKEN.
+
 import requests
 import json
 
@@ -11,6 +15,7 @@ description="sample description"
 # Personal data
 name="Pagano, Generoso"
 affiliation="Inria"
+
 # my personal token, created using the web interface
 TOKEN="dummy-value" # the real value must be your secret!
 
@@ -41,6 +46,7 @@ data = {"metadata":
 headers = {"Content-Type": "application/json"}
 r = requests.post("%s?access_token=%s" % (url, TOKEN), data=json.dumps(data), headers=headers)
 print "Deposition::Create: " + str(r.status_code)
+print r.json()
 if r.status_code != 201 :
     print r.json()
     exit()
@@ -54,6 +60,7 @@ data = {'filename': 'myfirstfile.csv'}
 files = {'file': open('/home/generoso/myfirstfile.csv', 'rb')}
 r = requests.post("%s/%s/files?access_token=%s" % (url, deposition_id, TOKEN), data=data, files=files)
 print "Deposition files::Create(upload): " + str(r.status_code)
+print r.json()
 if r.status_code != 201 :
     print r.json()
     exit()
@@ -63,6 +70,10 @@ if r.status_code != 201 :
 if dry == False:
     r = requests.post("%s/%s/actions/publish?access_token=%s" % (url, deposition_id, TOKEN))
     print "Deposition Actions::Publish: " + str(r.status_code)
+    print r.json()
+    print r.json()['record_url']
+    print r.json()['id']
+    print r.json()['file_id']
     if r.status_code != 202 :
         print r.json()
         exit()
