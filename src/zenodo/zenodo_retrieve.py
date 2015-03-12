@@ -1,10 +1,32 @@
-# Author: Generoso Pagano
-# Description: this is only a sample code to interact with Zenodo using
-# the REST API. This code won't work without setting a valid TOKEN.
+# * Author: Generoso Pagano
+#
+# * Description:
+#
+# Script to download a file from Zenodo.
+#
+# * Usage:
+#
+# Use the following command to get the complete list of command line
+# arguments:
+#
+#     python zenodo_retrieve.py -h
+#
 
 import requests
 import json
+import argparse
 
+# Utilities
+def parse_arguments():
+    """Parse command line arguments"""
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-o", "--orgpath", help="Path of the 'index.org' file in the trace folder, containing the Zenodo link.")
+    parser.add_argument("-l", "--link", help="Zenodo link")
+    parser.add_argument("-v", "--verbose", help="Enable verbose output", action="store_true")
+    parser.add_argument("-n", "--nodownload", help="Do not download the file (dry run).", action="store_true")
+    return parser.parse_args()
+
+# TODO size must be read from HTML response
 def download_file(url, size):    
     filesize_dl = 0
     print "Downloading: %s Bytes: %d" % (filename, filesize)
@@ -18,14 +40,6 @@ def download_file(url, size):
                 status = status + chr(8)*(len(status)+1)
                 print status,
 
-# Personal token
-TOKEN="this-is-a-dummy-value"
-
-# Base deposit url (constant)
-URL="https://zenodo.org/api/deposit/depositions"
-
-# input
-deposition_id="24371"
 
 # Get single file metadata
 r = requests.get("%s/%s?access_token=%s" % (URL, deposition_id, TOKEN))
