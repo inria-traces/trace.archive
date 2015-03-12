@@ -7,11 +7,12 @@ dry = True
 # specific metadata
 title="sample title"
 description="sample description"
+
+# Personal data
 name="Pagano, Generoso"
 affiliation="Inria"
-
 # my personal token, created using the web interface
-TOKEN="dummy-value"
+TOKEN="dummy-value" # the real value must be your secret!
 
 # Base upload url (constant)
 url="https://zenodo.org/api/deposit/depositions"
