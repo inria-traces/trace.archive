@@ -1,6 +1,6 @@
 * General information
 ** Output file
-See [[../data/testing/info.org][info.org]] for details.
+See [[info.org][info.org]] for details.
 ** Authors
 ** Application
 ** Machine description 
