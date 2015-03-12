@@ -102,7 +102,7 @@ if git diff-index --quiet HEAD --; then
 else
     echo "ERROR-need to commit all changes before doing experiment!"
     git status
-    #exit 1
+    exit 1
 fi
 
 ##################################################
@@ -229,8 +229,7 @@ rm -f worker*
 
 ##################################################
 # Prepare running options
-cd $datafolder
-running="STARPU_HOME=$starpu_home STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=$starpu_calibrate STARPU_NCPU=$ncpu STARPU_NCUDA=$ncuda STARPU_NOPENCL=$nopencl $numactl $qrm_build/examples/dqrm_test < $qrm_build/examples/input.txt"
+running="STARPU_HOME=$starpu_home STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=$starpu_calibrate STARPU_NCPU=$ncpu STARPU_NCUDA=$ncuda STARPU_NOPENCL=$nopencl $numactl ./dqrm_test < input.txt"
 
 #################################
 # Run application
@@ -265,6 +264,10 @@ cat stderr.out
 echo -n "Makespan (in ms): "
 cat stdout.out
 echo "#+END_EXAMPLE" >> $info
+
+##################################
+# Copy output results to data folder
+cp paje.trace *.dot *.data $datafolder
 
 ##################################
 # StarPU calibration used for this experiment
