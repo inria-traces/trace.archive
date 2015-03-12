@@ -11,6 +11,8 @@ template_index="/home/stanisic/Repository/trace.archive/src/template_index.org"
 
 datafolder="/home/stanisic/Repository/trace.archive/data/testing"
 starpu_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native"
+qrm_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/qrm_starpu_2d"
+numactl=""
 help_script()
 {
     cat << EOF
@@ -22,19 +24,23 @@ OPTIONS:
    -h      Show this message
    -d      Specify output data folder
    -s      Path to the StarPU installation
+   -q      Path to the qrm_starpu source code
 
 Example how to run it:
 STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPECL=0 STARPU_SIZE=9600 STARPU_BLK=10 STARPU_SCHED=dmda STARPU_CALIBRATE=1 STARPU_PROGRAM=cholesky ./runxp_starpu.sh -d /home/stanisic/Repository/trace.archive/data/testing/ -s /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/
 EOF
 }
 # Parsing options
-while getopts "d:s:h" opt; do
+while getopts "d:s:q:h" opt; do
     case $opt in
 	d)
 	    datafolder="$OPTARG"
 	    ;;
 	s)
 	    starpu_build="$OPTARG"
+	    ;;
+	q)
+	    qrm_build="$OPTARG"
 	    ;;
 	h)
 	    help_script
@@ -61,14 +67,6 @@ fi
 nopencl=$STARPU_NOPENCL
 if [[ -z $nopencl ]]; then
     nopencl="0"
-fi
-nsize=$STARPU_SIZE
-if [[ -z $nsize ]]; then
-    nsize="9600"
-fi
-nblk=$STARPU_BLK
-if [[ -z $nblk ]]; then
-    nblk="10"
 fi
 starpu_home=$STARPU_HOME
 if [[ -z $starpu_home ]]; then
@@ -97,23 +95,6 @@ else
     ncpu="$ncpu STARPU_WORKERS_CPUID=\"$STARPU_WORKERS_CPUID\""
 fi
 
-# To choose which program to run
-starpu_program=$STARPU_PROGRAM
-starpu_program_binary="./examples/cholesky/.libs/cholesky_implicit"
-case $starpu_program in
-    'cholesky' | '$starpu_build/examples/cholesky/cholesky_implicit')
-        starpu_program="$starpu_build/examples/cholesky/cholesky_implicit" 
-	starpu_program_binary="$starpu_build/examples/cholesky/.libs/cholesky_implicit"
-        ;;   
-    'lu' | '$starpu_build/examples/lu/lu_example_float')
-        starpu_program="$starpu_build/examples/lu/lu_example_float" 
-	starpu_program_binary="$starpu_build/examples/lu/.libs/lu_example_float"
-        ;;           
-    *)
-        starpu_program="$starpu_build/examples/cholesky/cholesky_implicit" 
-	starpu_program_binary="$starpu_build/examples/cholesky/.libs/cholesky_implicit"
-esac
-
 #################################################################
 # Checking if everything is commited
 if git diff-index --quiet HEAD --; then
@@ -131,7 +112,7 @@ case ${host} in
 	export FXT_PATH=/home/stanisic/Repository/FxT
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/stanisic/Repository/FxT/lib
 	;;
-    'paul-bdx' | 'attila' | 'hannibal' | 'conan' | 'mirage' | 'fourmi')
+    'paul-bdx' | 'attila' | 'hannibal' | 'conan' | 'mirage' | 'fourmi' | 'riri')
         ;;
     'frog' | 'frogkepler' )
 	export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/stanisic/FxT/lib/pkgconfig
@@ -170,9 +151,9 @@ case ${host} in
 	;;
     'winnetou' )
 	;;
-    'fourmi' | 'mirage')
-	configopt="--disable-build-doc --disable-socl --disable-gcc-extensions
---disable-opencl --with-mkl-cflags=\"-I$MKLROOT/include\" --with-mkl-ldflags=\"-Wl,--start-group $MKLROOT/lib/intel64/libmkl_intel_lp64.so $MKLROOT/lib/intel64/libmkl_sequential.so $MKLROOT/lib/intel64/libmkl_core.so -Wl,--end-group -lpthread -lm\""
+    'fourmi' | 'mirage' | 'riri')
+        configopt="--enable-maxcpus=1000 --enable-max-sched-ctxs=100 --enable-maxbuffers=1000 --disable-socl --without-mpicc --disable-build-doc --disable-build-examples --disable-gcc-extensions --disable-opencl"
+        numactl="numactl -i all"
         ;;
     'frog' | 'frogkepler')
 	configopt="BLAS_LIBS=\"-L/applis/site/stow/gcc_4.4.6/atlas_3.11.17/lib -lsatlas\"" 
@@ -196,19 +177,59 @@ echo "#+BEGIN_EXAMPLE" >> $info
 make -j5 >> $info
 make install
 echo "#+END_EXAMPLE" >> $info
-echo "** PROGRAM SCRIPT" >> $info
-echo "#+BEGIN_EXAMPLE" >> $info
-cat $starpu_program >> $info
+
+#################################################
+## Compiling qrm_starpu
+echo "* QRM INFORMATION:" >> $info
+cd $qrm_build
+echo "** SVN REVISION OF ORIGINAL QRM_STARPU CODE" >> $info
+echo "#+BEGIN_EXAMPLE" >> $info    
+set +e #If there is no svn information
+svn info $starpu_src >> $info    
+set -e
+echo "#+END_EXAMPLE" >> $info 
+# Cleanup 
+case ${host} in
+    'winnetou' )
+	cp $qrm_build/makeincs/Make.inc_luka_winnetou $qrm_build/Make.inc
+	;;
+    'fourmi' | 'mirage' | 'riri')
+	cp $qrm_build/makeincs/Make.inc_luka_plafrim $qrm_build/Make.inc
+	;;
+    *)
+	echo "New machine: be sure config options are correct!"
+esac
+echo "Make clean..."
+set +e #If there is nothing to clean
+make clean > /dev/null
+set -e
+# Configure and make qrm_starpu                                                                   
+echo "** MAKE.INC:" >> $info
+echo "#+BEGIN_EXAMPLE" >> $info    
+cat Make.inc >> $info
 echo "#+END_EXAMPLE" >> $info
-echo "** PROGRAM BINARY LIBRARIES" >> $info
-echo "#+BEGIN_EXAMPLE" >> $info
-ldd $starpu_program_binary >> $info
+echo "** COMPILATION OF QRM_STARPU:" >> $info
+echo "#+BEGIN_EXAMPLE" >> $info    
+make >> $info
 echo "#+END_EXAMPLE" >> $info
+# Make dqrm_test
+cd examples
+echo "** COMPILATION OF EXAMPLE:" >> $info
+echo "#+BEGIN_EXAMPLE" >> $info    
+make clean > /dev/null
+make qrm_test ARITH=d >> $info
+echo "#+END_EXAMPLE" >> $info
+## Input file:                                                          
+echo "** INPUT FILE:" >> $info
+echo "#+BEGIN_EXAMPLE" >> $info    
+cat input.txt >> $info
+echo "#+END_EXAMPLE" >> $info
+rm -f worker*
+	
 
 ##################################################
 # Prepare running options
-cd $datafolder
-running="STARPU_HOME=$starpu_home STARPU_HOSTNAME=$starpu_hostname STARPU_HISTORY_MAX_ERROR=$starpu_history_max_error STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=$starpu_calibrate STARPU_NCPU=$ncpu STARPU_NCUDA=$ncuda STARPU_NOPENCL=$nopencl STARPU_SCHED=$starpu_sched $starpu_program -size $nsize -nblocks $nblk"
+running="STARPU_HOME=$starpu_home STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=$starpu_calibrate STARPU_NCPU=$ncpu STARPU_NCUDA=$ncuda STARPU_NOPENCL=$nopencl $numactl ./dqrm_test < input.txt"
 
 #################################
 # Run application
@@ -245,9 +266,20 @@ cat stdout.out
 echo "#+END_EXAMPLE" >> $info
 
 ##################################
+# Copy output results to data folder
+cp paje.trace *.dot *.data $datafolder
+
+##################################
 # StarPU calibration used for this experiment
 echo "* CALIBRATION" >> $info
 find $starpu_home/.starpu -not -iwholename '*~' -name *$host* -printf "** %f\n#+BEGIN_EXAMPLE\n%p\n " -exec cat {} \; -printf "#+END_EXAMPLE\n" >> $info
+
+echo "* MAKESPAN APPROXIMATION FROM PAJE TRACE [ms]:" >> $info
+echo "#+BEGIN_EXAMPLE" >> $info
+makespan="$(tail -1 paje.trace | sed 's/\s\+/ /g' | cut -d' ' -f2 | cut -d. -f1)"
+echo $makespan >> $info
+echo "#+END_EXAMPLE" >> $info
+echo "Makespan approximation from paje trace: $makespan ms"
 
 ##################################
 # Copy template to index.org

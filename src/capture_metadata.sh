@@ -55,7 +55,7 @@ echo "#+TITLE: $title" > $info
 echo "#+DATE: $(eval date)" >> $info
 echo "#+AUTHOR: $(eval whoami)" >> $info
 echo "#+MACHINE: $(eval hostname)" >> $info
-echo "#+FILE: $(eval basename $info)" >> $info
+echo "#+FILE: $info" >> $info
 echo " " >> $info 
 
 ##################################################
