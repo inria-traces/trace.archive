@@ -1,8 +1,6 @@
 * General information
 ** Output file
-#+BEGIN_EXAMPLE
 See [info.org](../data/testing/info.org) for details.
-#+END_EXAMPLE
 ** Authors
 #+BEGIN_EXAMPLE
 Luka Stanisic
