@@ -1,0 +1,2465 @@
+#+TITLE: StarPU execution on winnetou
+#+DATE: Thu Mar 12 15:22:17 CET 2015
+#+AUTHOR: stanisic
+#+MACHINE: winnetou
+#+FILE: info.org
+ 
+* MACHINE INFO
+** PEOPLE LOGGED WHEN EXPERIMENT STARTED
+#+BEGIN_EXAMPLE
+stanisic :0           2015-03-12 14:03 (:0)
+stanisic pts/13       2015-03-12 14:03 (:0)
+stanisic pts/1        2015-03-12 14:04 (:0)
+stanisic pts/16       2015-03-12 14:04 (:0)
+stanisic pts/25       2015-03-12 14:04 (:0)
+stanisic pts/26       2015-03-12 14:35 (:0)
+#+END_EXAMPLE
+** ENVIRONMENT VARIABLES
+#+BEGIN_EXAMPLE
+XDG_VTNR=7
+LC_PAPER=en_US.UTF-8
+MANPATH=/home/stanisic/Repository/git-subrepo/man:
+LC_ADDRESS=en_US.UTF-8
+XDG_SESSION_ID=c2
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/stanisic
+SELINUX_INIT=YES
+LC_MONETARY=en_US.UTF-8
+CLUTTER_IM_MODULE=xim
+GPG_AGENT_INFO=/run/user/1000/keyring-m01dFm/gpg:0:1
+TERM=xterm
+VTE_VERSION=3409
+SHELL=/bin/bash
+WINDOWID=67108876
+LC_NUMERIC=en_US.UTF-8
+UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1884
+GNOME_KEYRING_CONTROL=/run/user/1000/keyring-m01dFm
+GTK_MODULES=overlay-scrollbar:unity-gtk-module
+USER=stanisic
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:
+LC_TELEPHONE=en_US.UTF-8
+LD_LIBRARY_PATH=:/home/stanisic/Repository/FxT/lib
+XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+SSH_AUTH_SOCK=/run/user/1000/keyring-m01dFm/ssh
+DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
+FXT_PATH=/home/stanisic/Repository/FxT
+DESKTOP_SESSION=ubuntu
+PATH=/home/stanisic/Repository/git-subrepo/lib:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+QT_IM_MODULE=ibus
+QT_QPA_PLATFORMTHEME=appmenu-qt5
+LC_IDENTIFICATION=en_US.UTF-8
+PWD=/home/stanisic/Repository/trace.archive/src/starpu
+JOB=gnome-session
+XMODIFIERS=@im=ibus
+GNOME_KEYRING_PID=1882
+LANG=en_US.UTF-8
+GDM_LANG=en_US
+MANDATORY_PATH=/usr/share/gconf/ubuntu.mandatory.path
+LC_MEASUREMENT=en_US.UTF-8
+COMPIZ_CONFIG_PROFILE=ubuntu
+IM_CONFIG_PHASE=1
+PAPERSIZE=letter
+GDMSESSION=ubuntu
+SESSIONTYPE=gnome-session
+SHLVL=3
+HOME=/home/stanisic
+XDG_SEAT=seat0
+LANGUAGE=en_US:en
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+UPSTART_INSTANCE=
+UPSTART_EVENTS=started starting
+LOGNAME=stanisic
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-xXh5jUhIkd
+XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/
+QT4_IM_MODULE=xim
+LESSOPEN=| /usr/bin/lesspipe %s
+INSTANCE=Unity
+TEXTDOMAIN=im-config
+UPSTART_JOB=unity-settings-daemon
+XDG_RUNTIME_DIR=/run/user/1000
+DISPLAY=:0
+XDG_CURRENT_DESKTOP=Unity
+GTK_IM_MODULE=ibus
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LC_TIME=en_US.UTF-8
+TEXTDOMAINDIR=/usr/share/locale/
+LC_NAME=en_US.UTF-8
+XAUTHORITY=/home/stanisic/.Xauthority
+COLORTERM=gnome-terminal
+_=/usr/bin/env
+#+END_EXAMPLE
+** HOSTNAME
+#+BEGIN_EXAMPLE
+winnetou
+#+END_EXAMPLE
+** MEMORY HIERARCHY
+#+BEGIN_EXAMPLE
+Machine (7936MB)
+  Socket L#0 + L3 L#0 (6144KB)
+    L2 L#0 (256KB) + L1d L#0 (32KB) + L1i L#0 (32KB) + Core L#0
+      PU L#0 (P#0)
+      PU L#1 (P#4)
+    L2 L#1 (256KB) + L1d L#1 (32KB) + L1i L#1 (32KB) + Core L#1
+      PU L#2 (P#1)
+      PU L#3 (P#5)
+    L2 L#2 (256KB) + L1d L#2 (32KB) + L1i L#2 (32KB) + Core L#2
+      PU L#4 (P#2)
+      PU L#5 (P#6)
+    L2 L#3 (256KB) + L1d L#3 (32KB) + L1i L#3 (32KB) + Core L#3
+      PU L#6 (P#3)
+      PU L#7 (P#7)
+  HostBridge L#0
+    PCIBridge
+      PCI 10de:0dfc
+        GPU L#0 "card0"
+    PCI 8086:1502
+      Net L#1 "eth0"
+    PCIBridge
+      PCI 8086:422b
+        Net L#2 "wlan0"
+    PCI 8086:1e03
+      Block L#3 "sda"
+      Block L#4 "sr0"
+#+END_EXAMPLE
+** STARPU MACHINE DISPLAY
+#+BEGIN_EXAMPLE
+StarPU has found :
+	4 CPU threads
+		CPU 0
+		CPU 1
+		CPU 2
+		CPU 3
+	0 CUDA devices
+	0 OpenCL devices
+
+topology ...
+core 0	PU 0	CPU 0	
+	PU 1	
+core 1	PU 2	CPU 1	
+	PU 3	
+core 2	PU 4	CPU 2	
+	PU 5	
+core 3	PU 6	CPU 3	
+	PU 7	
+
+bandwidth and latency ...
+from/to	RAM	
+RAM	0	
+
+RAM	0	
+#+END_EXAMPLE
+** CPU INFO
+#+BEGIN_EXAMPLE
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1200.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1200.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1300.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 2200.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 2601.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1200.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 1200.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 58
+model name	: Intel(R) Core(TM) i7-3720QM CPU @ 2.60GHz
+stepping	: 9
+microcode	: 0x12
+cpu MHz		: 2601.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 7
+initial apicid	: 7
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 5182.89
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+#+END_EXAMPLE
+** CPU GOVERNOR
+#+BEGIN_EXAMPLE
+ondemand
+#+END_EXAMPLE
+** CPU FREQUENCY
+#+BEGIN_EXAMPLE
+1200000
+#+END_EXAMPLE
+** GPU INFO FROM NVIDIA-SMI
+#+BEGIN_EXAMPLE
+
+==============NVSMI LOG==============
+
+Timestamp                           : Thu Mar 12 15:22:17 2015
+Driver Version                      : 331.113
+
+Attached GPUs                       : 1
+GPU 0000:01:00.0
+    Product Name                    : NVS 5200M
+    Display Mode                    : N/A
+    Display Active                  : N/A
+    Persistence Mode                : Disabled
+    Accounting Mode                 : N/A
+    Accounting Mode Buffer Size     : N/A
+    Driver Model
+        Current                     : N/A
+        Pending                     : N/A
+    Serial Number                   : N/A
+    GPU UUID                        : GPU-3ded7c2d-5614-bf14-8240-563d786f7c69
+    Minor Number                    : 0
+    VBIOS Version                   : 70.08.A8.00.13
+    Inforom Version
+        Image Version               : N/A
+        OEM Object                  : N/A
+        ECC Object                  : N/A
+        Power Management Object     : N/A
+    GPU Operation Mode
+        Current                     : N/A
+        Pending                     : N/A
+    PCI
+        Bus                         : 0x01
+        Device                      : 0x00
+        Domain                      : 0x0000
+        Device Id                   : 0x0DFC10DE
+        Bus Id                      : 0000:01:00.0
+        Sub System Id               : 0x05341028
+        GPU Link Info
+            PCIe Generation
+                Max                 : N/A
+                Current             : N/A
+            Link Width
+                Max                 : N/A
+                Current             : N/A
+        Bridge Chip
+            Type                    : N/A
+            Firmware                : N/A
+    Fan Speed                       : N/A
+    Performance State               : N/A
+    Clocks Throttle Reasons         : N/A
+    FB Memory Usage
+        Total                       : 1023 MiB
+        Used                        : 475 MiB
+        Free                        : 548 MiB
+    BAR1 Memory Usage
+        Total                       : N/A
+        Used                        : N/A
+        Free                        : N/A
+    Compute Mode                    : Default
+    Utilization
+        Gpu                         : N/A
+        Memory                      : N/A
+    Ecc Mode
+        Current                     : N/A
+        Pending                     : N/A
+    ECC Errors
+        Volatile
+            Single Bit            
+                Device Memory       : N/A
+                Register File       : N/A
+                L1 Cache            : N/A
+                L2 Cache            : N/A
+                Texture Memory      : N/A
+                Total               : N/A
+            Double Bit            
+                Device Memory       : N/A
+                Register File       : N/A
+                L1 Cache            : N/A
+                L2 Cache            : N/A
+                Texture Memory      : N/A
+                Total               : N/A
+        Aggregate
+            Single Bit            
+                Device Memory       : N/A
+                Register File       : N/A
+                L1 Cache            : N/A
+                L2 Cache            : N/A
+                Texture Memory      : N/A
+                Total               : N/A
+            Double Bit            
+                Device Memory       : N/A
+                Register File       : N/A
+                L1 Cache            : N/A
+                L2 Cache            : N/A
+                Texture Memory      : N/A
+                Total               : N/A
+    Retired Pages
+        Single Bit ECC              : N/A
+        Double Bit ECC              : N/A
+        Pending                     : N/A
+    Temperature
+        Gpu                         : 61 C
+    Power Readings
+        Power Management            : N/A
+        Power Draw                  : N/A
+        Power Limit                 : N/A
+        Default Power Limit         : N/A
+        Enforced Power Limit        : N/A
+        Min Power Limit             : N/A
+        Max Power Limit             : N/A
+    Clocks
+        Graphics                    : N/A
+        SM                          : N/A
+        Memory                      : N/A
+    Applications Clocks
+        Graphics                    : N/A
+        Memory                      : N/A
+    Default Applications Clocks
+        Graphics                    : N/A
+        Memory                      : N/A
+    Max Clocks
+        Graphics                    : N/A
+        SM                          : N/A
+        Memory                      : N/A
+    Compute Processes               : N/A
+
+#+END_EXAMPLE
+** LINUX AND GCC VERSIONS
+#+BEGIN_EXAMPLE
+Linux version 3.13.0-46-generic (buildd@orlo) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #79-Ubuntu SMP Tue Mar 10 20:06:50 UTC 2015
+#+END_EXAMPLE
+* CODE REVISIONS
+** GIT REVISION OF REPOSITORY
+#+BEGIN_EXAMPLE
+commit f24f76820677241d925ebef6f3368baa2c4fb9a1
+Author: Luka Stanisic <luka.stanisic@imag.fr>
+Date:   Thu Mar 12 15:22:03 2015 +0100
+
+    cosmetics
+#+END_EXAMPLE
+** SVN REVISION OF ORIGINAL STARPU CODE
+#+BEGIN_EXAMPLE
+Path: /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU
+Working Copy Root Path: /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU
+URL: svn://scm.gforge.inria.fr/svn/starpu/trunk
+Relative URL: ^/trunk
+Repository Root: svn://scm.gforge.inria.fr/svn/starpu
+Repository UUID: 176f6dd6-97d6-42f4-bd05-d3db9ad07c7a
+Revision: 14406
+Node Kind: directory
+Schedule: normal
+Last Changed Author: nfurmento
+Last Changed Rev: 14405
+Last Changed Date: 2015-01-29 10:23:15 +0100 (Thu, 29 Jan 2015)
+
+#+END_EXAMPLE
+* COMPILATION
+** CONFIGURATION OF STARPU:
+#+BEGIN_EXAMPLE
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking how to run the C preprocessor... gcc -E
+checking for a sed that does not truncate output... /bin/sed
+checking whether ln -s works... yes
+checking for g77... no
+checking for xlf... no
+checking for f77... no
+checking for frt... no
+checking for pgf77... no
+checking for cf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for xlf90... no
+checking for f90... no
+checking for pgf90... no
+checking for pghpf... no
+checking for epcf90... no
+checking for gfortran... gfortran
+checking whether we are using the GNU Fortran 77 compiler... yes
+checking whether gfortran accepts -g... yes
+checking for gstat... no
+checking for stat... stat
+checking for gdate... no
+checking for date... date
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking whether the shell understands some XSI constructs... yes
+checking whether the shell understands "+="... yes
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for ld used by g++... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC -DPIC
+checking if g++ PIC flag -fPIC -DPIC works... yes
+checking if g++ static flag -static works... yes
+checking if g++ supports -c -o file.o... yes
+checking if g++ supports -c -o file.o... (cached) yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gfortran option to produce PIC... -fPIC
+checking if gfortran PIC flag -fPIC works... yes
+checking if gfortran static flag -static works... yes
+checking if gfortran supports -c -o file.o... yes
+checking if gfortran supports -c -o file.o... (cached) yes
+checking whether the gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether ln -s works... yes
+checking for ANSI C header files... (cached) yes
+checking for C/C++ restrict keyword... __restrict
+checking for bash... /bin/bash
+checking for svn... /usr/bin/svn
+checking for svnversion... /usr/bin/svnversion
+checking for lib... no
+checking size of void *... 8
+checking for pthread_create in -lpthread... yes
+checking for library containing sqrt... -lm
+checking for main in -lws2_32... no
+checking for sysconf... yes
+checking for pthread_spin_lock... yes
+checking for pthread_barrier_init... yes
+checking for pthread_setaffinity_np... yes
+checking for posix_memalign... yes
+checking for memalign... yes
+checking for drand48... yes
+checking for erand48_r... yes
+checking for strerror_r... yes
+checking for setenv... yes
+checking for unsetenv... yes
+checking for nearbyintf... yes
+checking for rintf... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking valgrind/valgrind.h usability... yes
+checking valgrind/valgrind.h presence... yes
+checking for valgrind/valgrind.h... yes
+checking valgrind/helgrind.h usability... yes
+checking valgrind/helgrind.h presence... yes
+checking for valgrind/helgrind.h... yes
+checking for sched_yield... yes
+checking aio.h usability... yes
+checking aio.h presence... yes
+checking for aio.h... yes
+checking for mkstemps... yes
+checking for pread... yes
+checking for pwrite... yes
+checking whether the target supports __sync_val_compare_and_swap... yes
+checking whether the target supports __sync_bool_compare_and_swap... yes
+checking whether the target supports __sync_fetch_and_add... yes
+checking whether the target supports __sync_fetch_and_or... yes
+checking whether the target supports __sync_lock_test_and_set... yes
+checking whether the target supports __sync_synchronize... yes
+checking for library containing set_mempolicy... no
+checking whether libnuma is available... no
+checking maximum number of sched_ctxs... 10
+checking maximum number of CPUs... 64
+checking whether CPUs should be used... yes
+checking maximum number of CUDA devices... 4
+checking whether CUDA is available... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /usr/local/cuda... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /c/cuda... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /cygdrive/c/cuda... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /opt/cuda... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /..... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /..... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /..... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is available in /..... 
+checking cuda.h usability... no
+checking cuda.h presence... no
+checking for cuda.h... no
+checking whether CUDA is working... no
+checking whether CUDA should be used... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking whether MAGMA should be used... no
+checking for cufftDoubleComplex... no
+checking whether CURAND is available... no
+checking maximum number of OpenCL devices... 8
+checking whether OpenCL is available... 
+checking CL/cl.h usability... no
+checking CL/cl.h presence... no
+checking for CL/cl.h... no
+checking whether OpenCL is available in /usr/local/cuda no and no... 
+checking CL/cl.h usability... no
+checking CL/cl.h presence... no
+checking for CL/cl.h... no
+checking whether OpenCL is available in /c/cuda no and no... 
+checking CL/cl.h usability... no
+checking CL/cl.h presence... no
+checking for CL/cl.h... no
+checking whether OpenCL is available in /cygdrive/c/cuda no and no... 
+checking CL/cl.h usability... no
+checking CL/cl.h presence... no
+checking for CL/cl.h... no
+checking whether OpenCL is available in /opt/cuda no and no... 
+checking CL/cl.h usability... no
+checking CL/cl.h presence... no
+checking for CL/cl.h... no
+checking whether OpenCL is available in /.. no and no... 
+checking CL/cl.h usability... no
+checking CL/cl.h presence... no
+checking for CL/cl.h... no
+checking for clEnqueueMarkerWithWaitList... no
+checking whether OpenCL should be used... no
+checking whether asynchronous copy should be disabled... no
+checking whether asynchronous CUDA copy should be disabled... no
+checking whether asynchronous OpenCL copy should be disabled... no
+checking whether asynchronous MIC copy should be disabled... no
+checking whether SimGrid is enabled... no
+checking whether blocking drivers should be enabled... no
+checking maximum number of MIC devices... 4
+checking maximum number of MIC threads... 
+checking RCCE.h usability... no
+checking RCCE.h presence... no
+checking for RCCE.h... no
+checking for RCCE_init in -lRCCE_bigflags_nongory_nopwrmgmt... no
+checking whether RCCE should be used... no
+checking Maximum number of message-passing kernels... 10
+checking whether debug mode should be enabled... no
+checking whether extra checks should be performed... no
+checking whether debug messages should be displayed... no
+checking whether coverage testing should be enabled... no
+checking whether FxT traces should be generated... yes using /home/stanisic/Repository/FxT
+checking for FXT... yes
+checking for enable_fut_flush... yes
+checking for fut_set_filename... yes
+checking whether enable_fut_flush is declared... no
+checking whether fut_set_filename is declared... no
+checking for POTI... no
+checking whether additional locking systems FxT traces should be enabled... no
+checking whether performance debugging should be enabled... no
+checking whether performance model debugging should be enabled... no
+checking whether statistics should be generated... no
+checking whether memory stats should be displayed... no
+checking glpk.h usability... no
+checking glpk.h presence... no
+checking for glpk.h... no
+checking for main in -lglpk... no
+checking Ayudame.h usability... no
+checking Ayudame.h presence... no
+checking for Ayudame.h... no
+checking how many buffers can be manipulated per task... 8
+checking maximum number of nodes to use... checking maximum number of memory nodes... 4
+checking whether allocation cache should be used... yes
+checking using explicit performance model location... no
+checking performance models location... $HOME/.starpu/sampling/
+checking for clock_gettime in -lrt... yes
+checking for clock_gettime... yes
+checking Maximum number of workers... 64
+checking Maximum number of workers combinations... 64
+checking maximum number of implementations... 4
+checking leveldb/db.h usability... no
+checking leveldb/db.h presence... no
+checking for leveldb/db.h... no
+checking for main in -lleveldb... no
+checking calibration heuristic of history-based StarPU calibrator... 50
+checking for mpicc... /usr/bin/mpicc
+checking mpicc path... /usr/bin/mpicc
+checking for mpiexec... /usr/bin/mpiexec
+checking whether mpiexec is available... /usr/bin/mpiexec
+checking whether MPI tests should be run... yes
+checking whether the StarPU MPI library should be generated... yes
+checking for StarPU-Top... checking for qmake-qt4... /usr/bin/qmake-qt4
+checking whether compiler support -Wall... yes
+checking whether compiler support -Werror=implicit... yes
+checking whether compiler support -Werror=implicit-function-declaration... yes
+checking whether GCC supports plug-ins... no
+checking for OpenMP runtime support... no
+checking for SOCL... no
+checking for gdb... /usr/bin/gdb
+checking whether OpenGL rendering is enabled... no
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking for library containing sgemm_... -lblas
+checking which BLAS lib should be used... system
+checking for FFTW... no
+checking for FFTWF... no
+checking for FFTWL... no
+checking for HWLOC... yes
+checking whether hwloc should be used... yes
+checking f77.h usability... no
+checking f77.h presence... no
+checking for f77.h... no
+checking for icc... no
+checking for help2man... no
+checking for struct cudaDeviceProp.pciDomainID... no
+checking for struct cudaDeviceProp.pciBusID... no
+checking for doxygen... /usr/bin/doxygen
+checking for pdflatex... /usr/bin/pdflatex
+checking for epstopdf... /usr/bin/epstopdf
+checking whether documentation should be compiled... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating tests/regression/regression.sh
+config.status: creating tests/regression/profiles
+config.status: creating tests/regression/profiles.build.only
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating tools/Makefile
+config.status: creating tools/starpu_codelet_profile
+config.status: creating tools/starpu_codelet_histo_profile
+config.status: creating tools/starpu_workers_activity
+config.status: creating tools/starpu_paje_draw_histogram
+config.status: creating tools/starpu_paje_state_stats
+config.status: creating tools/starpu_paje_summary
+config.status: creating tools/starpu_smpirun
+config.status: creating socl/Makefile
+config.status: creating socl/src/Makefile
+config.status: creating socl/examples/Makefile
+config.status: creating socl/vendors/socl.icd
+config.status: creating socl/vendors/install/socl.icd
+config.status: creating libstarpu.pc
+config.status: creating starpu-1.0.pc
+config.status: creating starpu-1.1.pc
+config.status: creating starpu-1.2.pc
+config.status: creating starpu-1.3.pc
+config.status: creating mpi/libstarpumpi.pc
+config.status: creating mpi/starpumpi-1.0.pc
+config.status: creating mpi/starpumpi-1.1.pc
+config.status: creating mpi/starpumpi-1.2.pc
+config.status: creating mpi/starpumpi-1.3.pc
+config.status: creating starpufft/Makefile
+config.status: creating starpufft/src/Makefile
+config.status: creating starpufft/tests/Makefile
+config.status: creating starpufft/libstarpufft.pc
+config.status: creating starpufft/starpufft-1.0.pc
+config.status: creating starpufft/starpufft-1.1.pc
+config.status: creating starpufft/starpufft-1.2.pc
+config.status: creating starpufft/starpufft-1.3.pc
+config.status: creating examples/Makefile
+config.status: creating examples/stencil/Makefile
+config.status: creating tests/Makefile
+config.status: creating tests/loader-cross.sh
+config.status: creating mpi/Makefile
+config.status: creating mpi/src/Makefile
+config.status: creating mpi/tests/Makefile
+config.status: creating mpi/examples/Makefile
+config.status: creating starpu-top/StarPU-Top.pro
+config.status: creating starpu-top/StarPU-Top-qwt-embed.pri
+config.status: creating starpu-top/StarPU-Top-qwt-system.pri
+config.status: creating gcc-plugin/Makefile
+config.status: creating gcc-plugin/src/Makefile
+config.status: creating gcc-plugin/tests/Makefile
+config.status: creating gcc-plugin/tests/run-test
+config.status: creating gcc-plugin/examples/Makefile
+config.status: creating sc_hypervisor/Makefile
+config.status: creating sc_hypervisor/src/Makefile
+config.status: creating sc_hypervisor/examples/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/doxygen/Makefile
+config.status: creating doc/doxygen/doxygen-config.cfg
+config.status: creating doc/doxygen/doxygen_filter.sh
+config.status: creating tools/msvc/starpu_var.bat
+config.status: creating src/common/config.h
+config.status: creating include/starpu_config.h
+config.status: creating gcc-plugin/include/starpu-gcc/config.h
+config.status: creating starpu-top/config.h
+config.status: linking /etc/OpenCL/vendors/nvidia.icd to socl/vendors/nvidia.icd
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing executable-scripts commands
+configure:
+
+	CPUs   enabled: yes
+	CUDA   enabled: no
+	OpenCL enabled: no
+	SCC    enabled: no
+	MIC    enabled: no
+
+	Compile-time limits
+	(change these with --enable-maxcpus, --enable-maxcudadev,
+	--enable-maxopencldev, --enable-maxmicdev, --enable-maxnodes,
+        --enable-maxbuffers)
+        (Note these numbers do not represent the number of detected
+	devices, but the maximum number of devices StarPU can manage)
+
+	Maximum number of CPUs:           64
+	Maximum number of CUDA devices:   0
+	Maximum number of OpenCL devices: 0
+	Maximum number of SCC devices:    0
+	Maximum number of MIC threads:    0
+	Maximum number of memory nodes:   4
+	Maximum number of task buffers:   8
+
+	GPU-GPU transfers: no
+	Allocation cache:  yes
+
+	Magma enabled:     no
+	BLAS library:      system
+	hwloc:             yes
+	FxT trace enabled: yes
+	StarPU-Top:        yes
+
+        Documentation:     yes
+        Examples:          yes
+
+	StarPU Extensions:
+	       MPI enabled:                                 yes
+	       MPI test suite:                              yes
+	       FFT Support:                                 no
+	       GCC plug-in:                                 no
+	       GCC plug-in test suite (requires GNU Guile): no
+	       OpenMP runtime support enabled:              no
+	       SOCL enabled:                                no
+               SOCL test suite:                             no
+               Scheduler Hypervisor:                        no
+               simgrid enabled:                             no
+               ayudame enabled:                             no
+
+#+END_EXAMPLE
+** COMPILATION OF STARPU
+#+BEGIN_EXAMPLE
+Making all in src
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src'
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src'
+  CC       libstarpu_1.3_la-barrier_counter.lo
+  CC       libstarpu_1.3_la-barrier.lo
+  CC       libstarpu_1.3_la-bitmap.lo
+  CC       libstarpu_1.3_la-hash.lo
+  CC       libstarpu_1.3_la-rwlock.lo
+  CC       libstarpu_1.3_la-starpu_spinlock.lo
+  CC       libstarpu_1.3_la-timing.lo
+  CC       libstarpu_1.3_la-fxt.lo
+  CC       libstarpu_1.3_la-utils.lo
+  CC       libstarpu_1.3_la-thread.lo
+  CC       libstarpu_1.3_la-jobs.lo
+  CC       libstarpu_1.3_la-task.lo
+  CC       libstarpu_1.3_la-task_bundle.lo
+  CC       libstarpu_1.3_la-tree.lo
+  CC       libstarpu_1.3_la-workers.lo
+  CC       libstarpu_1.3_la-combined_workers.lo
+  CC       libstarpu_1.3_la-topology.lo
+  CC       libstarpu_1.3_la-disk.lo
+  CC       libstarpu_1.3_la-debug.lo
+  CC       libstarpu_1.3_la-errorcheck.lo
+  CC       libstarpu_1.3_la-progress_hook.lo
+  CC       libstarpu_1.3_la-cg.lo
+  CC       libstarpu_1.3_la-dependencies.lo
+  CC       libstarpu_1.3_la-implicit_data_deps.lo
+  CC       libstarpu_1.3_la-tags.lo
+  CC       libstarpu_1.3_la-task_deps.lo
+  CC       libstarpu_1.3_la-data_concurrency.lo
+  CC       libstarpu_1.3_la-disk_stdio.lo
+  CC       libstarpu_1.3_la-disk_unistd.lo
+  CC       libstarpu_1.3_la-disk_unistd_global.lo
+  CC       libstarpu_1.3_la-perfmodel_history.lo
+  CC       libstarpu_1.3_la-perfmodel_bus.lo
+  CC       libstarpu_1.3_la-perfmodel.lo
+  CC       libstarpu_1.3_la-perfmodel_print.lo
+  CC       libstarpu_1.3_la-perfmodel_nan.lo
+  CC       libstarpu_1.3_la-regression.lo
+  CC       libstarpu_1.3_la-sched_policy.lo
+  CC       libstarpu_1.3_la-simgrid.lo
+  CC       libstarpu_1.3_la-sched_ctx.lo
+  CC       libstarpu_1.3_la-sched_ctx_list.lo
+  CC       libstarpu_1.3_la-parallel_task.lo
+  CC       libstarpu_1.3_la-detect_combined_workers.lo
+  CC       libstarpu_1.3_la-eager_central_policy.lo
+  CC       libstarpu_1.3_la-eager_central_priority_policy.lo
+  CC       libstarpu_1.3_la-work_stealing_policy.lo
+  CC       libstarpu_1.3_la-locality_work_stealing_policy.lo
+  CC       libstarpu_1.3_la-deque_modeling_policy_data_aware.lo
+  CC       libstarpu_1.3_la-random_policy.lo
+  CC       libstarpu_1.3_la-stack_queues.lo
+  CC       libstarpu_1.3_la-deque_queues.lo
+  CC       libstarpu_1.3_la-fifo_queues.lo
+  CC       libstarpu_1.3_la-parallel_heft.lo
+  CC       libstarpu_1.3_la-parallel_eager.lo
+  CC       libstarpu_1.3_la-driver_common.lo
+  CC       libstarpu_1.3_la-driver_disk.lo
+  CC       libstarpu_1.3_la-memory_nodes.lo
+  CC       libstarpu_1.3_la-write_back.lo
+  CC       libstarpu_1.3_la-coherency.lo
+  CC       libstarpu_1.3_la-data_request.lo
+  CC       libstarpu_1.3_la-datawizard.lo
+  CC       libstarpu_1.3_la-copy_driver.lo
+  CC       libstarpu_1.3_la-filters.lo
+  CC       libstarpu_1.3_la-sort_data_handles.lo
+  CC       libstarpu_1.3_la-malloc.lo
+  CC       libstarpu_1.3_la-memory_manager.lo
+  CC       libstarpu_1.3_la-memalloc.lo
+  CC       libstarpu_1.3_la-memstats.lo
+  CC       libstarpu_1.3_la-footprint.lo
+  CC       libstarpu_1.3_la-datastats.lo
+  CC       libstarpu_1.3_la-user_interactions.lo
+  CC       libstarpu_1.3_la-reduction.lo
+  CC       libstarpu_1.3_la-data_interface.lo
+  CC       libstarpu_1.3_la-bcsr_interface.lo
+  CC       libstarpu_1.3_la-coo_interface.lo
+  CC       libstarpu_1.3_la-csr_interface.lo
+  CC       libstarpu_1.3_la-matrix_filters.lo
+  CC       libstarpu_1.3_la-matrix_interface.lo
+  CC       libstarpu_1.3_la-block_filters.lo
+  CC       libstarpu_1.3_la-block_interface.lo
+  CC       libstarpu_1.3_la-vector_interface.lo
+  CC       libstarpu_1.3_la-bcsr_filters.lo
+  CC       libstarpu_1.3_la-csr_filters.lo
+  CC       libstarpu_1.3_la-vector_filters.lo
+  CC       libstarpu_1.3_la-variable_interface.lo
+  CC       libstarpu_1.3_la-void_interface.lo
+  CC       libstarpu_1.3_la-multiformat_interface.lo
+  CC       libstarpu_1.3_la-execute_on_all.lo
+  CC       libstarpu_1.3_la-starpu_create_sync_task.lo
+  CC       libstarpu_1.3_la-file.lo
+  CC       libstarpu_1.3_la-misc.lo
+  CC       libstarpu_1.3_la-openmp_runtime_support.lo
+  CC       libstarpu_1.3_la-openmp_runtime_support_environment.lo
+  CC       libstarpu_1.3_la-openmp_runtime_support_omp_api.lo
+  CC       libstarpu_1.3_la-starpu_data_cpy.lo
+  CC       libstarpu_1.3_la-starpu_task_insert.lo
+  CC       libstarpu_1.3_la-starpu_task_insert_utils.lo
+  CC       libstarpu_1.3_la-starpu_fxt.lo
+  CC       libstarpu_1.3_la-starpu_fxt_mpi.lo
+  CC       libstarpu_1.3_la-starpu_fxt_dag.lo
+  CC       libstarpu_1.3_la-starpu_paje.lo
+  CC       libstarpu_1.3_la-latency.lo
+  CC       libstarpu_1.3_la-structures_size.lo
+  CC       libstarpu_1.3_la-profiling.lo
+  CC       libstarpu_1.3_la-bound.lo
+  CC       libstarpu_1.3_la-profiling_helpers.lo
+  CC       libstarpu_1.3_la-starpu_top.lo
+  CC       libstarpu_1.3_la-starpu_top_task.lo
+  CC       libstarpu_1.3_la-starpu_top_message_queue.lo
+  CC       libstarpu_1.3_la-starpu_top_connection.lo
+  CC       libstarpu_1.3_la-worker_list.lo
+  CC       libstarpu_1.3_la-worker_tree.lo
+  CC       libstarpu_1.3_la-component_worker.lo
+  CC       libstarpu_1.3_la-component_sched.lo
+  CC       libstarpu_1.3_la-component_fifo.lo
+  CC       libstarpu_1.3_la-prio_deque.lo
+  CC       libstarpu_1.3_la-helper_mct.lo
+  CC       libstarpu_1.3_la-component_prio.lo
+  CC       libstarpu_1.3_la-component_random.lo
+  CC       libstarpu_1.3_la-component_eager.lo
+  CC       libstarpu_1.3_la-component_eager_calibration.lo
+  CC       libstarpu_1.3_la-component_mct.lo
+  CC       libstarpu_1.3_la-component_heft.lo
+  CC       libstarpu_1.3_la-component_best_implementation.lo
+  CC       libstarpu_1.3_la-component_perfmodel_select.lo
+  CC       libstarpu_1.3_la-component_composed.lo
+  CC       libstarpu_1.3_la-modular_eager.lo
+  CC       libstarpu_1.3_la-modular_eager_prefetching.lo
+  CC       libstarpu_1.3_la-modular_prio.lo
+  CC       libstarpu_1.3_la-modular_prio_prefetching.lo
+  CC       libstarpu_1.3_la-modular_random.lo
+  CC       libstarpu_1.3_la-modular_random_prefetching.lo
+  CC       libstarpu_1.3_la-modular_heft.lo
+  CC       libstarpu_1.3_la-modular_heft2.lo
+  CC       libstarpu_1.3_la-driver_cpu.lo
+  CC       libstarpu_1.3_la-starpu_cublas.lo
+  CC       libstarpu_1.3_la-disk_unistd_o_direct.lo
+  CXXLD    libstarpu-1.3.la
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src'
+Making all in tools
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tools'
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tools'
+  CC       starpu_fxt_tool-starpu_fxt_tool.o
+  CC       starpu_fxt_stats-starpu_fxt_stats.o
+  CC       starpu_fxt_data_trace-starpu_fxt_data_trace.o
+  CC       starpu_perfmodel_display.o
+  CC       starpu_perfmodel_plot-starpu_perfmodel_plot.o
+  CC       starpu_calibrate_bus.o
+  CC       starpu_machine_display.o
+  CC       starpu_lp2paje.o
+  CCLD     starpu_fxt_tool
+  CCLD     starpu_fxt_stats
+  CCLD     starpu_fxt_data_trace
+  CCLD     starpu_perfmodel_display
+  CCLD     starpu_calibrate_bus
+  CCLD     starpu_machine_display
+  CCLD     starpu_lp2paje
+  CCLD     starpu_perfmodel_plot
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tools'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tools'
+Making all in tests
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tests'
+make  all-recursive
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tests'
+make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tests'
+  CC       tasks_size_overhead.o
+  CC       local_pingpong.o
+  CC       main_deprecated_func-deprecated_func.o
+  CC       init_run_deinit.o
+  CC       run_driver.o
+  CC       deploop.o
+  CC       restart.o
+  CC       execute_on_a_specific_worker.o
+  CC       execute_schedule.o
+  CC       insert_task.o
+  CC       insert_task_dyn_handles.o
+  CC       insert_task_nullcodelet.o
+  CC       insert_task_array.o
+  CC       multithreaded.o
+  CC       multithreaded_init.o
+  CC       starpu_task_bundle.o
+  CC       starpu_task_wait_for_all.o
+  CC       starpu_task_wait.o
+  CC       static_restartable.o
+  CC       static_restartable_using_initializer.o
+  CC       static_restartable_tag.o
+  CC       regenerate.o
+  CC       regenerate_pipeline.o
+  CC       wait_all_regenerable_tasks.o
+  CC       subgraph_repeat.o
+  CC       subgraph_repeat_tag.o
+  CC       subgraph_repeat_regenerate.o
+  CC       subgraph_repeat_regenerate_tag.o
+  CC       empty_task.o
+  CC       empty_task_sync_point.o
+  CC       empty_task_sync_point_tasks.o
+  CC       empty_task_chain.o
+  CC       tag_wait_api.o
+  CC       task_wait_api.o
+  CC       declare_deps_in_callback.o
+  CC       declare_deps_after_submission.o
+  CC       declare_deps_after_submission_synchronous.o
+  CC       get_current_task.o
+  CC       starpu_init.o
+  CC       starpu_worker_exists.o
+  CC       submit.o
+  CC       pause_resume.o
+  CC       codelet_null_callback.o
+  CC       pack.o
+  CC       allocate.o
+  CC       acquire_cb.o
+  CC       acquire_cb_insert.o
+  CC       acquire_release.o
+  CC       acquire_release2.o
+  CC       cache.o
+  CC       commute.o
+  CC       commute2.o
+  CC       data_implicit_deps.o
+  CC       copy.o
+  CC       data_lookup.o
+  CC       scratch.o
+  CC       sync_and_notify_data.o
+  CC       sync_and_notify_data_implicit.o
+  CC       dsm_stress.o
+  CC       double_parameter.o
+  CC       write_only_tmp_buffer.o
+  CC       data_invalidation.o
+  CC       dining_philosophers.o
+  CC       manual_reduction.o
+  CC       readers_and_writers.o
+  CC       unpartition.o
+  CC       user_interaction_implicit.o
+  CC       sync_with_data_with_mem.o
+  CC       sync_with_data_with_mem_non_blocking.o
+  CC       sync_with_data_with_mem_non_blocking_implicit.o
+  CC       mpi_like.o
+  CC       mpi_like_async.o
+  CC       critical_section_with_void_interface.o
+  CC       increment_init.o
+  CC       increment_redux.o
+  CC       increment_redux_v2.o
+  CC       increment_redux_lazy.o
+  CC       handle_to_pointer.o
+  CC       lazy_allocation.o
+  CC       lazy_unregister.o
+  CC       noreclaim.o
+  CC       copy_interfaces.o
+  CC       test_interfaces.o
+  CC       block_interface.o
+  CC       bcsr_interface.o
+  CC       coo_interface.o
+  CC       csr_interface.o
+  CC       matrix_interface.o
+  CC       multiformat_interface.o
+  CC       multiformat_conversion_codelets.o
+  CC       generic.o
+  CC       multiformat_cuda_opencl.o
+  CC       multiformat_data_release.o
+  CC       multiformat_worker.o
+  CC       multiformat_handle_conversion.o
+  CC       same_handle.o
+  CC       variable_interface.o
+  CC       test_vector_interface.o
+  CC       void_interface.o
+  CC       in_place_partition.o
+  CC       scal.o
+  CC       partition_lazy.o
+  CC       gpu_register.o
+  CC       gpu_ptr_register.o
+  CC       variable_parameters.o
+  CC       wt_host.o
+  CC       wt_broadcast.o
+  CC       readonly.o
+  CC       specific_node.o
+  CC       disk_copy.o
+  CC       disk_compute.o
+  CC       disk_pack.o
+  CC       starpu_init_noworker.o
+  CC       invalid_blocking_calls.o
+  CC       invalid_tasks.o
+  CC       cublas_init.o
+  CC       starpu_data_cpy.o
+  CC       pinned_memory.o
+  CC       execute_on_all.o
+  CC       starpu_create_sync_task.o
+  CC       async_tasks_overhead.o
+  CC       sync_tasks_overhead.o
+  CC       tasks_overhead.o
+  CC       prefetch_data_on_node.o
+  CC       redundant_buffer.o
+  CC       matrix_as_vector.o
+  CC       init_exit_01.o
+  CC       init_exit_02.o
+  CC       environment.o
+  CC       api_01.o
+  CC       parallel_01.o
+  CC       parallel_02.o
+  CC       parallel_03.o
+  CC       parallel_barrier_01.o
+  CC       parallel_master_01.o
+  CC       parallel_master_inline_01.o
+  CC       parallel_single_wait_01.o
+  CC       parallel_single_nowait_01.o
+  CC       parallel_single_inline_01.o
+  CC       parallel_single_copyprivate_01.o
+  CC       parallel_single_copyprivate_inline_01.o
+  CC       parallel_critical_01.o
+  CC       parallel_critical_inline_01.o
+  CC       parallel_critical_named_01.o
+  CC       parallel_critical_named_inline_01.o
+  CC       parallel_simple_lock_01.o
+  CC       parallel_nested_lock_01.o
+  CC       parallel_for_01.o
+  CC       parallel_for_02.o
+  CC       parallel_for_ordered_01.o
+  CC       parallel_sections_01.o
+  CC       parallel_sections_combined_01.o
+  CC       task_01.o
+  CC       task_02.o
+  CC       taskwait_01.o
+  CC       taskgroup_01.o
+  CC       taskgroup_02.o
+  CC       array_slice_01.o
+  CC       cuda_task_01.o
+  CC       overlap.o
+  CC       gpu_concurrency.o
+  CC       explicit_combined_worker.o
+  CC       parallel_kernels.o
+  CC       parallel_kernels_spmd.o
+  CC       spmd_peager.o
+  CC       cuda_only.o
+  CC       regression_based.o
+  CC       non_linear_regression_based.o
+  CC       feed.o
+  CC       user_base.o
+  CC       valid_model.o
+  CC       value_nan.o
+  CC       memory.o
+  CC       data_locality.o
+  CC       execute_all_tasks.o
+  CC       prio.o
+  CC       simple_deps.o
+  CC       simple_cpu_gpu_sched.o
+  CCLD     microbenchs/tasks_size_overhead
+  CCLD     microbenchs/local_pingpong
+  CCLD     main/deprecated_func
+  CCLD     main/driver_api/init_run_deinit
+  CCLD     main/driver_api/run_driver
+  CCLD     main/deploop
+  CCLD     main/restart
+  CCLD     main/execute_on_a_specific_worker
+  CCLD     main/execute_schedule
+  CCLD     main/insert_task
+  CCLD     main/insert_task_dyn_handles
+  CCLD     main/insert_task_nullcodelet
+  CCLD     main/insert_task_array
+  CCLD     main/multithreaded
+  CCLD     main/multithreaded_init
+  CCLD     main/starpu_task_bundle
+  CCLD     main/starpu_task_wait_for_all
+  CCLD     main/starpu_task_wait
+  CCLD     main/static_restartable
+  CCLD     main/static_restartable_using_initializer
+  CCLD     main/static_restartable_tag
+  CCLD     main/regenerate
+  CCLD     main/regenerate_pipeline
+  CCLD     main/wait_all_regenerable_tasks
+  CCLD     main/subgraph_repeat
+  CCLD     main/subgraph_repeat_tag
+  CCLD     main/subgraph_repeat_regenerate
+  CCLD     main/subgraph_repeat_regenerate_tag
+  CCLD     main/empty_task
+  CCLD     main/empty_task_sync_point
+  CCLD     main/empty_task_sync_point_tasks
+  CCLD     main/empty_task_chain
+  CCLD     main/tag_wait_api
+  CCLD     main/task_wait_api
+  CCLD     main/declare_deps_in_callback
+  CCLD     main/declare_deps_after_submission
+  CCLD     main/declare_deps_after_submission_synchronous
+  CCLD     main/get_current_task
+  CCLD     main/starpu_init
+  CCLD     main/starpu_worker_exists
+  CCLD     main/submit
+  CCLD     main/pause_resume
+  CCLD     main/codelet_null_callback
+  CCLD     main/pack
+  CCLD     datawizard/allocate
+  CCLD     datawizard/acquire_cb
+  CCLD     datawizard/acquire_cb_insert
+  CCLD     datawizard/acquire_release
+  CCLD     datawizard/acquire_release2
+  CCLD     datawizard/cache
+  CCLD     datawizard/commute
+  CCLD     datawizard/commute2
+  CCLD     datawizard/copy
+  CCLD     datawizard/data_implicit_deps
+  CCLD     datawizard/data_lookup
+  CCLD     datawizard/scratch
+  CCLD     datawizard/sync_and_notify_data
+  CCLD     datawizard/sync_and_notify_data_implicit
+  CCLD     datawizard/dsm_stress
+  CCLD     datawizard/double_parameter
+  CCLD     datawizard/write_only_tmp_buffer
+  CCLD     datawizard/data_invalidation
+  CCLD     datawizard/dining_philosophers
+  CCLD     datawizard/manual_reduction
+  CCLD     datawizard/readers_and_writers
+  CCLD     datawizard/unpartition
+  CCLD     datawizard/user_interaction_implicit
+  CCLD     datawizard/sync_with_data_with_mem
+  CCLD     datawizard/sync_with_data_with_mem_non_blocking
+  CCLD     datawizard/sync_with_data_with_mem_non_blocking_implicit
+  CCLD     datawizard/mpi_like
+  CCLD     datawizard/mpi_like_async
+  CCLD     datawizard/critical_section_with_void_interface
+  CCLD     datawizard/increment_init
+  CCLD     datawizard/increment_redux
+  CCLD     datawizard/increment_redux_v2
+  CCLD     datawizard/increment_redux_lazy
+  CCLD     datawizard/handle_to_pointer
+  CCLD     datawizard/lazy_allocation
+  CCLD     datawizard/lazy_unregister
+  CCLD     datawizard/noreclaim
+  CCLD     datawizard/interfaces/copy_interfaces
+  CCLD     datawizard/interfaces/block/block_interface
+  CCLD     datawizard/interfaces/bcsr/bcsr_interface
+  CCLD     datawizard/interfaces/coo/coo_interface
+  CCLD     datawizard/interfaces/csr/csr_interface
+  CCLD     datawizard/interfaces/matrix/matrix_interface
+  CCLD     datawizard/interfaces/multiformat/multiformat_interface
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_cuda_opencl
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_data_release
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_worker
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_handle_conversion
+  CCLD     datawizard/interfaces/multiformat/advanced/same_handle
+  CCLD     datawizard/interfaces/variable/variable_interface
+  CCLD     datawizard/interfaces/vector/test_vector_interface
+  CCLD     datawizard/interfaces/void/void_interface
+  CCLD     datawizard/in_place_partition
+  CCLD     datawizard/partition_lazy
+  CCLD     datawizard/gpu_register
+  CCLD     datawizard/gpu_ptr_register
+  CCLD     datawizard/variable_parameters
+  CCLD     datawizard/wt_host
+  CCLD     datawizard/wt_broadcast
+  CCLD     datawizard/readonly
+  CCLD     datawizard/specific_node
+  CCLD     disk/disk_copy
+  CCLD     disk/disk_compute
+  CCLD     disk/disk_pack
+  CCLD     errorcheck/starpu_init_noworker
+  CCLD     errorcheck/invalid_blocking_calls
+  CCLD     errorcheck/invalid_tasks
+  CCLD     helper/cublas_init
+  CCLD     helper/starpu_data_cpy
+  CCLD     helper/pinned_memory
+  CCLD     helper/execute_on_all
+  CCLD     helper/starpu_create_sync_task
+  CCLD     microbenchs/async_tasks_overhead
+  CCLD     microbenchs/sync_tasks_overhead
+  CCLD     microbenchs/tasks_overhead
+  CCLD     microbenchs/prefetch_data_on_node
+  CCLD     microbenchs/redundant_buffer
+  CCLD     microbenchs/matrix_as_vector
+  CCLD     openmp/init_exit_01
+  CCLD     openmp/init_exit_02
+  CCLD     openmp/environment
+  CCLD     openmp/api_01
+  CCLD     openmp/parallel_01
+  CCLD     openmp/parallel_02
+  CCLD     openmp/parallel_03
+  CCLD     openmp/parallel_barrier_01
+  CCLD     openmp/parallel_master_01
+  CCLD     openmp/parallel_master_inline_01
+  CCLD     openmp/parallel_single_wait_01
+  CCLD     openmp/parallel_single_nowait_01
+  CCLD     openmp/parallel_single_inline_01
+  CCLD     openmp/parallel_single_copyprivate_01
+  CCLD     openmp/parallel_single_copyprivate_inline_01
+  CCLD     openmp/parallel_critical_01
+  CCLD     openmp/parallel_critical_inline_01
+  CCLD     openmp/parallel_critical_named_01
+  CCLD     openmp/parallel_critical_named_inline_01
+  CCLD     openmp/parallel_simple_lock_01
+  CCLD     openmp/parallel_nested_lock_01
+  CCLD     openmp/parallel_for_01
+  CCLD     openmp/parallel_for_02
+  CCLD     openmp/parallel_for_ordered_01
+  CCLD     openmp/parallel_sections_01
+  CCLD     openmp/parallel_sections_combined_01
+  CCLD     openmp/task_01
+  CCLD     openmp/task_02
+  CCLD     openmp/taskwait_01
+  CCLD     openmp/taskgroup_01
+  CCLD     openmp/taskgroup_02
+  CCLD     openmp/array_slice_01
+  CCLD     openmp/cuda_task_01
+  CCLD     overlap/overlap
+  CCLD     overlap/gpu_concurrency
+  CCLD     parallel_tasks/explicit_combined_worker
+  CCLD     parallel_tasks/parallel_kernels
+  CCLD     parallel_tasks/parallel_kernels_spmd
+  CCLD     parallel_tasks/spmd_peager
+  CCLD     parallel_tasks/cuda_only
+  CCLD     perfmodels/regression_based
+  CCLD     perfmodels/non_linear_regression_based
+  CCLD     perfmodels/feed
+  CCLD     perfmodels/valid_model
+  CCLD     perfmodels/user_base
+  CCLD     perfmodels/value_nan
+  CCLD     perfmodels/memory
+  CCLD     sched_policies/data_locality
+  CCLD     sched_policies/execute_all_tasks
+  CCLD     sched_policies/prio
+  CCLD     sched_policies/simple_deps
+  CCLD     sched_policies/simple_cpu_gpu_sched
+make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tests'
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tests'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/tests'
+Making all in doc
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/doc'
+Making all in doxygen
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/doc/doxygen'
+pdflatex latex/refman.tex
+mv latex/refman.pdf starpu.pdf
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/doc/doxygen'
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/doc'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/doc'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/doc'
+Making all in mpi
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi'
+Making all in src
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/src'
+make  all-am
+make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/src'
+  CC       starpu_mpi_helper.lo
+  CC       starpu_mpi_datatype.lo
+  CC       starpu_mpi.lo
+  CC       starpu_mpi_task_insert.lo
+  CC       starpu_mpi_collective.lo
+  CC       starpu_mpi_private.lo
+  CC       starpu_mpi_stats.lo
+  CC       starpu_mpi_cache.lo
+  CC       starpu_mpi_select_node.lo
+  CC       starpu_mpi_cache_stats.lo
+  CC       starpu_mpi_early_data.lo
+  CC       starpu_mpi_early_request.lo
+  CCLD     libstarpumpi-1.3.la
+make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/src'
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/src'
+Making all in tests
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/tests'
+make  all-am
+make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/tests'
+  CC       datatypes.o
+  CC       pingpong.o
+  CC       mpi_test.o
+  CC       mpi_isend.o
+  CC       mpi_earlyrecv.o
+  CC       mpi_earlyrecv2.o
+  CC       complex_interface.o
+  CC       mpi_irecv.o
+  CC       mpi_isend_detached.o
+  CC       mpi_irecv_detached.o
+  CC       mpi_detached_tag.o
+  CC       mpi_redux.o
+  CC       ring.o
+  CC       ring_sync.o
+  CC       ring_sync_detached.o
+  CC       ring_async.o
+  CC       ring_async_implicit.o
+  CC       block_interface.o
+  CC       block_interface_pinned.o
+  CC       cache.o
+  CC       cache_disable.o
+  CC       callback.o
+  CC       matrix.o
+  CC       matrix2.o
+  CC       insert_task.o
+  CC       insert_task_compute.o
+  CC       insert_task_sent_cache.o
+  CC       insert_task_recv_cache.o
+  CC       insert_task_block.o
+  CC       insert_task_owner.o
+  CC       insert_task_owner2.o
+  CC       insert_task_owner_data.o
+  CC       insert_task_node_choice.o
+  CC       insert_task_count.o
+  CC       insert_task_dyn_handles.o
+  CC       multiple_send.o
+  CC       mpi_scatter_gather.o
+  CC       mpi_reduction.o
+  CC       mpi_reduction_kernels.o
+  CC       user_defined_datatype.o
+  CC       gather.o
+  CC       gather2.o
+  CC       policy_register.o
+  CC       policy_register_many.o
+  CC       policy_register_toomany.o
+  CC       policy_unregister.o
+  CCLD     datatypes
+  CCLD     pingpong
+  CCLD     mpi_test
+  CCLD     mpi_isend
+  CCLD     mpi_earlyrecv
+  CCLD     mpi_earlyrecv2
+  CCLD     mpi_irecv
+  CCLD     mpi_isend_detached
+  CCLD     mpi_irecv_detached
+  CCLD     mpi_detached_tag
+  CCLD     mpi_redux
+  CCLD     ring
+  CCLD     ring_sync
+  CCLD     ring_sync_detached
+  CCLD     ring_async
+  CCLD     ring_async_implicit
+  CCLD     block_interface
+  CCLD     block_interface_pinned
+  CCLD     cache
+  CCLD     cache_disable
+  CCLD     callback
+  CCLD     matrix
+  CCLD     matrix2
+  CCLD     insert_task
+  CCLD     insert_task_compute
+  CCLD     insert_task_sent_cache
+  CCLD     insert_task_recv_cache
+  CCLD     insert_task_block
+  CCLD     insert_task_owner
+  CCLD     insert_task_owner2
+  CCLD     insert_task_owner_data
+  CCLD     insert_task_node_choice
+  CCLD     insert_task_count
+  CCLD     insert_task_dyn_handles
+  CCLD     multiple_send
+  CCLD     mpi_scatter_gather
+  CCLD     mpi_reduction
+  CCLD     user_defined_datatype
+  CCLD     gather
+  CCLD     gather2
+  CCLD     policy_register
+  CCLD     policy_register_many
+  CCLD     policy_register_toomany
+  CCLD     policy_unregister
+make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/tests'
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/tests'
+Making all in examples
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/examples'
+make  all-am
+make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/examples'
+  CC       stencil5.o
+  CC       plu_example_float.o
+  CC       plu_solve_float.o
+  CC       pslu_kernels.o
+  CC       pslu.o
+  CC       blas.o
+  CC       plu_example_double.o
+  CC       plu_solve_double.o
+  CC       pdlu_kernels.o
+  CC       pdlu.o
+  CC       plu_implicit_example_float.o
+  CC       pslu_implicit.o
+  CC       plu_implicit_example_double.o
+  CC       pdlu_implicit.o
+  CC       plu_outofcore_example_float.o
+  CC       plu_outofcore_example_double.o
+  CC       mpi_cholesky.o
+  CC       mpi_cholesky_models.o
+  CC       mpi_cholesky_kernels.o
+  CC       mpi_cholesky_codelets.o
+  CC       mpi_decomposition_params.o
+  CC       mpi_decomposition_matrix.o
+  CC       mpi_cholesky_distributed.o
+  CC       mpi_complex.o
+  CC       complex_interface.o
+  CCLD     stencil/stencil5
+  CCLD     mpi_lu/plu_example_float
+  CCLD     mpi_lu/plu_example_double
+  CCLD     mpi_lu/plu_implicit_example_float
+  CCLD     mpi_lu/plu_implicit_example_double
+  CCLD     mpi_lu/plu_outofcore_example_float
+  CCLD     mpi_lu/plu_outofcore_example_double
+  CCLD     matrix_decomposition/mpi_cholesky
+  CCLD     matrix_decomposition/mpi_cholesky_distributed
+  CCLD     complex/mpi_complex
+make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/examples'
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi/examples'
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/mpi'
+Making all in examples
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
+make  all-recursive
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
+Making all in stencil
+make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples/stencil'
+  CC       life.o
+  CC       stencil-kernels.o
+  CC       stencil-tasks.o
+  CC       stencil-blocks.o
+  CC       stencil.o
+  CCLD     stencil
+make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples/stencil'
+make[3]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
+  CC       hello_world.o
+  CC       vector_scal.o
+  CC       vector_scal_cpu.o
+  CC       mult.o
+  CC       block.o
+  CC       block_cpu.o
+  CC       variable.o
+  CC       variable_kernels_cpu.o
+  CC       multiformat.o
+  CC       multiformat_conversion_codelets.o
+  CC       dynamic_handles.o
+  CXX      incrementer_cpp.o
+  CC       fvector.o
+  CC       fblock.o
+  CC       fblock_cpu.o
+  CC       fmatrix.o
+  CC       tag_example.o
+  CC       tag_example2.o
+  CC       tag_example3.o
+  CC       tag_example4.o
+  CC       tag_restartable.o
+  CC       vector_scal_spmd.o
+  CC       spmv.o
+  CC       spmv_kernels.o
+  CC       callback.o
+  CC       prologue.o
+  CC       incrementer.o
+  CC       binary.o
+  CC       complex.o
+  CC       complex_interface.o
+  CC       matvecmult.o
+  CC       profiling.o
+  CC       dummy_sched.o
+  CC       sched_ctx.o
+  CC       prio.o
+  CC       dummy_sched_with_ctx.o
+  CC       worker_tree_example.o
+  CC       worker_list_example.o
+  CC       dot_product.o
+  CC       minmax_reduction.o
+  CC       axpy.o
+  CC       blas.o
+  CC       sgemm.o
+  CC       dgemm.o
+  CC       cholesky_tag.o
+  CC       cholesky_models.o
+  CC       cholesky_kernels.o
+  CC       cholesky_tile_tag.o
+  CC       cholesky_grain_tag.o
+  CC       cholesky_implicit.o
+  CC       sched_ctx_utils.o
+  CC       lu_example_float.o
+  CC       slu.o
+  CC       slu_pivot.o
+  CC       slu_kernels.o
+  CC       lu_example_double.o
+  CC       dlu.o
+  CC       dlu_pivot.o
+  CC       dlu_kernels.o
+  CC       slu_implicit.o
+  CC       slu_implicit_pivot.o
+  CC       dlu_implicit.o
+  CC       dlu_implicit_pivot.o
+  CC       heat.o
+  CC       dw_factolu.o
+  CC       dw_factolu_tag.o
+  CC       dw_factolu_grain.o
+  CC       dw_sparse_cg.o
+  CC       heat_display.o
+  CC       lu_kernels_model.o
+  CC       dw_sparse_cg_kernels.o
+  CC       dw_factolu_kernels.o
+  CC       cg.o
+  CC       cg_kernels.o
+  CC       pipeline.o
+  CC       openmp_vector_scal_omp-vector_scal_omp.o
+  CC       sched_ctx_sched_ctx_without_sched_policy-sched_ctx_without_sched_policy.o
+  CC       sched_ctx_nested_sched_ctxs-nested_sched_ctxs.o
+  CC       sched_ctx_without_sched_policy_awake.o
+  CC       shadow.o
+  CC       shadow2d.o
+  CC       shadow3d.o
+  CC       custom_mf_filter.o
+  CC       custom_interface.o
+  CC       custom_conversion_codelets.o
+  CC       mandelbrot_mandelbrot-mandelbrot.o
+  CC       ppm_downscaler.o
+  CC       yuv_downscaler.o
+  CC       hello_world_top.o
+  CC       pi.o
+  CC       sobol_gold.o
+  CC       sobol_primitives.o
+  CC       pi_redux.o
+  CCLD     basic_examples/hello_world
+  CCLD     basic_examples/vector_scal
+  CCLD     basic_examples/mult
+  CCLD     basic_examples/block
+  CCLD     basic_examples/variable
+  CCLD     basic_examples/multiformat
+  CCLD     basic_examples/dynamic_handles
+  CXXLD    cpp/incrementer_cpp
+  CCLD     filters/fvector
+  CCLD     filters/fblock
+  CCLD     filters/fmatrix
+  CCLD     tag_example/tag_example
+  CCLD     tag_example/tag_example2
+  CCLD     tag_example/tag_example3
+  CCLD     tag_example/tag_example4
+  CCLD     tag_example/tag_restartable
+  CCLD     spmd/vector_scal_spmd
+  CCLD     spmv/spmv
+  CCLD     callback/callback
+  CCLD     callback/prologue
+  CCLD     incrementer/incrementer
+  CCLD     binary/binary
+  CCLD     interface/complex
+  CCLD     matvecmult/matvecmult
+  CCLD     profiling/profiling
+  CCLD     scheduler/dummy_sched
+  CCLD     sched_ctx/sched_ctx
+  CCLD     sched_ctx/prio
+  CCLD     sched_ctx/dummy_sched_with_ctx
+  CCLD     worker_collections/worker_tree_example
+  CCLD     worker_collections/worker_list_example
+  CCLD     reductions/dot_product
+  CCLD     reductions/minmax_reduction
+  CCLD     axpy/axpy
+  CCLD     mult/sgemm
+  CCLD     mult/dgemm
+  CCLD     cholesky/cholesky_tag
+  CCLD     cholesky/cholesky_tile_tag
+  CCLD     cholesky/cholesky_grain_tag
+  CCLD     cholesky/cholesky_implicit
+  CCLD     lu/lu_example_float
+  CCLD     lu/lu_example_double
+  CCLD     lu/lu_implicit_example_float
+  CCLD     lu/lu_implicit_example_double
+  CCLD     heat/heat
+  CCLD     cg/cg
+  CCLD     pipeline/pipeline
+  CCLD     openmp/vector_scal_omp
+  CCLD     sched_ctx/sched_ctx_without_sched_policy
+  CCLD     sched_ctx/nested_sched_ctxs
+  CCLD     sched_ctx/sched_ctx_without_sched_policy_awake
+  CCLD     filters/shadow
+  CCLD     filters/shadow2d
+  CCLD     filters/shadow3d
+  CCLD     filters/custom_mf/custom_mf_filter
+  CCLD     mandelbrot/mandelbrot
+  CCLD     ppm_downscaler/ppm_downscaler
+  CCLD     ppm_downscaler/yuv_downscaler
+  CCLD     top/hello_world_top
+  CCLD     pi/pi
+  CCLD     pi/pi_redux
+make[3]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples'
+make[1]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native'
+cd starpu-top ; /usr/bin/qmake-qt4 ; make
+make[2]: Entering directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/starpu-top'
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic ../../starpu-top/mainwindow.ui -o ui_mainwindow.h
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic ../../starpu-top/preferencesdialog.ui -o ui_preferencesdialog.h
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic ../../starpu-top/debugconsole.ui -o ui_debugconsole.h
+/usr/lib/x86_64-linux-gnu/qt4/bin/uic ../../starpu-top/aboutdialog.ui -o ui_aboutdialog.h
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o main.o ../../starpu-top/main.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o configurationmanager.o ../../starpu-top/configurationmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o widgetwindowsmanager.o ../../starpu-top/widgetwindowsmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o communicationthread.o ../../starpu-top/communicationthread.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o communicationmanager.o ../../starpu-top/communicationmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o preferencesdialog.o ../../starpu-top/preferencesdialog.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o datawidget.o ../../starpu-top/datawidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o interactivewidget.o ../../starpu-top/interactivewidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o ganttwidget.o ../../starpu-top/ganttwidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o debugconsole.o ../../starpu-top/debugconsole.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o dataaggregatorwidget.o ../../starpu-top/dataaggregatorwidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o taskmanager.o ../../starpu-top/taskmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o abstractwidgetwindow.o ../../starpu-top/abstractwidgetwindow.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o sessionsetupmanager.o ../../starpu-top/sessionsetupmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qledindicator.o ../../starpu-top/qledindicator/qledindicator.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o aboutdialog.o ../../starpu-top/aboutdialog.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_thermo.o ../../starpu-top/qwt/qwt_thermo.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_math.o ../../starpu-top/qwt/qwt_math.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_scale_engine.o ../../starpu-top/qwt/qwt_scale_engine.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_scale_draw.o ../../starpu-top/qwt/qwt_scale_draw.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_scale_map.o ../../starpu-top/qwt/qwt_scale_map.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_scale_div.o ../../starpu-top/qwt/qwt_scale_div.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_painter.o ../../starpu-top/qwt/qwt_painter.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_abstract_scale.o ../../starpu-top/qwt/qwt_abstract_scale.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_abstract_scale_draw.o ../../starpu-top/qwt/qwt_abstract_scale_draw.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_interval.o ../../starpu-top/qwt/qwt_interval.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_text.o ../../starpu-top/qwt/qwt_text.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_text_engine.o ../../starpu-top/qwt/qwt_text_engine.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_clipper.o ../../starpu-top/qwt/qwt_clipper.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_color_map.o ../../starpu-top/qwt/qwt_color_map.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot.o ../../starpu-top/qwt/qwt_plot.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_dict.o ../../starpu-top/qwt/qwt_plot_dict.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_layout.o ../../starpu-top/qwt/qwt_plot_layout.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_scale_widget.o ../../starpu-top/qwt/qwt_scale_widget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_text_label.o ../../starpu-top/qwt/qwt_text_label.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_legend.o ../../starpu-top/qwt/qwt_legend.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_dyngrid_layout.o ../../starpu-top/qwt/qwt_dyngrid_layout.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_canvas.o ../../starpu-top/qwt/qwt_plot_canvas.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_item.o ../../starpu-top/qwt/qwt_plot_item.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_legend_item.o ../../starpu-top/qwt/qwt_legend_item.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_symbol.o ../../starpu-top/qwt/qwt_symbol.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_axis.o ../../starpu-top/qwt/qwt_plot_axis.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_xml.o ../../starpu-top/qwt/qwt_plot_xml.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_knob.o ../../starpu-top/qwt/qwt_knob.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_abstract_slider.o ../../starpu-top/qwt/qwt_abstract_slider.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_round_scale_draw.o ../../starpu-top/qwt/qwt_round_scale_draw.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_double_range.o ../../starpu-top/qwt/qwt_double_range.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_wheel.o ../../starpu-top/qwt/qwt_wheel.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_slider.o ../../starpu-top/qwt/qwt_slider.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_curve.o ../../starpu-top/qwt/qwt_plot_curve.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_plot_seriesitem.o ../../starpu-top/qwt/qwt_plot_seriesitem.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_series_data.o ../../starpu-top/qwt/qwt_series_data.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_point_polar.o ../../starpu-top/qwt/qwt_point_polar.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_curve_fitter.o ../../starpu-top/qwt/qwt_curve_fitter.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_spline.o ../../starpu-top/qwt/qwt_spline.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_dial.o ../../starpu-top/qwt/qwt_dial.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qwt_dial_needle.o ../../starpu-top/qwt/qwt_dial_needle.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/mainwindow.h -o moc_mainwindow.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/communicationthread.h -o moc_communicationthread.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/communicationmanager.h -o moc_communicationmanager.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/preferencesdialog.h -o moc_preferencesdialog.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/datawidget.h -o moc_datawidget.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/interactivewidget.h -o moc_interactivewidget.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/ganttwidget.h -o moc_ganttwidget.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/debugconsole.h -o moc_debugconsole.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/dataaggregatorwidget.h -o moc_dataaggregatorwidget.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/abstractwidgetwindow.h -o moc_abstractwidgetwindow.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/sessionsetupmanager.h -o moc_sessionsetupmanager.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qledindicator/qledindicator.h -o moc_qledindicator.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/aboutdialog.h -o moc_aboutdialog.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_thermo.h -o moc_qwt_thermo.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_plot.h -o moc_qwt_plot.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_scale_widget.h -o moc_qwt_scale_widget.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_text_label.h -o moc_qwt_text_label.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_legend.h -o moc_qwt_legend.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_dyngrid_layout.h -o moc_qwt_dyngrid_layout.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_plot_canvas.h -o moc_qwt_plot_canvas.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_legend_item.h -o moc_qwt_legend_item.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_knob.h -o moc_qwt_knob.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_abstract_slider.h -o moc_qwt_abstract_slider.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_wheel.h -o moc_qwt_wheel.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_slider.h -o moc_qwt_slider.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/moc -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. ../../starpu-top/qwt/qwt_dial.h -o moc_qwt_dial.cpp
+/usr/lib/x86_64-linux-gnu/qt4/bin/rcc -name resources ../../starpu-top/resources.qrc -o qrc_resources.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o mainwindow.o ../../starpu-top/mainwindow.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_mainwindow.o moc_mainwindow.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_communicationthread.o moc_communicationthread.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_communicationmanager.o moc_communicationmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_preferencesdialog.o moc_preferencesdialog.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_datawidget.o moc_datawidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_interactivewidget.o moc_interactivewidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_ganttwidget.o moc_ganttwidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_debugconsole.o moc_debugconsole.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_dataaggregatorwidget.o moc_dataaggregatorwidget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_abstractwidgetwindow.o moc_abstractwidgetwindow.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_sessionsetupmanager.o moc_sessionsetupmanager.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qledindicator.o moc_qledindicator.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_aboutdialog.o moc_aboutdialog.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_thermo.o moc_qwt_thermo.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_plot.o moc_qwt_plot.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_scale_widget.o moc_qwt_scale_widget.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_text_label.o moc_qwt_text_label.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_legend.o moc_qwt_legend.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_dyngrid_layout.o moc_qwt_dyngrid_layout.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_plot_canvas.o moc_qwt_plot_canvas.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_legend_item.o moc_qwt_legend_item.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_knob.o moc_qwt_knob.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_abstract_slider.o moc_qwt_abstract_slider.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_wheel.o moc_qwt_wheel.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_slider.o moc_qwt_slider.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o moc_qwt_dial.o moc_qwt_dial.cpp
+g++ -c -m64 -pipe -O2 -Wall -W -D_REENTRANT -DQT_NO_DEBUG -DQT_SQL_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -I/usr/share/qt4/mkspecs/linux-g++-64 -I. -I/usr/include/qt4/QtCore -I/usr/include/qt4/QtNetwork -I/usr/include/qt4/QtGui -I/usr/include/qt4/QtOpenGL -I/usr/include/qt4/QtSql -I/usr/include/qt4 -I../../starpu-top/qwt -I/usr/X11R6/include -I. -I. -o qrc_resources.o qrc_resources.cpp
+g++ -m64 -Wl,-O1 -o starpu_top main.o mainwindow.o configurationmanager.o widgetwindowsmanager.o communicationthread.o communicationmanager.o preferencesdialog.o datawidget.o interactivewidget.o ganttwidget.o debugconsole.o dataaggregatorwidget.o taskmanager.o abstractwidgetwindow.o sessionsetupmanager.o qledindicator.o aboutdialog.o qwt_thermo.o qwt_math.o qwt_scale_engine.o qwt_scale_draw.o qwt_scale_map.o qwt_scale_div.o qwt_painter.o qwt_abstract_scale.o qwt_abstract_scale_draw.o qwt_interval.o qwt_text.o qwt_text_engine.o qwt_clipper.o qwt_color_map.o qwt_plot.o qwt_plot_dict.o qwt_plot_layout.o qwt_scale_widget.o qwt_text_label.o qwt_legend.o qwt_dyngrid_layout.o qwt_plot_canvas.o qwt_plot_item.o qwt_legend_item.o qwt_symbol.o qwt_plot_axis.o qwt_plot_xml.o qwt_knob.o qwt_abstract_slider.o qwt_round_scale_draw.o qwt_double_range.o qwt_wheel.o qwt_slider.o qwt_plot_curve.o qwt_plot_seriesitem.o qwt_series_data.o qwt_point_polar.o qwt_curve_fitter.o qwt_spline.o qwt_dial.o qwt_dial_needle.o moc_mainwindow.o moc_communicationthread.o moc_communicationmanager.o moc_preferencesdialog.o moc_datawidget.o moc_interactivewidget.o moc_ganttwidget.o moc_debugconsole.o moc_dataaggregatorwidget.o moc_abstractwidgetwindow.o moc_sessionsetupmanager.o moc_qledindicator.o moc_aboutdialog.o moc_qwt_thermo.o moc_qwt_plot.o moc_qwt_scale_widget.o moc_qwt_text_label.o moc_qwt_legend.o moc_qwt_dyngrid_layout.o moc_qwt_plot_canvas.o moc_qwt_legend_item.o moc_qwt_knob.o moc_qwt_abstract_slider.o moc_qwt_wheel.o moc_qwt_slider.o moc_qwt_dial.o qrc_resources.o    -L/usr/lib/x86_64-linux-gnu -L/usr/X11R6/lib64 -lQtSql -lQtOpenGL -lQtGui -lQtNetwork -lQtCore -lGL -lpthread 
+make[2]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/starpu-top'
+make[1]: Leaving directory `/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native'
+#+END_EXAMPLE
+** PROGRAM SCRIPT
+#+BEGIN_EXAMPLE
+#! /bin/bash
+
+# cholesky/cholesky_implicit - temporary wrapper script for .libs/cholesky_implicit
+# Generated by libtool (GNU libtool) 2.4.2 Debian-2.4.2-1.7ubuntu1
+#
+# The cholesky/cholesky_implicit program cannot be directly executed until all the libtool
+# libraries that it depends on are installed.
+#
+# This wrapper script should never be moved out of the build directory.
+# If it is, it will not operate correctly.
+
+# Sed substitution that helps us do robust quoting.  It backslashifies
+# metacharacters that are still active within double-quoted strings.
+sed_quote_subst='s/\([`"$\\]\)/\\\1/g'
+
+# Be Bourne compatible
+if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then
+  emulate sh
+  NULLCMD=:
+  # Zsh 3.x and 4.x performs word splitting on ${1+"$@"}, which
+  # is contrary to our usage.  Disable this feature.
+  alias -g '${1+"$@"}'='"$@"'
+  setopt NO_GLOB_SUBST
+else
+  case `(set -o) 2>/dev/null` in *posix*) set -o posix;; esac
+fi
+BIN_SH=xpg4; export BIN_SH # for Tru64
+DUALCASE=1; export DUALCASE # for MKS sh
+
+# The HP-UX ksh and POSIX shell print the target directory to stdout
+# if CDPATH is set.
+(unset CDPATH) >/dev/null 2>&1 && unset CDPATH
+
+relink_command="(cd /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples; { test -z \"\${LIBRARY_PATH+set}\" || unset LIBRARY_PATH || { LIBRARY_PATH=; export LIBRARY_PATH; }; }; { test -z \"\${COMPILER_PATH+set}\" || unset COMPILER_PATH || { COMPILER_PATH=; export COMPILER_PATH; }; }; { test -z \"\${GCC_EXEC_PREFIX+set}\" || unset GCC_EXEC_PREFIX || { GCC_EXEC_PREFIX=; export GCC_EXEC_PREFIX; }; }; { test -z \"\${LD_RUN_PATH+set}\" || unset LD_RUN_PATH || { LD_RUN_PATH=; export LD_RUN_PATH; }; }; LD_LIBRARY_PATH=:/home/stanisic/Repository/FxT/lib; export LD_LIBRARY_PATH; PATH=/home/stanisic/Repository/git-subrepo/lib:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games; export PATH; gcc -Wall -Wall -Werror=implicit -Werror=implicit-function-declaration -Wno-unused -O3 -g -O2 -gdwarf-2 -g3 -o \$progdir/\$file cholesky_implicit.o cholesky_models.o cholesky_kernels.o sched_ctx_utils.o blas.o  -lblas ../src/.libs/libstarpu-1.3.so -lhwloc -lrt -lm -lpthread -Wl,-rpath -Wl,/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/src/.libs -Wl,-rpath -Wl,/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/lib)"
+
+# This environment variable determines our operation mode.
+if test "$libtool_install_magic" = "%%%MAGIC variable%%%"; then
+  # install mode needs the following variables:
+  generated_by_libtool_version='2.4.2'
+  notinst_deplibs=' ../src/libstarpu-1.3.la'
+else
+  # When we are sourced in execute mode, $file and $ECHO are already set.
+  if test "$libtool_execute_magic" != "%%%MAGIC variable%%%"; then
+    file="$0"
+
+# A function that is used when there is no print builtin or printf.
+func_fallback_echo ()
+{
+  eval 'cat <<_LTECHO_EOF
+$1
+_LTECHO_EOF'
+}
+    ECHO="printf %s\\n"
+  fi
+
+# Very basic option parsing. These options are (a) specific to
+# the libtool wrapper, (b) are identical between the wrapper
+# /script/ and the wrapper /executable/ which is used only on
+# windows platforms, and (c) all begin with the string --lt-
+# (application programs are unlikely to have options which match
+# this pattern).
+#
+# There are only two supported options: --lt-debug and
+# --lt-dump-script. There is, deliberately, no --lt-help.
+#
+# The first argument to this parsing function should be the
+# script's ../libtool value, followed by no.
+lt_option_debug=
+func_parse_lt_options ()
+{
+  lt_script_arg0=$0
+  shift
+  for lt_opt
+  do
+    case "$lt_opt" in
+    --lt-debug) lt_option_debug=1 ;;
+    --lt-dump-script)
+        lt_dump_D=`$ECHO "X$lt_script_arg0" | /bin/sed -e 's/^X//' -e 's%/[^/]*$%%'`
+        test "X$lt_dump_D" = "X$lt_script_arg0" && lt_dump_D=.
+        lt_dump_F=`$ECHO "X$lt_script_arg0" | /bin/sed -e 's/^X//' -e 's%^.*/%%'`
+        cat "$lt_dump_D/$lt_dump_F"
+        exit 0
+      ;;
+    --lt-*)
+        $ECHO "Unrecognized --lt- option: '$lt_opt'" 1>&2
+        exit 1
+      ;;
+    esac
+  done
+
+  # Print the debug banner immediately:
+  if test -n "$lt_option_debug"; then
+    echo "cholesky_implicit:cholesky/cholesky_implicit:${LINENO}: libtool wrapper (GNU libtool) 2.4.2 Debian-2.4.2-1.7ubuntu1" 1>&2
+  fi
+}
+
+# Used when --lt-debug. Prints its arguments to stdout
+# (redirection is the responsibility of the caller)
+func_lt_dump_args ()
+{
+  lt_dump_args_N=1;
+  for lt_arg
+  do
+    $ECHO "cholesky_implicit:cholesky/cholesky_implicit:${LINENO}: newargv[$lt_dump_args_N]: $lt_arg"
+    lt_dump_args_N=`expr $lt_dump_args_N + 1`
+  done
+}
+
+# Core function for launching the target application
+func_exec_program_core ()
+{
+
+      if test -n "$lt_option_debug"; then
+        $ECHO "cholesky_implicit:cholesky/cholesky_implicit:${LINENO}: newargv[0]: $progdir/$program" 1>&2
+        func_lt_dump_args ${1+"$@"} 1>&2
+      fi
+      exec "$progdir/$program" ${1+"$@"}
+
+      $ECHO "$0: cannot exec $program $*" 1>&2
+      exit 1
+}
+
+# A function to encapsulate launching the target application
+# Strips options in the --lt-* namespace from $@ and
+# launches target application with the remaining arguments.
+func_exec_program ()
+{
+  case " $* " in
+  *\ --lt-*)
+    for lt_wr_arg
+    do
+      case $lt_wr_arg in
+      --lt-*) ;;
+      *) set x "$@" "$lt_wr_arg"; shift;;
+      esac
+      shift
+    done ;;
+  esac
+  func_exec_program_core ${1+"$@"}
+}
+
+  # Parse options
+  func_parse_lt_options "$0" ${1+"$@"}
+
+  # Find the directory that this script lives in.
+  thisdir=`$ECHO "$file" | /bin/sed 's%/[^/]*$%%'`
+  test "x$thisdir" = "x$file" && thisdir=.
+
+  # Follow symbolic links until we get to the real thisdir.
+  file=`ls -ld "$file" | /bin/sed -n 's/.*-> //p'`
+  while test -n "$file"; do
+    destdir=`$ECHO "$file" | /bin/sed 's%/[^/]*$%%'`
+
+    # If there was a directory component, then change thisdir.
+    if test "x$destdir" != "x$file"; then
+      case "$destdir" in
+      [\\/]* | [A-Za-z]:[\\/]*) thisdir="$destdir" ;;
+      *) thisdir="$thisdir/$destdir" ;;
+      esac
+    fi
+
+    file=`$ECHO "$file" | /bin/sed 's%^.*/%%'`
+    file=`ls -ld "$thisdir/$file" | /bin/sed -n 's/.*-> //p'`
+  done
+
+  # Usually 'no', except on cygwin/mingw when embedded into
+  # the cwrapper.
+  WRAPPER_SCRIPT_BELONGS_IN_OBJDIR=no
+  if test "$WRAPPER_SCRIPT_BELONGS_IN_OBJDIR" = "yes"; then
+    # special case for '.'
+    if test "$thisdir" = "."; then
+      thisdir=`pwd`
+    fi
+    # remove .libs from thisdir
+    case "$thisdir" in
+    *[\\/].libs ) thisdir=`$ECHO "$thisdir" | /bin/sed 's%[\\/][^\\/]*$%%'` ;;
+    .libs )   thisdir=. ;;
+    esac
+  fi
+
+  # Try to get the absolute directory name.
+  absdir=`cd "$thisdir" && pwd`
+  test -n "$absdir" && thisdir="$absdir"
+
+  program=lt-'cholesky_implicit'
+  progdir="$thisdir/.libs"
+
+  if test ! -f "$progdir/$program" ||
+     { file=`ls -1dt "$progdir/$program" "$progdir/../$program" 2>/dev/null | /bin/sed 1q`; \
+       test "X$file" != "X$progdir/$program"; }; then
+
+    file="$$-$program"
+
+    if test ! -d "$progdir"; then
+      mkdir "$progdir"
+    else
+      rm -f "$progdir/$file"
+    fi
+
+    # relink executable if necessary
+    if test -n "$relink_command"; then
+      if relink_command_output=`eval $relink_command 2>&1`; then :
+      else
+	printf %s\n "$relink_command_output" >&2
+	rm -f "$progdir/$file"
+	exit 1
+      fi
+    fi
+
+    mv -f "$progdir/$file" "$progdir/$program" 2>/dev/null ||
+    { rm -f "$progdir/$program";
+      mv -f "$progdir/$file" "$progdir/$program"; }
+    rm -f "$progdir/$file"
+  fi
+
+  if test -f "$progdir/$program"; then
+    if test "$libtool_execute_magic" != "%%%MAGIC variable%%%"; then
+      # Run the actual program with our arguments.
+      func_exec_program ${1+"$@"}
+    fi
+  else
+    # The program doesn't exist.
+    $ECHO "$0: error: \`$progdir/$program' does not exist" 1>&2
+    $ECHO "This script is just a wrapper for $program." 1>&2
+    $ECHO "See the libtool documentation for more information." 1>&2
+    exit 1
+  fi
+fi
+#+END_EXAMPLE
+** PROGRAM BINARY LIBRARIES
+#+BEGIN_EXAMPLE
+	linux-vdso.so.1 =>  (0x00007fff1e9fb000)
+	libblas.so.3 => /usr/lib/libblas.so.3 (0x00007ff01254c000)
+	libstarpu-1.3.so.0 => /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/lib/libstarpu-1.3.so.0 (0x00007ff012223000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff011f1d000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ff011cff000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff011939000)
+	libhwloc.so.5 => /usr/lib/x86_64-linux-gnu/libhwloc.so.5 (0x00007ff0116f9000)
+	libfxt.so.0 => /home/stanisic/Repository/FxT/lib/libfxt.so.0 (0x00007ff0114e7000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007ff0112de000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff0110c8000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007ff0127f1000)
+	libnuma.so.1 => /usr/lib/x86_64-linux-gnu/libnuma.so.1 (0x00007ff010ebd000)
+	libltdl.so.7 => /usr/lib/x86_64-linux-gnu/libltdl.so.7 (0x00007ff010cb2000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007ff010aae000)
+#+END_EXAMPLE
+* RUNNING OPTIONS
+#+BEGIN_EXAMPLE
+STARPU_HOME=/home/stanisic/Repository/trace.archive/data/testing STARPU_HOSTNAME=winnetou STARPU_HISTORY_MAX_ERROR=5 STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=1 STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPENCL=0 STARPU_SCHED=dmda /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/examples/cholesky/cholesky_implicit -size 9600 -nblocks 10
+#+END_EXAMPLE
+* ELAPSED TIME
+#+BEGIN_EXAMPLE
+Elapsed:    39.918313679 seconds
+#+END_EXAMPLE
+* STDERR OUTPUT
+#+BEGIN_EXAMPLE
+[starpu][starpu_initialize] Warning: StarPU was configured with --with-fxt, which slows down a bit
+[starpu][check_bus_config_file] No performance model for the bus, calibrating...
+[starpu][check_bus_config_file] ... done
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 926428.713000 vs average 755575.655000, 1 such errors against 1 samples (+22.612303%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 744763.301000 vs average 676375.058000, 1 such errors against 1 samples (+10.110994%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 665563.084000 vs average 721852.198333, 3 such errors against 3 samples (-7.797873%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 672731.699000 vs average 771382.473000, 1 such errors against 1 samples (-12.788828%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 700012.584000 vs average 757822.639000, 1 such errors against 1 samples (-7.628441%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 719077.292000 vs average 774115.187857, 7 such errors against 7 samples (-7.109781%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 482058.914000 vs average 538715.899286, 7 such errors against 7 samples (-10.517043%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 678509.086000 vs average 769001.567071, 14 such errors against 14 samples (-11.767529%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 710285.161000 vs average 776369.402000, 1 such errors against 1 samples (-8.511958%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 689305.369000 vs average 761185.634000, 1 such errors against 1 samples (-9.443198%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 1018138.011000 vs average 687574.718833, 6 such errors against 6 samples (+48.076708%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 683010.367000 vs average 774443.275500, 4 such errors against 4 samples (-11.806276%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_11 on cpu0_impl0 (Comb0): 112684.400000 vs average 124512.528000, 1 such errors against 1 samples (-9.499549%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 535067.464000 vs average 448183.720000, 2 such errors against 2 samples (+19.385743%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 465760.049000 vs average 548869.411000, 2 such errors against 2 samples (-15.141919%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 659804.059000 vs average 895600.977000, 1 such errors against 1 samples (-26.328345%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 870912.154000 vs average 675536.289000, 1 such errors against 1 samples (+28.921594%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 702465.945000 vs average 797514.212000, 1 such errors against 1 samples (-11.918066%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 701246.030000 vs average 901645.383000, 1 such errors against 1 samples (-22.225961%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 787353.687000 vs average 704536.023182, 11 such errors against 11 samples (+11.754923%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 680830.216000 vs average 897826.968000, 1 such errors against 1 samples (-24.169106%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 698499.685000 vs average 858746.996000, 1 such errors against 1 samples (-18.660596%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 741834.788000 vs average 695992.258000, 1 such errors against 1 samples (+6.586644%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 682532.342000 vs average 908463.763000, 1 such errors against 1 samples (-24.869613%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_22 on cpu0_impl0 (Comb0): 647359.942000 vs average 706385.702000, 4 such errors against 4 samples (-8.356024%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_11 on cpu0_impl0 (Comb0): 127620.677000 vs average 115547.157000, 2 such errors against 2 samples (+10.448998%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_21 on cpu0_impl0 (Comb0): 407799.298000 vs average 461727.043333, 9 such errors against 9 samples (-11.679573%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+[starpu][_starpu_update_perfmodel_history] Too big deviation for model chol_model_11 on cpu0_impl0 (Comb0): 120495.479000 vs average 112847.352000, 1 such errors against 1 samples (+6.777409%), flushing the performance model. Use the STARPU_HISTORY_MAX_ERROR environement variable to control the threshold (currently 5%)
+#+END_EXAMPLE
+* STDOUT OUTPUT
+#+BEGIN_EXAMPLE
+Makespan (in ms): # size	ms	GFlops
+9600	39226	7.5
+#+END_EXAMPLE
+* CALIBRATION
+** chol_model_11.winnetou
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/codelets/44/chol_model_11.winnetou
+ ##################
+# Performance Model Version
+44
+
+####################
+# COMBs
+# number of combinations
+1
+####################
+# COMB_0
+# number of types devices
+1
+####################
+# DEV_0
+# device type (CPU - 0, CUDA - 1, OPENCL - 2, MIC - 3, SCC - 4)
+0
+####################
+# DEV_0
+# device id 
+0
+####################
+# DEV_0
+# number of cores 
+1
+##########
+# number of implementations
+1
+#####
+# Model for cpu0_impl0 (Comb0)
+# number of entries
+1
+# sumlnx	sumlnx2		sumlny		sumlnxlny	alpha		beta		n	minx		maxx
+0.000000e+00   	0.000000e+00   	0.000000e+00   	0.000000e+00   	nan            	nan            	0	0              	0              
+# a		b		c
+nan            	nan            	nan            
+# hash		size		flops		mean (us)	dev (us)	sum		sum2		n
+617e5fe6	3686400        	2.953730e+08   	1.076217e+05   	0.000000e+00   	1.076217e+05   	1.158243e+10   	1
+
+#+END_EXAMPLE
+** chol_model_21.winnetou
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/codelets/44/chol_model_21.winnetou
+ ##################
+# Performance Model Version
+44
+
+####################
+# COMBs
+# number of combinations
+1
+####################
+# COMB_0
+# number of types devices
+1
+####################
+# DEV_0
+# device type (CPU - 0, CUDA - 1, OPENCL - 2, MIC - 3, SCC - 4)
+0
+####################
+# DEV_0
+# device id 
+0
+####################
+# DEV_0
+# number of cores 
+1
+##########
+# number of implementations
+1
+#####
+# Model for cpu0_impl0 (Comb0)
+# number of entries
+1
+# sumlnx	sumlnx2		sumlny		sumlnxlny	alpha		beta		n	minx		maxx
+0.000000e+00   	0.000000e+00   	0.000000e+00   	0.000000e+00   	nan            	nan            	0	0              	0              
+# a		b		c
+nan            	nan            	nan            
+# hash		size		flops		mean (us)	dev (us)	sum		sum2		n
+ff82dda0	7372800        	8.856576e+08   	3.966804e+05   	4.361238e+03   	1.586721e+06   	6.294973e+11   	4
+
+#+END_EXAMPLE
+** chol_model_22.winnetou
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/codelets/44/chol_model_22.winnetou
+ ##################
+# Performance Model Version
+44
+
+####################
+# COMBs
+# number of combinations
+1
+####################
+# COMB_0
+# number of types devices
+1
+####################
+# DEV_0
+# device type (CPU - 0, CUDA - 1, OPENCL - 2, MIC - 3, SCC - 4)
+0
+####################
+# DEV_0
+# device id 
+0
+####################
+# DEV_0
+# number of cores 
+1
+##########
+# number of implementations
+1
+#####
+# Model for cpu0_impl0 (Comb0)
+# number of entries
+1
+# sumlnx	sumlnx2		sumlny		sumlnxlny	alpha		beta		n	minx		maxx
+0.000000e+00   	0.000000e+00   	0.000000e+00   	0.000000e+00   	nan            	nan            	0	0              	0              
+# a		b		c
+nan            	nan            	nan            
+# hash		size		flops		mean (us)	dev (us)	sum		sum2		n
+24c84a50	11059200       	1.769472e+09   	6.852271e+05   	1.751798e+04   	1.438977e+07   	9.866704e+12   	21
+
+#+END_EXAMPLE
+** winnetou.bandwidth
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.bandwidth
+ # to 0		to 1		to 2		to 3		
+0.000000	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+#+END_EXAMPLE
+** winnetou.platform.xml
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.platform.xml
+ <?xml version='1.0'?>
+ <!DOCTYPE platform SYSTEM 'http://simgrid.gforge.inria.fr/simgrid.dtd'>
+ <platform version='3'>
+ <config id='General'>
+   <prop id='network/TCP_gamma' value='-1'></prop>
+   <prop id='network/latency_factor' value='1'></prop>
+   <prop id='network/bandwidth_factor' value='1'></prop>
+ </config>
+ <AS  id='AS0'  routing='Full'>
+   <host id='MAIN' power='1'/>
+   <host id='CPU0' power='2000000000'/>
+   <host id='CPU1' power='2000000000'/>
+   <host id='CPU2' power='2000000000'/>
+   <host id='CPU3' power='2000000000'/>
+
+   <host id='RAM' power='1'/>
+
+   <link id='Share' bandwidth='0.000000' latency='0.000000'/>
+
+ </AS>
+ </platform>
+#+END_EXAMPLE
+** winnetou.config
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.config
+ # Current configuration
+4 # Number of CPUs
+0 # Number of CUDA devices
+0 # Number of OpenCL devices
+0 # Number of MIC devices
+#+END_EXAMPLE
+** winnetou.latency
+#+BEGIN_EXAMPLE
+/home/stanisic/Repository/trace.archive/data/testing/.starpu/sampling/bus/winnetou.latency
+ # to 0		to 1		to 2		to 3		
+0.000000	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+#+END_EXAMPLE

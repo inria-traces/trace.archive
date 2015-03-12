@@ -1,0 +1,10 @@
+* General information
+** Output file
+See [[info.org][info.org]] for details.
+** Authors
+** Application
+** Machine description 
+** Purpose of the experiment
+* ZENODO content (written automatically)
+* Discussions
+
