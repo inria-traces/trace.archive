@@ -121,7 +121,7 @@ if git diff-index --quiet HEAD --; then
 else
     echo "ERROR-need to commit all changes before doing experiment!"
     git status
-    #exit 1
+    exit 1
 fi
 
 ##################################################
