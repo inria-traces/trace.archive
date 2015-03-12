@@ -1,4 +1,6 @@
-* Inria Trace Archive
-This is the Inria Trace Archive.
+* Inria Parallel Program Trace Archive
+This is the Inria Parallel Program Trace Archive. This is joint project between the 
+Grenoble [[http://mescal.imag.fr/][MESCAL]] team and the Bordeaux 
+[[https://team.inria.fr/hiepacs/][Hiepacs]] and [[http://runtime.bordeaux.inria.fr/][Storm/Runtime]] teams.
 * Directory structure
 TODO
