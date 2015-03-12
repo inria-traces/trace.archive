@@ -27,9 +27,7 @@ def zenodo_api_check(url, token):
     r = requests.get("%s?access_token=%s" % (url, token))
     print r.status_code
     if r.status_code != 200:
-        print("Impossible to use the REST API. Check the content of '" + ZENODO_CONF_FILE + "'.")
         return False
-    print "REST API access: OK"
     return True
 
 def load_user_conf():
@@ -37,8 +35,6 @@ def load_user_conf():
     if os.path.isfile(ZENODO_CONF_FILE) == False :
         with open(ZENODO_CONF_FILE, 'wb') as f:
             json.dump({'user': 'Doe, John', 'affiliation':'NASA', 'token': 'this-is-a-dummy-token'}, f)
-            print("Configuration file '" + ZENODO_CONF_FILE + "' not found.")
-            print("A default one has been created. PLEASE EDIT THE VALUES!")
             return None
     else:
         f = open(ZENODO_CONF_FILE, 'r')
@@ -52,29 +48,39 @@ def log(do, string):
 
 
 ##################### Input Validation  ######################
+# Parse arguments
+args = parse_arguments()
+filepath=args.filepath
+verbose = args.verbose
+dry = args.nopub
+title=(args.title, os.path.basename(filepath))[args.title==None]
+description=(args.description, "")[args.description==None]
+
 # Check user configuration
-config=load_user_config()
+config=load_user_conf()
 if config == None:
+    print("Configuration file '" + ZENODO_CONF_FILE + "' not found.")
+    print("A default one has been created. PLEASE EDIT THE VALUES!")
     exit()
+else:
+    log(verbose, "User configuration found: " + str(config))
 name=config['user']
 affiliation=config['affiliation']
 token=config['token']
 
-# Parse arguments
-args = parse_arguments()
-verbose = args.verbose
-dry = args.nopub
-title=args.title
-description=args.description
-filepath=args.filepath
-
 # Check REST API
-zenodo_api_check(DEPOSIT_URL, token)
+if zenodo_api_check(DEPOSIT_URL, token) == False:
+    print("Impossible to use the REST API. Check the content of '" + ZENODO_CONF_FILE + "'.")
+    exit()
+else:
+    log(verbose, "REST API access: OK")
 
 # Check file
 if os.path.isfile(filepath) == False :
     print("File '"+filepath+"' does not exist.")
     exit()
+else:
+    log(verbose, "File '"+filepath+"' exists.")
 
 ##################### PUBLISHING PROCEDURE ######################
 # For each step, in square brackets there is the reference in the
@@ -93,7 +99,7 @@ data = {"metadata":
            }
        }
 headers = {"Content-Type": "application/json"}
-r = requests.post("%s?access_token=%s" % (url, TOKEN), data=json.dumps(data), headers=headers)
+r = requests.post("%s?access_token=%s" % (DEPOSIT_URL, token), data=json.dumps(data), headers=headers)
 log(verbose, "Deposition::Create: " + str(r.status_code))
 if r.status_code != 201 :
     print(r.json())
@@ -107,7 +113,7 @@ log(True, "- Deposition Id: " + str(deposition_id))
 filename = os.path.basename(filepath)
 data = {'filename': filename}
 files = {'file': open(filepath, 'rb')}
-r = requests.post("%s/%s/files?access_token=%s" % (url, deposition_id, TOKEN), data=data, files=files)
+r = requests.post("%s/%s/files?access_token=%s" % (DEPOSIT_URL, deposition_id, token), data=data, files=files)
 log(verbose, "Deposition files::Create(upload): " + str(r.status_code))
 if r.status_code != 201 :
     print(r.json())
@@ -119,10 +125,10 @@ dry = True
 # 3. Actually publishing the file (AFTER THIS STEP THE FILE CAN NOT BE DELETED!!) 
 # [Deposition Actions::Publish]
 if dry == False:
-    r = requests.post("%s/%s/actions/publish?access_token=%s" % (url, deposition_id, TOKEN))
+    r = requests.post("%s/%s/actions/publish?access_token=%s" % (DEPOSIT_URL, deposition_id, token))
     log(verbose, "Deposition Actions::Publish: " + str(r.status_code))
     log(verbose, r.json())
-    print("Record Url: " + r.json()['record_url']
+    print("Record Url: " + r.json()['record_url'])
     print("Deposit Id: " + r.json()['id'])
     if r.status_code != 202 :
         print(r.json())
