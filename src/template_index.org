@@ -5,7 +5,7 @@ See [[info.org]] for details.
 #+END_EXAMPLE
 ** Authors
 #+BEGIN_EXAMPLE
-
+Luka Stanisic
 #+END_EXAMPLE
 ** Application
 #+BEGIN_EXAMPLE
@@ -17,7 +17,7 @@ See [[info.org]] for details.
 #+END_EXAMPLE
 ** Purpose of the experiment
 #+BEGIN_EXAMPLE
-
+Testing
 #+END_EXAMPLE
 * ZENODO content (written automatically)
 * Discussions
