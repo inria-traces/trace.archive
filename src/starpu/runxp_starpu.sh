@@ -70,7 +70,7 @@ if [[ -z $nblk ]]; then
 fi
 starpu_home=$STARPU_HOME
 if [[ -z $starpu_home ]]; then
-    starpu_home=$basename
+    starpu_home=$datafolder
 fi
 starpu_hostname=$STARPU_HOSTNAME
 if [[ -z $starpu_hostname ]]; then
@@ -153,7 +153,7 @@ title="StarPU execution on $(eval hostname)"
 
 ##################################################
 # Compilation
-echo "* COMPILATION:" >> $info
+echo "* COMPILATION" >> $info
 # Configure and make StarPU+Simgrid
 cd $starpu_build
 echo "Make distclean..."
@@ -188,17 +188,17 @@ echo "Configure..."
 echo "#+BEGIN_EXAMPLE" >> $info    
 eval ../configure --prefix=$starpu_build --with-fxt=$FXT_PATH --enable-paje-codelet-details $configopt >> $info
 echo "#+END_EXAMPLE" >> $info
-echo "** COMPILATION OF STARPU:" >> $info
+echo "** COMPILATION OF STARPU" >> $info
 echo "Make..."
 echo "#+BEGIN_EXAMPLE" >> $info    
 make -j5 >> $info
 make install
 echo "#+END_EXAMPLE" >> $info
-echo "** PROGRAM SCRIPT:" >> $info
+echo "** PROGRAM SCRIPT" >> $info
 echo "#+BEGIN_EXAMPLE" >> $info
 cat $starpu_program >> $info
 echo "#+END_EXAMPLE" >> $info
-echo "** PROGRAM BINARY LIBRARIES:" >> $info
+echo "** PROGRAM BINARY LIBRARIES" >> $info
 echo "#+BEGIN_EXAMPLE" >> $info
 ldd $starpu_program_binary >> $info
 echo "#+END_EXAMPLE" >> $info
@@ -210,7 +210,7 @@ running="STARPU_HOME=$starpu_home STARPU_HOSTNAME=$starpu_hostname STARPU_HISTOR
 
 #################################
 # Run application
-echo "* RUNNING OPTIONS:" >> $info
+echo "* RUNNING OPTIONS" >> $info
 echo "#+BEGIN_EXAMPLE" >> $info
 echo $running >> $info
 echo "#+END_EXAMPLE" >> $info
@@ -223,18 +223,18 @@ set +e # In order to detect and print execution errors
 eval $running 1> stdout.out 2> stderr.out
 set -e
 time2=$(date +%s.%N)
-echo "* ELAPSED TIME:" >> $info
+echo "* ELAPSED TIME" >> $info
 echo "#+BEGIN_EXAMPLE" >> $info
 echo "Elapsed:    $(echo "$time2 - $time1"|bc ) seconds" >> $info
 echo "#+END_EXAMPLE" >> $info
-echo "* STDERR OUTPUT:" >> $info
+echo "* STDERR OUTPUT" >> $info
 echo "#+BEGIN_EXAMPLE" >> $info
 cat stderr.out >> $info
 if [ ! -s stdout.out ]; then
     echo "ERROR DURING THE EXECUTION!!!" >> stdout.out
 fi
 echo "#+END_EXAMPLE" >> $info
-echo "* STDOUT OUTPUT:" >> $info
+echo "* STDOUT OUTPUT" >> $info
 echo "#+BEGIN_EXAMPLE" >> $info
 (echo -n "Makespan (in ms): "; cat stdout.out) >> $info
 cat stderr.out
@@ -244,8 +244,6 @@ echo "#+END_EXAMPLE" >> $info
 
 ##################################
 # StarPU calibration used for this experiment
-echo "* CALIBRATION:" >> $info
-echo "#+BEGIN_EXAMPLE" >> $info
-find $starpu_home/.starpu -not -iwholename '*~' -name *$host* -printf "** File: %f\n%p\n" -exec cat {} \; >> $info
-echo "#! End of calibration" >> $info
-echo "#+END_EXAMPLE" >> $info
+echo "* CALIBRATION" >> $info
+find $starpu_home/.starpu -not -iwholename '*~' -name *$host* -printf "** %f\n#+BEGIN_EXAMPLE\n%p\n " -exec cat {} \; -printf "#+END_EXAMPLE\n" >> $info
+
