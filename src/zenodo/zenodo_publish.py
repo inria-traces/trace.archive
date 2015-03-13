@@ -156,7 +156,7 @@ if dry == False:
         exit(1)
     log(verbose, "Deposition Actions::Publish: " + str(r.status_code))
     log(verbose, "Record Url: " + r.json()['record_url'])
-    log(verbose, "Deposition Id: " + r.json()['id'])
+    log(verbose, "Deposition Id: " + str(r.json()['id']))
     zenodo_link=r.json()['record_url'] + "/files/" + os.path.basename(filepath)
     print("File published.")
     write_link(orgpath, zenodo_link)
