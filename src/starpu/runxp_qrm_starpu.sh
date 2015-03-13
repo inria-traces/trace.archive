@@ -6,12 +6,12 @@ set -e # fail fast
 # Script parameters
 basename="$PWD"
 host="$(hostname | sed 's/[0-9]*//g' | cut -d'.' -f1)"
-capture_metadata="/home/stanisic/Repository/trace.archive/src/capture_metadata.sh"
-template_index="/home/stanisic/Repository/trace.archive/src/template_index.org"
+capture_metadata="/home-ext/stanisic/trace.archive/src/capture_metadata.sh"
+template_index="/home-ext/stanisic/trace.archive/src/template_index.org"
 
-datafolder="/home/stanisic/Repository/trace.archive/data/testing"
-starpu_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native"
-qrm_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/qrm_starpu_2d"
+datafolder="/home-ext/stanisic/trace.archive/data/testing"
+starpu_build="/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native"
+qrm_build="/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d"
 numactl=""
 help_script()
 {
@@ -27,7 +27,7 @@ OPTIONS:
    -q      Path to the qrm_starpu source code
 
 Example how to run it:
-STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPECL=0 STARPU_SIZE=9600 STARPU_BLK=10 STARPU_SCHED=dmda STARPU_CALIBRATE=1 STARPU_PROGRAM=cholesky ./runxp_starpu.sh -d /home/stanisic/Repository/trace.archive/data/testing/ -s /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native/
+STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPECL=0 STARPU_SIZE=9600 STARPU_BLK=10 STARPU_SCHED=dmda STARPU_CALIBRATE=1 STARPU_PROGRAM=cholesky ./runxp_starpu.sh -d /home-ext/stanisic/trace.archive/data/testing/ -s /home-ext/stanisic/git_gforge/starpu-simgrid/src/StarPU/build-native/
 EOF
 }
 # Parsing options
