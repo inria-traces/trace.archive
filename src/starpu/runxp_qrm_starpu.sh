@@ -6,12 +6,11 @@ set -e # fail fast
 # Script parameters
 basename="$PWD"
 host="$(hostname | sed 's/[0-9]*//g' | cut -d'.' -f1)"
-capture_metadata="/home-ext/stanisic/trace.archive/src/capture_metadata.sh"
-template_index="/home-ext/stanisic/trace.archive/src/template_index.org"
 
-datafolder="/home-ext/stanisic/trace.archive/data/testing"
-starpu_build="/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native"
-qrm_build="/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d"
+tracearchive_folder="/home/stanisic/Repository/trace.archive"
+datafolder="testing"
+starpu_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native"
+qrm_build="/home/stanisic/Repository/git_gforge/starpu-simgrid/src/qrm_starpu_2d"
 numactl=""
 help_script()
 {
@@ -22,17 +21,21 @@ Script for running StarPU experiments
 
 OPTIONS:
    -h      Show this message
-   -d      Specify output data folder
+   -d      Specify output data folder name
+   -t      Path to trace.archive folder
    -s      Path to the StarPU installation
    -q      Path to the qrm_starpu source code
 
 Example how to run it:
-STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPECL=0 STARPU_SIZE=9600 STARPU_BLK=10 STARPU_SCHED=dmda STARPU_CALIBRATE=1 STARPU_PROGRAM=cholesky ./runxp_starpu.sh -d /home-ext/stanisic/trace.archive/data/testing/ -s /home-ext/stanisic/git_gforge/starpu-simgrid/src/StarPU/build-native/
+STARPU_NCPU=4 STARPU_NCUDA=0 STARPU_NOPECL=0 STARPU_SCHED=dmda STARPU_CALIBRATE=1 ./runxp_qrm_starpu.sh -t /home/stanisic/Repository/trace.archive -d testing -s /home/stanisic/Repository/git_gforge/starpu-simgrid/src/StarPU/build-native -q /home/stanisic/Repository/git_gforge/starpu-simgrid/src/qrm_starpu_2d
 EOF
 }
 # Parsing options
-while getopts "d:s:q:h" opt; do
+while getopts "t:d:s:q:h" opt; do
     case $opt in
+	t)
+	    tracearchive_folder="$OPTARG"
+	    ;;
 	d)
 	    datafolder="$OPTARG"
 	    ;;
@@ -53,6 +56,9 @@ while getopts "d:s:q:h" opt; do
 	    ;;
     esac
 done
+capture_metadata="$tracearchive_folder/src/capture_metadata.sh"
+template_index="$tracearchive_folder/src/template_index.org"
+datafolder="$tracearchive_folder/data/$datafolder"
 info="$datafolder/info.org"
 
 # Reading StarPU command line arguments
