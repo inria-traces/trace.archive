@@ -1,0 +1,7 @@
+* Guidelines for adding a trace to this archive
+** Capture metadata
+TODO
+** Generate the trace
+TODO
+** Publish the trace on Zenodo
+TODO
