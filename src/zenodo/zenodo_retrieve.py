@@ -12,7 +12,6 @@
 #     python zenodo_retrieve.py -h
 #
 
-import requests
 import json
 import argparse
 import re
