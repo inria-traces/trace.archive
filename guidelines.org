@@ -1,7 +1,8 @@
 * Guidelines for using this archive
 ** Archive architecture
 This archive is structured as follows:
-- Trace metadata are stored in this git repository, according to structure described in the [[README.org][README]].
+- Trace metadata are stored in this git repository, according to
+  structure described in the [[README.org][README]].
 - Trace files are stored on [[https://zenodo.org/][Zenodo]], within the =TODO= community.
 ** Publish a trace on the archive
 *** Capture metadata
@@ -9,7 +10,12 @@ TODO
 *** Generate the trace
 TODO
 *** Publish the trace on Zenodo
-TODO
+Once you have your trace, you have to create a single archive with all
+the relevant trace files and publish it on Zenodo.
+**** Archive creation
+TODO: use a script or do it manually?
+**** Publishing the archive
+TODO: describe the python script
 ** Retrieve a trace from the archive
 *** Retrieve the metadata
 *** Retrieve the trace from Zenodo
