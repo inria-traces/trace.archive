@@ -4,7 +4,26 @@ This archive is structured as follows:
 - Trace metadata are stored in this git repository, according to
   structure described in the [[README.org][README]].
 - Trace files are stored on [[https://zenodo.org/][Zenodo]], within the =TODO= community.
+** Create an account on Zenodo
+- Go to [[https://zenodo.org/][Zenodo]]
+- Sign up
+  - Either you sign up using your GitHub account or you create a new
+    account.
+  - If you choose to sign up using your GitHub account, you'll need to
+    grant Zenodo the access to your GitHub and authorize the
+    application.
+*** Creating a Zenodo personal token
+To be able to use the scripts provided in this repository to interact
+with Zenodo, you need to get a personal token.
+- Go to your Applications, to [[https://zenodo.org/account/settings/applications/tokens/new/][create a new token]].
+- Choose a name (whatever you want) for your personal token.
+- Press the Create button, leaving all other checkboxes (Scopes)
+  untouched.
+- COPY YOUR PERSONAL TOKEN, SINCE IT WILL NOT BE DISPLAYED ANY
+  MORE. You will need this in the following steps.
+- Press the Save button.
 ** Publish a trace on the archive
+*** Setup your tracing environment
 *** Capture metadata
 TODO
 *** Generate the trace
