@@ -1,7 +1,15 @@
-* Guidelines for adding a trace to this archive
-** Capture metadata
+* Guidelines for using this archive
+** Archive architecture
+This archive is structured as follows:
+- Trace metadata are stored in this git repository, according to structure described in the [[README.org][README]].
+- Trace files are stored on [[https://zenodo.org/][Zenodo]], within the =TODO= community.
+** Publish a trace on the archive
+*** Capture metadata
 TODO
-** Generate the trace
+*** Generate the trace
 TODO
-** Publish the trace on Zenodo
+*** Publish the trace on Zenodo
 TODO
+** Retrieve a trace from the archive
+*** Retrieve the metadata
+*** Retrieve the trace from Zenodo
