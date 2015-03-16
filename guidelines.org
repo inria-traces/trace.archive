@@ -22,19 +22,94 @@ with Zenodo, you need to get a personal token.
 - COPY YOUR PERSONAL TOKEN, SINCE IT WILL NOT BE DISPLAYED ANY
   MORE. You will need this in the following steps.
 - Press the Save button.
-** Publish a trace on the archive
+** Guidelines for writing a script for running experiments
+- Create a new script for running experiments in one of the =/src=
+  subfolders. 
+  - See, for example, =/src/starpu/runxp_starpu.sh=.
+- This script should create all its ouptut in a subfolder of =/data=.
+- Beside the generated traces, the output of the script should include
+  a file =info.org= and a file =index.org=, similar to the ones in
+  =/data/TODO=.
+- To obtain an =info.org= with the required information, your script
+  must do the following:
+  1. Capture all the relevant metadata. For example, your script for
+     running the experiments can call =/src/capture_metadata.sh=.
+  2. Recompile all the relevant software used and keep the
+     configuration/compilation output.
+  3. Capture the code revisions of all used software.
+  4. Keep the command used to launch the experiment.
+  5. Save all the experiment outputs, like standard output or standard
+     error. Note that this output does NOT include the large trace
+     data, which are saved separately.
+- Your script should verify that there are not uncommitted changes in
+  the repository.
+- At the end your script must create an empty =index.org= copying the
+  template in =/src/template_index.org=.
+** Add a trace on the archive
 *** Setup your tracing environment
-*** Capture metadata
-TODO
+- Clone this git repository
+#+begin_src 
+git clone git@github.com:inria-traces/trace.archive.git
+#+end_src
+- Create a new script for running experiments in one of the =/src=
+  subfolders following the guidelines described [[*Guidelines%20for%20writing%20a%20script%20for%20running%20experiments][above]]. 
+- Make sure to commit all your scripts.
 *** Generate the trace
-TODO
+- Execute your script for running experiments.
+- Make sure that all the outputs (info.org, index.org, trace files)
+  are in the desired =/data= subfolder.
 *** Publish the trace on Zenodo
 Once you have your trace, you have to create a single archive with all
 the relevant trace files and publish it on Zenodo.
 **** Archive creation
-TODO: use a script or do it manually?
+Create the archive using a command similar to the following:
+#+begin_src 
+tar -cvzf qrm_starpu-e18.tar.gz paje.trace *.dot *.data
+#+end_src
+Ideally, the name of the archive should be explicit enough to
+recognize the trace.
 **** Publishing the archive
-TODO: describe the python script
+To publish the archive on Zenodo, you can either do it via the [[https://zenodo.org/deposit/?c=inria-traces][web interface]], 
+or use the python script =/src/zenodo/zenodo_publish=.
+
+Sample script invocation:
+#+begin_src 
+python zenodo_publish.py path/to/file.tar.gz path/to/index.org -t "Trace title" -d "Trace Description"  
+#+end_src
+
+Running the script for the first time, you will get an output similar to this:
+#+BEGIN_EXAMPLE
+Configuration file '/home/generoso/work/repos/Generoso/github/trace.archive/src/zenodo/zenodo_conf.json' not found.
+A default one has been created. PLEASE EDIT THE VALUES!
+#+END_EXAMPLE
+This means that you have to edit the specified configuration file,
+writing your name, your affiliation, and your personal zenodo token,
+obtained as [[*Creating%20a%20Zenodo%20personal%20token][described]].
+
+For all the script details, refer to the output of:
+#+begin_src 
+python zenodo_publish --help
+#+end_src
+
 ** Retrieve a trace from the archive
-*** Retrieve the metadata
-*** Retrieve the trace from Zenodo
+To retrieve a trace from the archive you can either do it via the [[https://zenodo.org/collection/user-inria-traces][web interface]], 
+or use the python script =/src/zenodo/zenodo_retrieve=.
+
+Sample script invocation, specifying the index.org:
+#+begin_src 
+python zenodo_retrieve.py -o path/to/index.org
+#+end_src
+
+Sample script invocation, specifying the archive link directly:
+#+begin_src 
+python zenodo_retrieve.py -l https://zenodo.org/record/16026/files/qrm_starpu-e18.tar.gz
+#+end_src
+
+For all the script details, refer to the output of:
+#+begin_src 
+python zenodo_retrieve --help
+#+end_src
+
+* TODO draft
+- [ ] use urlib in python scripts
+- [ ] create a new shared community and update the 2 links
