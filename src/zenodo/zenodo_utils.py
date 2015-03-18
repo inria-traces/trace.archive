@@ -1,11 +1,11 @@
-# * Author: Generoso Pagano
-#
-# * Description:
-#
-# Common utilities and constants for Zenodo scripts
-#
+#!/usr/bin/env python
+
+"""Common utilities and constants for Zenodo scripts"""
 
 import os.path
+
+__author__ = "Generoso Pagano"
+__email__ = "generoso.pagano@inria.fr"
 
 # Constants
 DIR=os.path.dirname(os.path.realpath(__file__)) # Script directory
