@@ -1,30 +1,29 @@
-# * Author: Generoso Pagano
-#
-# * Description:
-#
-# Script to publish a file on Zenodo.
-#
-# To be abole to publish a file on Zenodo, you need to create an
-# account on Zenodo and get a personal token, as explained here:
-# https://zenodo.org/dev (search for 'token').
-#
-# The first time you launch the script, a configuration file will be
-# created in the script folder. YOU MUST EDIT THIS FILE, writing the
-# correct value of your token.
-#
-# * Usage:
-#
-# Use the following command to get the complete list of command line
-# arguments:
-#
-#     python zenodo_publish.py -h
-#
+#!/usr/bin/env python
 
-import requests
-import json
+""" Script to publish a file on Zenodo.
+
+To be abole to publish a file on Zenodo, you need to create an
+account on Zenodo and get a personal token, as explained here:
+https://zenodo.org/dev (search for 'token').
+
+The first time you launch the script, a configuration file will be
+created in the script folder. YOU MUST EDIT THIS FILE, writing the
+correct value of your token.
+
+Use the following command to get the complete list of command line
+arguments:
+
+    python zenodo_publish.py -h
+""" 
+
 import argparse
+import json
 import os.path
+import requests
 from zenodo_utils import *
+
+__author__ = "Generoso Pagano"
+__email__ = "generoso.pagano@inria.fr"
 
 # Utilities
 def parse_arguments():
@@ -132,7 +131,7 @@ r = requests.post("%s?access_token=%s" % (DEPOSIT_URL, token), data=json.dumps(d
 log(verbose, "Deposition::Create: code " + str(r.status_code))
 if r.status_code != 201 :
     print(r.json())
-    exit()
+    exit(1)
     
 deposition_id = r.json()['id']
 log(verbose, "Deposition Id: " + str(deposition_id))

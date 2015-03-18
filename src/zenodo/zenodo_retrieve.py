@@ -1,22 +1,21 @@
-# * Author: Generoso Pagano
-#
-# * Description:
-#
-# Script to download a file from Zenodo.
-#
-# * Usage:
-#
-# Use the following command to get the complete list of command line
-# arguments:
-#
-#     python zenodo_retrieve.py -h
-#
+#!/usr/bin/env python
 
-import json
+"""Script to download a file from Zenodo.
+
+Use the following command to get the complete list of command line
+arguments:
+
+    python zenodo_retrieve.py -h
+"""
+
 import argparse
+import json
 import re
-from zenodo_utils import *
 from urllib import urlretrieve
+from zenodo_utils import *
+
+__author__ = "Generoso Pagano"
+__email__ = "generoso.pagano@inria.fr"
 
 # Utilities
 def parse_arguments():
