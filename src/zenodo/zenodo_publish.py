@@ -122,7 +122,7 @@ data = {"metadata":
             "title": title, 
             "upload_type": "dataset", 
             "description": description, 
-            "communities": [{"identifier": "inria-traces"}],
+            "communities": [{"identifier": COMMUNITY_IDENTIFIER}],
             "creators": [{"name": name, "affiliation": affiliation}]
            }
        }

@@ -21,8 +21,8 @@ To be able to use the scripts provided in this repository to interact
 with Zenodo, you need to get a personal token.
 - Go to your Applications, to [[https://zenodo.org/account/settings/applications/tokens/new/][create a new token]].
 - Choose a name (whatever you want) for your personal token.
-- Press the Create button, leaving all other checkboxes (Scopes)
-  untouched.
+- Check both "Scopes" checkboxes (deposit:actions, deposit:write).
+- Press the Create button.
 - COPY YOUR PERSONAL TOKEN, SINCE IT WILL NOT BE DISPLAYED ANY
   MORE. You will need this in the following steps.
 - Press the Save button.
