@@ -13,6 +13,7 @@ DIR=os.path.dirname(os.path.realpath(__file__)) # Script directory
 ZENODO_CONF_FILE=DIR+"/zenodo_conf.json"
 DEPOSIT_URL="https://zenodo.org/api/deposit/depositions"
 ZENODO_SEPARATOR="* ZENODO content (written automatically)"
+COMMUNITY_IDENTIFIER="inria-traces"
 PY3 = sys.version > '3'
 
 # Utilities
