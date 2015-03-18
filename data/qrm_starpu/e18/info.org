@@ -1,0 +1,1889 @@
+#+TITLE: StarPU execution on fourmi011
+#+DATE: Mon Mar 16 16:11:57 CET 2015
+#+AUTHOR: stanisic
+#+MACHINE: fourmi011
+#+FILE: /home-ext/stanisic/trace.archive/data/qrm_starpu/e18/info.org
+ 
+* MACHINE INFO
+** PEOPLE LOGGED WHEN EXPERIMENT STARTED
+#+BEGIN_EXAMPLE
+#+END_EXAMPLE
+** ENVIRONMENT VARIABLES
+#+BEGIN_EXAMPLE
+MKLROOT=/opt/intel/composer_xe_2013_sp1.3.174/mkl
+CPLUS_INCLUDE_PATH=/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/include
+MKL_MOD=/opt/intel/composer_xe_2013_sp1.3.174/mkl/include/intel64/lp64
+MANPATH=/opt/intel/composer_xe_2013_sp1.3.174/man/en_US:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/share/man:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/share/man:/opt/cluster/tools/cmake/2.8.8/man:/usr/share/man:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/share/man:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/share/man/man1:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/share/man/man3:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/share/man/man7:/opt/cluster/plafrim-dev/r/2.14.0/share/man:/opt/cluster/plafrim-dev/r/2.14.0/share/man/man1:/opt/cluster/plafrim-dev/r/2.14.0/share/man/man3
+LAPACK_LIB=-lmkl_intel_lp64 -lmkl_core -lmkl_lapack95_lp64
+BLAS_LIB=-lmkl_intel_lp64 -lmkl_sequential -lmkl_core
+STARPU_HOSTNAME=fourmi
+HOSTNAME=fourmi011
+PBS_VERSION=TORQUE-4.1.4
+MKLPATH=/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64
+FXT_DIR=/opt/cluster/plafrim-dev/fxt/0.2.13
+TERM=xterm
+SHELL=/bin/bash
+HISTSIZE=1000
+CPPFLAGS=-I/home-ext/stanisic/starpu_simgrid/src/simgrid/contrib/benchmarking_code_block
+CUDA_SDK=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk
+PBS_JOBNAME=STDIN
+LIBRARY_PATH=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/computeprof/bin:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib64:/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/lib64:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/lib:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/lib:/usr/lib64
+CMPL_BIN=/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/bin
+FXT=fxt
+FPATH=/opt/intel/composer_xe_2013_sp1.3.174/mkl/include
+PBS_ENVIRONMENT=PBS_INTERACTIVE
+SIMGRID_CFLAGS=-I/home-ext/stanisic/starpu_simgrid/src/simgrid/SIMGRID/include
+QTDIR=/usr/lib64/qt-3.3
+QTINC=/usr/lib64/qt-3.3/include
+PBS_O_WORKDIR=/home-ext/stanisic
+CUDA_BIN=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin
+PBS_TASKNUM=1
+USER=stanisic
+LD_LIBRARY_PATH=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/computeprof/bin:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib64:/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/lib64:/opt/cluster/plafrim-dev/emacs/24.3/lib:/opt/cluster/plafrim2-dev/apps/scm/git/git-2.0.1-install/lib:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/lib:/opt/cluster/plafrim-dev/fxt/0.2.13/lib:/opt/cluster/plafrim-dev/r/2.14.0/lib64:/opt/cluster/plafrim-dev/r/2.14.0/lib64/R/lib:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/lib:/usr/lib64:/home-ext/stanisic/starpu_simgrid/src/simgrid/SIMGRID/lib
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;05;37;41:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.tbz=01;31:*.tbz2=01;31:*.bz=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.axa=01;36:*.oga=01;36:*.spx=01;36:*.xspf=01;36:
+PBS_O_HOME=/home-ext/stanisic
+MKL_LIB=/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64
+CPATH=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL:/opt/intel/composer_xe_2013_sp1.3.174/mkl/include:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/include:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/include
+PBS_WALLTIME=10800
+SIMGRID_LIBS=-L/home-ext/stanisic/starpu_simgrid/src/simgrid/SIMGRID/lib -lsimgrid
+CUDA_INC=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL
+PBS_GPUFILE=/var/spool/torque/aux//4986369.torque.plafrim.clustergpu
+PBS_MOMPORT=15003
+CMAKE_DIR=/opt/cluster/tools/cmake/2.8.8
+CUDA_VER=6.0
+PBS_O_QUEUE=default
+NLSPATH=/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64/locale/%l_%t/%N
+CMPL_DIR=/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3
+FXT_VER=0.2.13
+STARPU_NOPECL=0
+MAIL=/var/spool/mail/stanisic
+PBS_O_LOGNAME=stanisic
+PATH=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/C/bin/linux/release:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/computeprof/bin:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/bin:/opt/cluster/plafrim-dev/emacs/24.3/bin:/opt/cluster/plafrim2-dev/apps/scm/git/git-2.0.1-install/bin:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/bin:/opt/cluster/tools/cmake/2.8.8/bin:/opt/cluster/plafrim-dev/r/2.14.0/bin:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/bin:/usr/lib64/qt-3.3/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home-ext/stanisic/bin
+PBS_O_LANG=en_US.UTF-8
+PBS_JOBCOOKIE=1F316786BB77446C4BC7FC9BC518C5A3
+FXT_HOME=/opt/cluster/plafrim-dev/fxt/0.2.13
+C_INCLUDE_PATH=/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/include
+CUDA_LIB=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib64
+F90=gfortran
+PWD=/home-ext/stanisic/trace.archive/src/starpu
+CMPL_NAME=gcc
+_LMFILES_=/opt/cluster/plafrim2-dev/modulefiles/hardware/hwloc/1.10.1:/opt/cluster/plafrim-dev/modulefiles/statistics/r/2.14.0:/opt/cluster/plafrim-dev/modulefiles/trace/fxt/0.2.13:/opt/cluster/plafrim-dev/modulefiles/build/cmake/2.8.8:/opt/cluster/plafrim2-dev/modulefiles/build/ac269-am114-lt242-m41417:/opt/cluster/plafrim2-dev/modulefiles/scm/git/2.0.1:/opt/cluster/plafrim-dev/modulefiles/editor/emacs/24.3:/opt/cluster/plafrim2/modulefiles/compiler/gcc/4.8.3:/opt/cluster/plafrim2/modulefiles/compiler/mkl/11.1.3:/opt/cluster/plafrim2/modulefiles/compiler/cuda/6.0
+FXT_INC_DIR=/opt/cluster/plafrim-dev/fxt/0.2.13/include
+CMPL_LIB=/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/lib64
+FXT_BIN_DIR=/opt/cluster/plafrim-dev/fxt/0.2.13/bin
+PBS_NODENUM=0
+LANG=C
+MODULEPATH=/opt/cluster/plafrim2/modulefiles:/opt/cluster/plafrim2-dev/modulefiles:/opt/cluster/plafrim-dev/modulefiles:/opt/cluster/softs/modulefiles:/opt/cluster/mds/modulefiles
+CUDA_TOOLKIT=/opt/cluster/plafrim2/apps/compiler/cuda/6.0
+MKL_VER=11.1.3
+LOADEDMODULES=hardware/hwloc/1.10.1:statistics/r/2.14.0:trace/fxt/0.2.13:build/cmake/2.8.8:build/ac269-am114-lt242-m41417:scm/git/2.0.1:editor/emacs/24.3:compiler/gcc/4.8.3:compiler/mkl/11.1.3:compiler/cuda/6.0
+PBS_NUM_NODES=1
+F77=gfortran
+PBS_O_SHELL=/bin/bash
+LAPACK_DIR=/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64
+BLAS_DIR=/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64
+PBS_JOBID=4986369.torque.plafrim.cluster
+CXX=g++
+HISTCONTROL=ignoredups
+MKL_DIR=/opt/intel/composer_xe_2013_sp1.3.174/mkl
+MKL_INC=/opt/intel/composer_xe_2013_sp1.3.174/mkl/include
+SHLVL=3
+HOME=/home-ext/stanisic
+CFLAGS=
+PBS_O_HOST=mygale-inria.plafrim.cluster
+FC=gfortran
+PBS_VNODENUM=0
+LOGNAME=stanisic
+STARPU_NCPU=8
+QTLIB=/usr/lib64/qt-3.3/lib
+CVS_RSH=ssh
+FXT_ARCH=linux-gnu-intel
+PBS_QUEUE=court
+CMPL_VER=4.8.3
+MODULESHOME=/usr/share/Modules
+PKG_CONFIG_PATH=/opt/cluster/plafrim-dev/fxt/0.2.13/lib/pkgconfig:/opt/cluster/plafrim-dev/r/2.14.0/lib64/pkgconfig:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/lib/pkgconfig
+LESSOPEN=|/usr/bin/lesspipe.sh %s
+PBS_O_MAIL=/var/spool/mail/stanisic
+INFOPATH=/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/share/info:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/share/info
+CC=gcc
+FXT_LIB_DIR=/opt/cluster/plafrim-dev/fxt/0.2.13/lib
+PBS_NP=8
+STARPU_NCUDA=0
+HWLOC_HOME=/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install
+PBS_NUM_PPN=8
+PBS_O_SERVER=torque
+INCLUDE=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL:/opt/intel/composer_xe_2013_sp1.3.174/mkl/include:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/include:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/include:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/include
+CMPL_INC=/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/include
+CUDA_DOC=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/doc
+G_BROKEN_FILENAMES=1
+PBS_NODEFILE=/var/spool/torque/aux//4986369.torque.plafrim.cluster
+STARPU_CALIBRATE=1
+PBS_O_PATH=/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/C/bin/linux/release:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/computeprof/bin:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin:/opt/cluster/plafrim2/apps/compiler/gcc/4.8.3/bin:/opt/cluster/plafrim-dev/emacs/24.3/bin:/opt/cluster/plafrim2-dev/apps/scm/git/git-2.0.1-install/bin:/opt/cluster/plafrim2-dev/apps/build/ac269-am114-lt242-m41417/bin:/opt/cluster/tools/cmake/2.8.8/bin:/opt/cluster/plafrim-dev/r/2.14.0/bin:/opt/cluster/plafrim2-dev/apps/hardware/hwloc/1.10.1/hwloc-1.10.1/build/install/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home-ext/stanisic/bin
+BASH_FUNC_module()=() {  eval `/lib64/ld-linux-x86-64.so.2 --library-path '' /usr/bin/modulecmd bash $*`
+}
+_=/bin/env
+#+END_EXAMPLE
+** HOSTNAME
+#+BEGIN_EXAMPLE
+fourmi011
+#+END_EXAMPLE
+** HWLOC MEMORY HIERARCHY
+#+BEGIN_EXAMPLE
+Machine (24GB total)
+  NUMANode L#0 (P#0 12GB) + Socket L#0 + L3 L#0 (8192KB)
+    L2 L#0 (256KB) + L1d L#0 (32KB) + L1i L#0 (32KB) + Core L#0 + PU L#0 (P#0)
+    L2 L#1 (256KB) + L1d L#1 (32KB) + L1i L#1 (32KB) + Core L#1 + PU L#1 (P#1)
+    L2 L#2 (256KB) + L1d L#2 (32KB) + L1i L#2 (32KB) + Core L#2 + PU L#2 (P#2)
+    L2 L#3 (256KB) + L1d L#3 (32KB) + L1i L#3 (32KB) + Core L#3 + PU L#3 (P#3)
+  NUMANode L#1 (P#1 12GB) + Socket L#1 + L3 L#1 (8192KB)
+    L2 L#4 (256KB) + L1d L#4 (32KB) + L1i L#4 (32KB) + Core L#4 + PU L#4 (P#4)
+    L2 L#5 (256KB) + L1d L#5 (32KB) + L1i L#5 (32KB) + Core L#5 + PU L#5 (P#5)
+    L2 L#6 (256KB) + L1d L#6 (32KB) + L1i L#6 (32KB) + Core L#6 + PU L#6 (P#6)
+    L2 L#7 (256KB) + L1d L#7 (32KB) + L1i L#7 (32KB) + Core L#7 + PU L#7 (P#7)
+  HostBridge L#0
+    PCIBridge
+      PCI 8086:10c9
+        Net L#0 "eth0"
+      PCI 8086:10c9
+        Net L#1 "eth1"
+    PCIBridge
+      PCI 15b3:673c
+        Net L#2 "ib0"
+        Net L#3 "ib1"
+        OpenFabrics L#4 "mlx4_0"
+    PCIBridge
+      PCI 102b:0522
+    PCI 8086:3a22
+      Block L#5 "sda"
+      Block L#6 "sdb"
+      Block L#7 "sdc"
+      Block L#8 "sdd"
+#+END_EXAMPLE
+** STARPU MACHINE DISPLAY
+#+BEGIN_EXAMPLE
+StarPU has found :
+	8 CPU threads
+		CPU 0
+		CPU 1
+		CPU 2
+		CPU 3
+		CPU 4
+		CPU 5
+		CPU 6
+		CPU 7
+	0 CUDA devices
+	0 OpenCL devices
+
+topology ...
+core 0	PU 0	CPU 0	
+core 1	PU 1	CPU 1	
+core 2	PU 2	CPU 2	
+core 3	PU 3	CPU 3	
+core 4	PU 4	CPU 4	
+core 5	PU 5	CPU 5	
+core 6	PU 6	CPU 6	
+core 7	PU 7	CPU 7	
+
+bandwidth and latency ...
+from/to	RAM	
+RAM	0	
+
+RAM	0	
+#+END_EXAMPLE
+** CPU INFO
+#+BEGIN_EXAMPLE
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5333.49
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5333.49
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5333.49
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 4
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5333.49
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 1
+siblings	: 4
+core id		: 0
+cpu cores	: 4
+apicid		: 16
+initial apicid	: 16
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5332.56
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 1
+siblings	: 4
+core id		: 1
+cpu cores	: 4
+apicid		: 18
+initial apicid	: 18
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5332.56
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 1
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+apicid		: 20
+initial apicid	: 20
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5332.56
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 26
+model name	: Intel(R) Xeon(R) CPU           X5550  @ 2.67GHz
+stepping	: 5
+cpu MHz		: 2666.747
+cache size	: 8192 KB
+physical id	: 1
+siblings	: 4
+core id		: 3
+cpu cores	: 4
+apicid		: 22
+initial apicid	: 22
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 11
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good xtopology nonstop_tsc aperfmperf pni dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm dca sse4_1 sse4_2 popcnt lahf_lm dts tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 5332.56
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+#+END_EXAMPLE
+** LINUX AND GCC VERSIONS
+#+BEGIN_EXAMPLE
+Linux version 2.6.32-358.23.2.el6.x86_64 (mockbuild@c6b9.bsys.dev.centos.org) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC) ) #1 SMP Wed Oct 16 18:37:12 UTC 2013
+#+END_EXAMPLE
+** MODULES
+#+BEGIN_EXAMPLE
+Currently Loaded Modulefiles:
+  1) hardware/hwloc/1.10.1            6) scm/git/2.0.1
+  2) statistics/r/2.14.0              7) editor/emacs/24.3
+  3) trace/fxt/0.2.13                 8) compiler/gcc/4.8.3
+  4) build/cmake/2.8.8                9) compiler/mkl/11.1.3
+  5) build/ac269-am114-lt242-m41417  10) compiler/cuda/6.0
+#+END_EXAMPLE
+* CODE REVISIONS
+** GIT REVISION OF REPOSITORY
+#+BEGIN_EXAMPLE
+commit 744d931383c830bbb36dfbd758e96bf9ee7c9a8b
+Author: Luka Stanisic <luka.stanisic@imag.fr>
+Date:   Fri Mar 13 17:33:33 2015 +0100
+
+    Changing the path for scripts
+#+END_EXAMPLE
+** SVN REVISION OF ORIGINAL STARPU CODE
+#+BEGIN_EXAMPLE
+#+END_EXAMPLE
+* COMPILATION
+** CONFIGURATION OF STARPU:
+#+BEGIN_EXAMPLE
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking for style of include used by make... GNU
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking whether gcc understands -c and -o together... (cached) yes
+checking dependency style of gcc... (cached) gcc3
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking dependency style of g++... gcc3
+checking how to run the C preprocessor... gcc -E
+checking for a sed that does not truncate output... /bin/sed
+checking whether ln -s works... yes
+checking whether we are using the GNU Fortran 77 compiler... yes
+checking whether gfortran accepts -g... yes
+checking for gstat... gstat
+checking for gdate... no
+checking for date... date
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1966080
+checking whether the shell understands some XSI constructs... yes
+checking whether the shell understands "+="... yes
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for mt... no
+checking if : is a manifest tool... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... no
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for ld used by g++... /usr/bin/ld -m elf_x86_64
+checking if the linker (/usr/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC -DPIC
+checking if g++ PIC flag -fPIC -DPIC works... yes
+checking if g++ static flag -static works... no
+checking if g++ supports -c -o file.o... yes
+checking if g++ supports -c -o file.o... (cached) yes
+checking whether the g++ linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gfortran option to produce PIC... -fPIC
+checking if gfortran PIC flag -fPIC works... yes
+checking if gfortran static flag -static works... no
+checking if gfortran supports -c -o file.o... yes
+checking if gfortran supports -c -o file.o... (cached) yes
+checking whether the gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether ln -s works... yes
+checking for ANSI C header files... (cached) yes
+checking for C/C++ restrict keyword... __restrict
+checking for bash... /bin/sh
+checking for svn... /usr/bin/svn
+checking for svnversion... /usr/bin/svnversion
+checking for lib... no
+checking size of void *... 8
+checking for pthread_create in -lpthread... yes
+checking for library containing sqrt... -lm
+checking for main in -lws2_32... no
+checking for sysconf... yes
+checking for pthread_spin_lock... yes
+checking for pthread_barrier_init... yes
+checking for pthread_setaffinity_np... yes
+checking for posix_memalign... yes
+checking for memalign... yes
+checking for drand48... yes
+checking for erand48_r... yes
+checking for strerror_r... yes
+checking for setenv... yes
+checking for unsetenv... yes
+checking for nearbyintf... yes
+checking for rintf... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking valgrind/valgrind.h usability... yes
+checking valgrind/valgrind.h presence... yes
+checking for valgrind/valgrind.h... yes
+checking valgrind/helgrind.h usability... yes
+checking valgrind/helgrind.h presence... yes
+checking for valgrind/helgrind.h... yes
+checking for sched_yield... yes
+checking aio.h usability... yes
+checking aio.h presence... yes
+checking for aio.h... yes
+checking for mkstemps... yes
+checking for pread... yes
+checking for pwrite... yes
+checking whether the target supports __sync_val_compare_and_swap... yes
+checking whether the target supports __sync_bool_compare_and_swap... yes
+checking whether the target supports __sync_fetch_and_add... yes
+checking whether the target supports __sync_fetch_and_or... yes
+checking whether the target supports __sync_lock_test_and_set... yes
+checking whether the target supports __sync_synchronize... yes
+checking for library containing set_mempolicy... -lnuma
+checking whether libnuma is available... yes
+checking maximum number of sched_ctxs... 100
+checking maximum number of CPUs... 1000
+checking whether CPUs should be used... yes
+checking maximum number of CUDA devices... 4
+checking whether CUDA is available... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: ... 
+checking for main in -lcuda... no
+checking whether CUDA is available... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: ... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /usr/local/cuda... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/usr/local/cuda/lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/usr/local/cuda/lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/usr/local/cuda/lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/usr/local/cuda/lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /c/cuda... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/c/cuda/lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/c/cuda/lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/c/cuda/lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/c/cuda/lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /cygdrive/c/cuda... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/cygdrive/c/cuda/lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/cygdrive/c/cuda/lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/cygdrive/c/cuda/lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/cygdrive/c/cuda/lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /opt/cuda... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/opt/cuda/lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cuda/lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cuda/lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cuda/lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /..... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/../lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/../lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/../lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/../lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL/..... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL/../lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL/../lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL/../lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include:/opt/cluster/plafrim2/apps/compiler/cuda/6.0/include/CL/../lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin/..... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin/../lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin/../lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin/../lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/bin/../lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/..... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/../lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/../lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/../lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/sdk/../lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is available in /opt/cluster/plafrim2/apps/compiler/cuda/6.0... 
+checking cuda.h usability... yes
+checking cuda.h presence... yes
+checking for cuda.h... yes
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib/x64... 
+checking for main in -lcuda... no
+checking whether CUDA is available with: -L/opt/cluster/plafrim2/apps/compiler/cuda/6.0/lib/Win32... 
+checking for main in -lcuda... no
+checking whether CUDA is working... no
+checking whether CUDA should be used... no
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking whether MAGMA should be used... no
+checking for cufftDoubleComplex... yes
+checking whether CURAND is available... no
+checking maximum number of OpenCL devices... 8
+checking whether OpenCL should be used... no
+checking whether asynchronous copy should be disabled... no
+checking whether asynchronous CUDA copy should be disabled... no
+checking whether asynchronous OpenCL copy should be disabled... no
+checking whether asynchronous MIC copy should be disabled... no
+checking whether SimGrid is enabled... no
+checking whether blocking drivers should be enabled... no
+checking maximum number of MIC devices... 4
+checking maximum number of MIC threads... 
+checking RCCE.h usability... no
+checking RCCE.h presence... no
+checking for RCCE.h... no
+checking for RCCE_init in -lRCCE_bigflags_nongory_nopwrmgmt... no
+checking whether RCCE should be used... no
+checking Maximum number of message-passing kernels... 10
+checking whether debug mode should be enabled... no
+checking whether extra checks should be performed... no
+checking whether debug messages should be displayed... no
+checking whether coverage testing should be enabled... no
+checking whether FxT traces should be generated... yes using 
+checking for FXT... yes
+checking for enable_fut_flush... yes
+checking for fut_set_filename... yes
+checking whether enable_fut_flush is declared... no
+checking whether fut_set_filename is declared... no
+checking for POTI... no
+checking whether additional locking systems FxT traces should be enabled... no
+checking whether performance debugging should be enabled... no
+checking whether performance model debugging should be enabled... no
+checking whether statistics should be generated... no
+checking whether memory stats should be displayed... no
+checking glpk.h usability... no
+checking glpk.h presence... no
+checking for glpk.h... no
+checking for main in -lglpk... no
+checking Ayudame.h usability... no
+checking Ayudame.h presence... no
+checking for Ayudame.h... no
+checking how many buffers can be manipulated per task... 1000
+checking maximum number of nodes to use... checking maximum number of memory nodes... 4
+checking whether allocation cache should be used... yes
+checking using explicit performance model location... no
+checking performance models location... $HOME/.starpu/sampling/
+checking for clock_gettime in -lrt... yes
+checking for clock_gettime... yes
+checking Maximum number of workers... 1008
+checking Maximum number of workers combinations... 1000
+checking maximum number of implementations... 4
+checking leveldb/db.h usability... no
+checking leveldb/db.h presence... no
+checking for leveldb/db.h... no
+checking for main in -lleveldb... no
+checking calibration heuristic of history-based StarPU calibrator... 50
+The mpicc compiler is not valid
+checking mpicc path... no
+checking for mpiexec... no
+checking whether mpiexec is available... no
+The mpiexec script is not valid
+checking whether the StarPU MPI library should be generated... no
+checking for StarPU-Top... checking for qmake-qt4... no
+checking for qmake... no
+checking whether compiler support -Wall... yes
+checking whether compiler support -Werror=implicit... yes
+checking whether compiler support -Werror=implicit-function-declaration... yes
+checking for OpenMP runtime support... no
+checking for SOCL... no
+checking for gdb... /usr/bin/gdb
+checking whether OpenGL rendering is enabled... no
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... no
+checking for library containing sgemm_... -lblas
+checking which BLAS lib should be used... system
+checking for FFTW... no
+checking for FFTWF... no
+checking for FFTWL... no
+checking for HWLOC... yes
+checking whether hwloc should be used... yes
+checking f77.h usability... no
+checking f77.h presence... no
+checking for f77.h... no
+checking for icc... no
+checking for help2man... no
+checking for struct cudaDeviceProp.pciDomainID... yes
+checking for struct cudaDeviceProp.pciBusID... yes
+checking whether documentation should be compiled... no
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating tests/regression/regression.sh
+config.status: creating tests/regression/profiles
+config.status: creating tests/regression/profiles.build.only
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating tools/Makefile
+config.status: creating tools/starpu_codelet_profile
+config.status: creating tools/starpu_codelet_histo_profile
+config.status: creating tools/starpu_workers_activity
+config.status: creating tools/starpu_paje_draw_histogram
+config.status: creating tools/starpu_paje_state_stats
+config.status: creating tools/starpu_paje_summary
+config.status: creating tools/starpu_smpirun
+config.status: creating socl/Makefile
+config.status: creating socl/src/Makefile
+config.status: creating socl/examples/Makefile
+config.status: creating socl/vendors/socl.icd
+config.status: creating socl/vendors/install/socl.icd
+config.status: creating libstarpu.pc
+config.status: creating starpu-1.0.pc
+config.status: creating starpu-1.1.pc
+config.status: creating starpu-1.2.pc
+config.status: creating starpu-1.3.pc
+config.status: creating mpi/libstarpumpi.pc
+config.status: creating mpi/starpumpi-1.0.pc
+config.status: creating mpi/starpumpi-1.1.pc
+config.status: creating mpi/starpumpi-1.2.pc
+config.status: creating mpi/starpumpi-1.3.pc
+config.status: creating starpufft/Makefile
+config.status: creating starpufft/src/Makefile
+config.status: creating starpufft/tests/Makefile
+config.status: creating starpufft/libstarpufft.pc
+config.status: creating starpufft/starpufft-1.0.pc
+config.status: creating starpufft/starpufft-1.1.pc
+config.status: creating starpufft/starpufft-1.2.pc
+config.status: creating starpufft/starpufft-1.3.pc
+config.status: creating examples/Makefile
+config.status: creating examples/stencil/Makefile
+config.status: creating tests/Makefile
+config.status: creating tests/loader-cross.sh
+config.status: creating mpi/Makefile
+config.status: creating mpi/src/Makefile
+config.status: creating mpi/tests/Makefile
+config.status: creating mpi/examples/Makefile
+config.status: creating starpu-top/StarPU-Top.pro
+config.status: creating starpu-top/StarPU-Top-qwt-embed.pri
+config.status: creating starpu-top/StarPU-Top-qwt-system.pri
+config.status: creating gcc-plugin/Makefile
+config.status: creating gcc-plugin/src/Makefile
+config.status: creating gcc-plugin/tests/Makefile
+config.status: creating gcc-plugin/tests/run-test
+config.status: creating gcc-plugin/examples/Makefile
+config.status: creating sc_hypervisor/Makefile
+config.status: creating sc_hypervisor/src/Makefile
+config.status: creating sc_hypervisor/examples/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/doxygen/Makefile
+config.status: creating doc/doxygen/doxygen-config.cfg
+config.status: creating doc/doxygen/doxygen_filter.sh
+config.status: creating tools/msvc/starpu_var.bat
+config.status: creating src/common/config.h
+config.status: creating include/starpu_config.h
+config.status: creating gcc-plugin/include/starpu-gcc/config.h
+config.status: creating starpu-top/config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing executable-scripts commands
+configure:
+
+	CPUs   enabled: yes
+	CUDA   enabled: no
+	OpenCL enabled: no
+	SCC    enabled: no
+	MIC    enabled: no
+
+	Compile-time limits
+	(change these with --enable-maxcpus, --enable-maxcudadev,
+	--enable-maxopencldev, --enable-maxmicdev, --enable-maxnodes,
+        --enable-maxbuffers)
+        (Note these numbers do not represent the number of detected
+	devices, but the maximum number of devices StarPU can manage)
+
+	Maximum number of CPUs:           1000
+	Maximum number of CUDA devices:   0
+	Maximum number of OpenCL devices: 0
+	Maximum number of SCC devices:    0
+	Maximum number of MIC threads:    0
+	Maximum number of memory nodes:   4
+	Maximum number of task buffers:   1000
+
+	GPU-GPU transfers: no
+	Allocation cache:  yes
+
+	Magma enabled:     no
+	BLAS library:      system
+	hwloc:             yes
+	FxT trace enabled: yes
+	StarPU-Top:        no
+
+        Documentation:     no
+        Examples:          no
+
+	StarPU Extensions:
+	       MPI enabled:                                 no
+	       MPI test suite:                              no
+	       FFT Support:                                 yes
+	       GCC plug-in:                                 no
+	       GCC plug-in test suite (requires GNU Guile): no
+	       OpenMP runtime support enabled:              no
+	       SOCL enabled:                                no
+               SOCL test suite:                             no
+               Scheduler Hypervisor:                        no
+               simgrid enabled:                             no
+               ayudame enabled:                             no
+
+#+END_EXAMPLE
+** COMPILATION OF STARPU
+#+BEGIN_EXAMPLE
+Making all in src
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/src'
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/src'
+  CC       libstarpu_1.3_la-barrier.lo
+  CC       libstarpu_1.3_la-barrier_counter.lo
+  CC       libstarpu_1.3_la-bitmap.lo
+  CC       libstarpu_1.3_la-hash.lo
+  CC       libstarpu_1.3_la-rwlock.lo
+  CC       libstarpu_1.3_la-starpu_spinlock.lo
+  CC       libstarpu_1.3_la-timing.lo
+  CC       libstarpu_1.3_la-fxt.lo
+  CC       libstarpu_1.3_la-utils.lo
+  CC       libstarpu_1.3_la-thread.lo
+  CC       libstarpu_1.3_la-jobs.lo
+  CC       libstarpu_1.3_la-task.lo
+  CC       libstarpu_1.3_la-task_bundle.lo
+  CC       libstarpu_1.3_la-tree.lo
+  CC       libstarpu_1.3_la-workers.lo
+  CC       libstarpu_1.3_la-combined_workers.lo
+  CC       libstarpu_1.3_la-topology.lo
+  CC       libstarpu_1.3_la-disk.lo
+  CC       libstarpu_1.3_la-debug.lo
+  CC       libstarpu_1.3_la-errorcheck.lo
+  CC       libstarpu_1.3_la-progress_hook.lo
+  CC       libstarpu_1.3_la-cg.lo
+  CC       libstarpu_1.3_la-dependencies.lo
+  CC       libstarpu_1.3_la-implicit_data_deps.lo
+  CC       libstarpu_1.3_la-tags.lo
+  CC       libstarpu_1.3_la-task_deps.lo
+  CC       libstarpu_1.3_la-data_concurrency.lo
+  CC       libstarpu_1.3_la-disk_stdio.lo
+  CC       libstarpu_1.3_la-disk_unistd.lo
+  CC       libstarpu_1.3_la-disk_unistd_global.lo
+  CC       libstarpu_1.3_la-perfmodel_history.lo
+  CC       libstarpu_1.3_la-perfmodel_bus.lo
+  CC       libstarpu_1.3_la-perfmodel.lo
+  CC       libstarpu_1.3_la-perfmodel_print.lo
+  CC       libstarpu_1.3_la-perfmodel_nan.lo
+  CC       libstarpu_1.3_la-regression.lo
+  CC       libstarpu_1.3_la-sched_policy.lo
+  CC       libstarpu_1.3_la-simgrid.lo
+  CC       libstarpu_1.3_la-sched_ctx.lo
+  CC       libstarpu_1.3_la-sched_ctx_list.lo
+  CC       libstarpu_1.3_la-parallel_task.lo
+  CC       libstarpu_1.3_la-detect_combined_workers.lo
+  CC       libstarpu_1.3_la-eager_central_policy.lo
+  CC       libstarpu_1.3_la-eager_central_priority_policy.lo
+  CC       libstarpu_1.3_la-work_stealing_policy.lo
+  CC       libstarpu_1.3_la-locality_work_stealing_policy.lo
+  CC       libstarpu_1.3_la-deque_modeling_policy_data_aware.lo
+  CC       libstarpu_1.3_la-random_policy.lo
+  CC       libstarpu_1.3_la-stack_queues.lo
+  CC       libstarpu_1.3_la-deque_queues.lo
+  CC       libstarpu_1.3_la-fifo_queues.lo
+  CC       libstarpu_1.3_la-parallel_heft.lo
+  CC       libstarpu_1.3_la-parallel_eager.lo
+  CC       libstarpu_1.3_la-driver_common.lo
+  CC       libstarpu_1.3_la-driver_disk.lo
+  CC       libstarpu_1.3_la-memory_nodes.lo
+  CC       libstarpu_1.3_la-write_back.lo
+  CC       libstarpu_1.3_la-coherency.lo
+  CC       libstarpu_1.3_la-data_request.lo
+  CC       libstarpu_1.3_la-datawizard.lo
+  CC       libstarpu_1.3_la-copy_driver.lo
+  CC       libstarpu_1.3_la-filters.lo
+  CC       libstarpu_1.3_la-sort_data_handles.lo
+  CC       libstarpu_1.3_la-malloc.lo
+  CC       libstarpu_1.3_la-memory_manager.lo
+  CC       libstarpu_1.3_la-memalloc.lo
+  CC       libstarpu_1.3_la-memstats.lo
+  CC       libstarpu_1.3_la-footprint.lo
+  CC       libstarpu_1.3_la-datastats.lo
+  CC       libstarpu_1.3_la-user_interactions.lo
+  CC       libstarpu_1.3_la-reduction.lo
+  CC       libstarpu_1.3_la-data_interface.lo
+  CC       libstarpu_1.3_la-bcsr_interface.lo
+  CC       libstarpu_1.3_la-coo_interface.lo
+  CC       libstarpu_1.3_la-csr_interface.lo
+  CC       libstarpu_1.3_la-matrix_filters.lo
+  CC       libstarpu_1.3_la-matrix_interface.lo
+  CC       libstarpu_1.3_la-block_filters.lo
+  CC       libstarpu_1.3_la-block_interface.lo
+  CC       libstarpu_1.3_la-vector_interface.lo
+  CC       libstarpu_1.3_la-bcsr_filters.lo
+  CC       libstarpu_1.3_la-csr_filters.lo
+  CC       libstarpu_1.3_la-vector_filters.lo
+  CC       libstarpu_1.3_la-variable_interface.lo
+  CC       libstarpu_1.3_la-void_interface.lo
+  CC       libstarpu_1.3_la-multiformat_interface.lo
+  CC       libstarpu_1.3_la-execute_on_all.lo
+  CC       libstarpu_1.3_la-starpu_create_sync_task.lo
+  CC       libstarpu_1.3_la-file.lo
+  CC       libstarpu_1.3_la-misc.lo
+  CC       libstarpu_1.3_la-openmp_runtime_support.lo
+  CC       libstarpu_1.3_la-openmp_runtime_support_environment.lo
+  CC       libstarpu_1.3_la-openmp_runtime_support_omp_api.lo
+  CC       libstarpu_1.3_la-starpu_data_cpy.lo
+  CC       libstarpu_1.3_la-starpu_task_insert.lo
+  CC       libstarpu_1.3_la-starpu_task_insert_utils.lo
+  CC       libstarpu_1.3_la-starpu_fxt.lo
+  CC       libstarpu_1.3_la-starpu_fxt_mpi.lo
+  CC       libstarpu_1.3_la-starpu_fxt_dag.lo
+  CC       libstarpu_1.3_la-starpu_paje.lo
+  CC       libstarpu_1.3_la-latency.lo
+  CC       libstarpu_1.3_la-structures_size.lo
+  CC       libstarpu_1.3_la-profiling.lo
+  CC       libstarpu_1.3_la-bound.lo
+  CC       libstarpu_1.3_la-profiling_helpers.lo
+  CC       libstarpu_1.3_la-starpu_top.lo
+  CC       libstarpu_1.3_la-starpu_top_task.lo
+  CC       libstarpu_1.3_la-starpu_top_message_queue.lo
+  CC       libstarpu_1.3_la-starpu_top_connection.lo
+  CC       libstarpu_1.3_la-worker_list.lo
+  CC       libstarpu_1.3_la-worker_tree.lo
+  CC       libstarpu_1.3_la-component_worker.lo
+  CC       libstarpu_1.3_la-component_sched.lo
+  CC       libstarpu_1.3_la-component_fifo.lo
+  CC       libstarpu_1.3_la-prio_deque.lo
+  CC       libstarpu_1.3_la-helper_mct.lo
+  CC       libstarpu_1.3_la-component_prio.lo
+  CC       libstarpu_1.3_la-component_random.lo
+  CC       libstarpu_1.3_la-component_eager.lo
+  CC       libstarpu_1.3_la-component_eager_calibration.lo
+  CC       libstarpu_1.3_la-component_mct.lo
+  CC       libstarpu_1.3_la-component_heft.lo
+  CC       libstarpu_1.3_la-component_best_implementation.lo
+  CC       libstarpu_1.3_la-component_perfmodel_select.lo
+  CC       libstarpu_1.3_la-component_composed.lo
+  CC       libstarpu_1.3_la-modular_eager.lo
+  CC       libstarpu_1.3_la-modular_eager_prefetching.lo
+  CC       libstarpu_1.3_la-modular_prio.lo
+  CC       libstarpu_1.3_la-modular_prio_prefetching.lo
+  CC       libstarpu_1.3_la-modular_random.lo
+  CC       libstarpu_1.3_la-modular_random_prefetching.lo
+  CC       libstarpu_1.3_la-modular_heft.lo
+  CC       libstarpu_1.3_la-modular_heft2.lo
+  CC       libstarpu_1.3_la-driver_cpu.lo
+  CC       libstarpu_1.3_la-starpu_cublas.lo
+  CC       libstarpu_1.3_la-disk_unistd_o_direct.lo
+  CXXLD    libstarpu-1.3.la
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/src'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/src'
+Making all in tools
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tools'
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tools'
+  CC       starpu_fxt_tool-starpu_fxt_tool.o
+  CC       starpu_fxt_stats-starpu_fxt_stats.o
+  CC       starpu_fxt_data_trace-starpu_fxt_data_trace.o
+  CC       starpu_perfmodel_display.o
+  CC       starpu_perfmodel_plot-starpu_perfmodel_plot.o
+  CC       starpu_calibrate_bus.o
+  CC       starpu_machine_display.o
+  CC       starpu_lp2paje.o
+  CCLD     starpu_fxt_tool
+  CCLD     starpu_fxt_stats
+  CCLD     starpu_fxt_data_trace
+  CCLD     starpu_perfmodel_display
+  CCLD     starpu_perfmodel_plot
+  CCLD     starpu_calibrate_bus
+  CCLD     starpu_machine_display
+  CCLD     starpu_lp2paje
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tools'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tools'
+Making all in tests
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tests'
+make  all-recursive
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tests'
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tests'
+  CC       tasks_size_overhead.o
+  CC       local_pingpong.o
+  CC       main_deprecated_func-deprecated_func.o
+  CC       init_run_deinit.o
+  CC       run_driver.o
+  CC       deploop.o
+  CC       restart.o
+  CC       execute_on_a_specific_worker.o
+  CC       execute_schedule.o
+  CC       insert_task.o
+  CC       insert_task_dyn_handles.o
+  CC       insert_task_nullcodelet.o
+  CC       insert_task_array.o
+  CC       multithreaded.o
+  CC       multithreaded_init.o
+  CC       starpu_task_bundle.o
+  CC       starpu_task_wait_for_all.o
+  CC       starpu_task_wait.o
+  CC       static_restartable.o
+  CC       static_restartable_using_initializer.o
+  CC       static_restartable_tag.o
+  CC       regenerate.o
+  CC       regenerate_pipeline.o
+  CC       wait_all_regenerable_tasks.o
+  CC       subgraph_repeat.o
+  CC       subgraph_repeat_tag.o
+  CC       subgraph_repeat_regenerate.o
+  CC       subgraph_repeat_regenerate_tag.o
+  CC       empty_task.o
+  CC       empty_task_sync_point.o
+  CC       empty_task_sync_point_tasks.o
+  CC       empty_task_chain.o
+  CC       tag_wait_api.o
+  CC       task_wait_api.o
+  CC       declare_deps_in_callback.o
+  CC       declare_deps_after_submission.o
+  CC       declare_deps_after_submission_synchronous.o
+  CC       get_current_task.o
+  CC       starpu_init.o
+  CC       starpu_worker_exists.o
+  CC       submit.o
+  CC       pause_resume.o
+  CC       codelet_null_callback.o
+  CC       pack.o
+  CC       allocate.o
+  CC       acquire_cb.o
+  CC       acquire_cb_insert.o
+  CC       acquire_release.o
+  CC       acquire_release2.o
+  CC       cache.o
+  CC       commute.o
+  CC       commute2.o
+  CC       copy.o
+  CC       data_implicit_deps.o
+  CC       data_lookup.o
+  CC       scratch.o
+  CC       sync_and_notify_data.o
+  CC       sync_and_notify_data_implicit.o
+  CC       dsm_stress.o
+  CC       double_parameter.o
+  CC       write_only_tmp_buffer.o
+  CC       data_invalidation.o
+  CC       dining_philosophers.o
+  CC       manual_reduction.o
+  CC       readers_and_writers.o
+  CC       unpartition.o
+  CC       user_interaction_implicit.o
+  CC       sync_with_data_with_mem.o
+  CC       sync_with_data_with_mem_non_blocking.o
+  CC       sync_with_data_with_mem_non_blocking_implicit.o
+  CC       mpi_like.o
+  CC       mpi_like_async.o
+  CC       critical_section_with_void_interface.o
+  CC       increment_init.o
+  CC       increment_redux.o
+  CC       increment_redux_v2.o
+  CC       increment_redux_lazy.o
+  CC       handle_to_pointer.o
+  CC       lazy_allocation.o
+  CC       lazy_unregister.o
+  CC       noreclaim.o
+  CC       copy_interfaces.o
+  CC       test_interfaces.o
+  CC       block_interface.o
+  CC       bcsr_interface.o
+  CC       coo_interface.o
+  CC       csr_interface.o
+  CC       matrix_interface.o
+  CC       multiformat_interface.o
+  CC       multiformat_conversion_codelets.o
+  CC       generic.o
+  CC       multiformat_cuda_opencl.o
+  CC       multiformat_data_release.o
+  CC       multiformat_worker.o
+  CC       multiformat_handle_conversion.o
+  CC       same_handle.o
+  CC       variable_interface.o
+  CC       test_vector_interface.o
+  CC       void_interface.o
+  CC       in_place_partition.o
+  CC       scal.o
+  CC       partition_lazy.o
+  CC       gpu_register.o
+  CC       gpu_ptr_register.o
+  CC       variable_parameters.o
+  CC       wt_host.o
+  CC       wt_broadcast.o
+  CC       readonly.o
+  CC       specific_node.o
+  CC       disk_copy.o
+  CC       disk_compute.o
+  CC       disk_pack.o
+  CC       starpu_init_noworker.o
+  CC       invalid_blocking_calls.o
+  CC       invalid_tasks.o
+  CC       cublas_init.o
+  CC       starpu_data_cpy.o
+  CC       pinned_memory.o
+  CC       execute_on_all.o
+  CC       starpu_create_sync_task.o
+  CC       async_tasks_overhead.o
+  CC       sync_tasks_overhead.o
+  CC       tasks_overhead.o
+  CC       prefetch_data_on_node.o
+  CC       redundant_buffer.o
+  CC       matrix_as_vector.o
+  CC       init_exit_01.o
+  CC       init_exit_02.o
+  CC       environment.o
+  CC       api_01.o
+  CC       parallel_01.o
+  CC       parallel_02.o
+  CC       parallel_03.o
+  CC       parallel_barrier_01.o
+  CC       parallel_master_01.o
+  CC       parallel_master_inline_01.o
+  CC       parallel_single_wait_01.o
+  CC       parallel_single_nowait_01.o
+  CC       parallel_single_inline_01.o
+  CC       parallel_single_copyprivate_01.o
+  CC       parallel_single_copyprivate_inline_01.o
+  CC       parallel_critical_01.o
+  CC       parallel_critical_inline_01.o
+  CC       parallel_critical_named_01.o
+  CC       parallel_critical_named_inline_01.o
+  CC       parallel_simple_lock_01.o
+  CC       parallel_nested_lock_01.o
+  CC       parallel_for_01.o
+  CC       parallel_for_02.o
+  CC       parallel_for_ordered_01.o
+  CC       parallel_sections_01.o
+  CC       parallel_sections_combined_01.o
+  CC       task_01.o
+  CC       task_02.o
+  CC       taskwait_01.o
+  CC       taskgroup_01.o
+  CC       taskgroup_02.o
+  CC       array_slice_01.o
+  CC       cuda_task_01.o
+  CC       overlap.o
+  CC       gpu_concurrency.o
+  CC       explicit_combined_worker.o
+  CC       parallel_kernels.o
+  CC       parallel_kernels_spmd.o
+  CC       spmd_peager.o
+  CC       cuda_only.o
+  CC       regression_based.o
+  CC       non_linear_regression_based.o
+  CC       feed.o
+  CC       user_base.o
+  CC       valid_model.o
+  CC       value_nan.o
+  CC       memory.o
+  CC       data_locality.o
+  CC       execute_all_tasks.o
+  CC       prio.o
+  CC       simple_deps.o
+  CC       simple_cpu_gpu_sched.o
+  CCLD     microbenchs/tasks_size_overhead
+  CCLD     microbenchs/local_pingpong
+  CCLD     main/deprecated_func
+  CCLD     main/driver_api/init_run_deinit
+  CCLD     main/driver_api/run_driver
+  CCLD     main/deploop
+  CCLD     main/restart
+  CCLD     main/execute_on_a_specific_worker
+  CCLD     main/execute_schedule
+  CCLD     main/insert_task
+  CCLD     main/insert_task_dyn_handles
+  CCLD     main/insert_task_nullcodelet
+  CCLD     main/insert_task_array
+  CCLD     main/multithreaded
+  CCLD     main/multithreaded_init
+  CCLD     main/starpu_task_bundle
+  CCLD     main/starpu_task_wait_for_all
+  CCLD     main/starpu_task_wait
+  CCLD     main/static_restartable
+  CCLD     main/static_restartable_using_initializer
+  CCLD     main/static_restartable_tag
+  CCLD     main/regenerate
+  CCLD     main/regenerate_pipeline
+  CCLD     main/wait_all_regenerable_tasks
+  CCLD     main/subgraph_repeat
+  CCLD     main/subgraph_repeat_tag
+  CCLD     main/subgraph_repeat_regenerate
+  CCLD     main/subgraph_repeat_regenerate_tag
+  CCLD     main/empty_task
+  CCLD     main/empty_task_sync_point
+  CCLD     main/empty_task_sync_point_tasks
+  CCLD     main/empty_task_chain
+  CCLD     main/tag_wait_api
+  CCLD     main/task_wait_api
+  CCLD     main/declare_deps_in_callback
+  CCLD     main/declare_deps_after_submission
+  CCLD     main/declare_deps_after_submission_synchronous
+  CCLD     main/get_current_task
+  CCLD     main/starpu_init
+  CCLD     main/starpu_worker_exists
+  CCLD     main/submit
+  CCLD     main/pause_resume
+  CCLD     main/codelet_null_callback
+  CCLD     main/pack
+  CCLD     datawizard/allocate
+  CCLD     datawizard/acquire_cb
+  CCLD     datawizard/acquire_cb_insert
+  CCLD     datawizard/acquire_release
+  CCLD     datawizard/acquire_release2
+  CCLD     datawizard/cache
+  CCLD     datawizard/commute
+  CCLD     datawizard/commute2
+  CCLD     datawizard/copy
+  CCLD     datawizard/data_implicit_deps
+  CCLD     datawizard/data_lookup
+  CCLD     datawizard/scratch
+  CCLD     datawizard/sync_and_notify_data
+  CCLD     datawizard/sync_and_notify_data_implicit
+  CCLD     datawizard/dsm_stress
+  CCLD     datawizard/double_parameter
+  CCLD     datawizard/write_only_tmp_buffer
+  CCLD     datawizard/data_invalidation
+  CCLD     datawizard/dining_philosophers
+  CCLD     datawizard/manual_reduction
+  CCLD     datawizard/readers_and_writers
+  CCLD     datawizard/unpartition
+  CCLD     datawizard/user_interaction_implicit
+  CCLD     datawizard/sync_with_data_with_mem
+  CCLD     datawizard/sync_with_data_with_mem_non_blocking
+  CCLD     datawizard/sync_with_data_with_mem_non_blocking_implicit
+  CCLD     datawizard/mpi_like
+  CCLD     datawizard/mpi_like_async
+  CCLD     datawizard/critical_section_with_void_interface
+  CCLD     datawizard/increment_init
+  CCLD     datawizard/increment_redux
+  CCLD     datawizard/increment_redux_v2
+  CCLD     datawizard/increment_redux_lazy
+  CCLD     datawizard/handle_to_pointer
+  CCLD     datawizard/lazy_allocation
+  CCLD     datawizard/lazy_unregister
+  CCLD     datawizard/noreclaim
+  CCLD     datawizard/interfaces/copy_interfaces
+  CCLD     datawizard/interfaces/block/block_interface
+  CCLD     datawizard/interfaces/bcsr/bcsr_interface
+  CCLD     datawizard/interfaces/coo/coo_interface
+  CCLD     datawizard/interfaces/csr/csr_interface
+  CCLD     datawizard/interfaces/matrix/matrix_interface
+  CCLD     datawizard/interfaces/multiformat/multiformat_interface
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_cuda_opencl
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_data_release
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_worker
+  CCLD     datawizard/interfaces/multiformat/advanced/multiformat_handle_conversion
+  CCLD     datawizard/interfaces/multiformat/advanced/same_handle
+  CCLD     datawizard/interfaces/variable/variable_interface
+  CCLD     datawizard/interfaces/vector/test_vector_interface
+  CCLD     datawizard/interfaces/void/void_interface
+  CCLD     datawizard/in_place_partition
+  CCLD     datawizard/partition_lazy
+  CCLD     datawizard/gpu_register
+  CCLD     datawizard/gpu_ptr_register
+  CCLD     datawizard/variable_parameters
+  CCLD     datawizard/wt_host
+  CCLD     datawizard/wt_broadcast
+  CCLD     datawizard/readonly
+  CCLD     datawizard/specific_node
+  CCLD     disk/disk_copy
+  CCLD     disk/disk_compute
+  CCLD     disk/disk_pack
+  CCLD     errorcheck/starpu_init_noworker
+  CCLD     errorcheck/invalid_blocking_calls
+  CCLD     errorcheck/invalid_tasks
+  CCLD     helper/cublas_init
+  CCLD     helper/starpu_data_cpy
+  CCLD     helper/pinned_memory
+  CCLD     helper/execute_on_all
+  CCLD     helper/starpu_create_sync_task
+  CCLD     microbenchs/async_tasks_overhead
+  CCLD     microbenchs/sync_tasks_overhead
+  CCLD     microbenchs/tasks_overhead
+  CCLD     microbenchs/prefetch_data_on_node
+  CCLD     microbenchs/redundant_buffer
+  CCLD     microbenchs/matrix_as_vector
+  CCLD     openmp/init_exit_01
+  CCLD     openmp/init_exit_02
+  CCLD     openmp/environment
+  CCLD     openmp/api_01
+  CCLD     openmp/parallel_01
+  CCLD     openmp/parallel_02
+  CCLD     openmp/parallel_03
+  CCLD     openmp/parallel_barrier_01
+  CCLD     openmp/parallel_master_01
+  CCLD     openmp/parallel_master_inline_01
+  CCLD     openmp/parallel_single_wait_01
+  CCLD     openmp/parallel_single_nowait_01
+  CCLD     openmp/parallel_single_inline_01
+  CCLD     openmp/parallel_single_copyprivate_01
+  CCLD     openmp/parallel_single_copyprivate_inline_01
+  CCLD     openmp/parallel_critical_01
+  CCLD     openmp/parallel_critical_inline_01
+  CCLD     openmp/parallel_critical_named_01
+  CCLD     openmp/parallel_critical_named_inline_01
+  CCLD     openmp/parallel_simple_lock_01
+  CCLD     openmp/parallel_nested_lock_01
+  CCLD     openmp/parallel_for_01
+  CCLD     openmp/parallel_for_02
+  CCLD     openmp/parallel_for_ordered_01
+  CCLD     openmp/parallel_sections_01
+  CCLD     openmp/parallel_sections_combined_01
+  CCLD     openmp/task_01
+  CCLD     openmp/task_02
+  CCLD     openmp/taskwait_01
+  CCLD     openmp/taskgroup_01
+  CCLD     openmp/taskgroup_02
+  CCLD     openmp/array_slice_01
+  CCLD     openmp/cuda_task_01
+  CCLD     overlap/overlap
+  CCLD     overlap/gpu_concurrency
+  CCLD     parallel_tasks/explicit_combined_worker
+  CCLD     parallel_tasks/parallel_kernels
+  CCLD     parallel_tasks/parallel_kernels_spmd
+  CCLD     parallel_tasks/spmd_peager
+  CCLD     parallel_tasks/cuda_only
+  CCLD     perfmodels/regression_based
+  CCLD     perfmodels/non_linear_regression_based
+  CCLD     perfmodels/feed
+  CCLD     perfmodels/user_base
+  CCLD     perfmodels/valid_model
+  CCLD     perfmodels/value_nan
+  CCLD     perfmodels/memory
+  CCLD     sched_policies/data_locality
+  CCLD     sched_policies/execute_all_tasks
+  CCLD     sched_policies/prio
+  CCLD     sched_policies/simple_deps
+  CCLD     sched_policies/simple_cpu_gpu_sched
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tests'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tests'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/tests'
+Making all in doc
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/doc'
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/doc'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/doc'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/doc'
+Making all in starpufft
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/starpufft'
+Making all in src
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/starpufft/src'
+  CC       libstarpufft_1.3_la-starpufft.lo
+  CC       libstarpufft_1.3_la-starpufftf.lo
+  CC       libstarpufft_1.3_la-starpufft_common.lo
+  CCLD     libstarpufft-1.3.la
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/starpufft/src'
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/starpufft'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/starpufft'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/starpufft'
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native'
+#+END_EXAMPLE
+* QRM INFORMATION:
+** SVN REVISION OF ORIGINAL QRM_STARPU CODE
+#+BEGIN_EXAMPLE
+#+END_EXAMPLE
+** MAKE.INC:
+#+BEGIN_EXAMPLE
+## ##############################################################################################
+##
+## Copyright 2012 CNRS, INPT
+##  
+## This file is part of qr_mumps.
+##  
+## qr_mumps is free software: you can redistribute it and/or modify
+## it under the terms of the GNU Lesser General Public License as 
+## published by the Free Software Foundation, either version 3 of 
+## the License, or (at your option) any later version.
+##  
+## qr_mumps is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU Lesser General Public License for more details.
+##  
+## You can find a copy of the GNU Lesser General Public License
+## in the qr_mumps/doc directory.
+##
+## ##############################################################################################
+
+
+## -*- Makefile -*-
+##
+## $Date: 2012-06-06 17:49:02 +0200 (mer. 06 juin 2012) $
+## $Author: flopez $
+## $Version: 0.0.1$
+## $Revision: 438 $
+##
+
+
+# write here the path to the qr_mumps top directory
+MAINDIR= /home-ext/stanisic/starpu-simgrid
+TOPDIR= $(MAINDIR)/src/qrm_starpu_2d
+STARPUDIR= $(MAINDIR)/src/StarPU
+SIMGRIDDIR= $(MAINDIR)/src/simgrid
+
+LINK    = $(FC) 
+
+CC      = gcc #-Dstarpu_ctx
+FC      = gfortran  #gfortran
+
+# remove the -openmp flag if you want a sequential version
+#FCFLAGS  = -g -cpp #-Dstarpu_ctx_hyp
+
+#FCFLAGS  = -g -cpp -fno-underscoring #-Dstarpu_ctx_hyp
+#CFLAGS   = -g #-Dstarpu_ctx_hyp
+ifeq ($(ENABLE_SIMGRID),yes)
+     FCFLAGS  = -g -cpp -DSTARPU_SIMGRID -fno-underscoring
+     CFLAGS    = -g
+else
+	FCFLAGS  = -O3	
+	CFLAGS	  = -O3
+endif
+
+LDFLAGS  = $(FCFLAGS) 
+INCLUDES = -I. 
+CINCLUDES= $(IMETIS) $(ISTARPU) $(ICOLAMD) 
+FINCLUDES= #$(ISCOTCH)
+
+# this variable is for compilers that need a prefix before the -D flag (i.e., xlf)
+DEFINE_PREPEND = 
+
+# you can specify here what ordering tools you have
+# CDEFS = -Dhave_metis -Dhave_scotch -Dhave_colamd
+# FDEFS = -Dhave_metis -Dhave_scotch -Dhave_colamd
+
+CDEFS = -Dhave_colamd -Dhave_metis -Ddo_stair
+FDEFS = -Dhave_colamd -Dhave_metis -Ddo_stair
+
+AR = ar -cur
+RANLIB = ranlib
+
+LBLAS    =  -L$(MKLROOT)/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm #/home/lucifer/local/lib/libgoto.a 
+LLAPACK  =  #/home/lucifer/local/lib/lapack_Linux_Core2_Duo.a
+
+
+# your COLAMD library
+LCOLAMD  = -L/home/guermouc/qrm_starpu/COLAMD/Lib -lcolamd
+ICOLAMD  = -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config
+
+# your METIS library
+LMETIS   = -L/home/guermouc/qrm_starpu/metis-5.0.2/build/Linux-x86_64/libmetis -lmetis #-L/home/guermouc/qrm_starpu/svn/mumps/trunk/MUMPS/Orderings/metis-5.0.2/
+IMETIS   = -I/home/guermouc/qrm_starpu/metis-5.0.2/include #-I/home/guermouc/qrm_starpu/svn/mumps/trunk/MUMPS/Orderings/metis-5.0.2/include
+
+# your scotch library
+# LSCOTCH  = -L/path/to/scotch/lib -lscotch -lscotcherr
+# ISCOTCH  = -I/path/to/scotch/include
+
+# your starpu library
+ifeq ($(ENABLE_SIMGRID),yes)
+     LSTARPU = $(STARPUDIR)/build-simgrid/lib/libstarpu-1.3.a  -lpthread -lhwloc -lrt -L/opt/cluster/plafrim-dev/fxt/0.2.13/lib -lfxt -L$(SIMGRIDDIR)/SIMGRID/lib -lsimgrid
+     ISTARPU = -I$(STARPUDIR)/build-simgrid/include/starpu/1.3/ -I$(SIMGRIDDIR)/SIMGRID/include -I$(SIMGRIDDIR)/contrib/benchmarking_code_block/
+else
+     LSTARPU = $(STARPUDIR)/build-native/lib/libstarpu-1.3.a  -lpthread -lhwloc -lrt -L/opt/cluster/plafrim-dev/fxt/0.2.13/lib -lfxt     
+     ISTARPU = -I$(STARPUDIR)/build-native/include/starpu/1.3/
+endif
+
+QRM_SLIB = $(TOPDIR)/lib/libsqrm.a
+QRM_DLIB = $(TOPDIR)/lib/libdqrm.a
+QRM_CLIB = $(TOPDIR)/lib/libsqrm.a
+QRM_ZLIB = $(TOPDIR)/lib/libdqrm.a
+QRM_COMMONLIB = $(TOPDIR)/lib/libqrm_common.a
+
+# Warning : these rules are only valid with GNU make!
+$(.mod).o:
+
+
+%.o: %.c
+	$(CC)  $(CFLAGS)  $(CINCLUDES) $(INCLUDES) $(CDEFS) $(PREC) -c $<
+%.o: %.f
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%$(.mod): %.f				       
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%.o: %.f90				       
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%$(.mod): %.f90				       
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%.o: %.F
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%$(.mod): %.F
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%.o: %.F90
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+%$(.mod): %.F90
+	$(FC)  $(FCFLAGS) $(FINCLUDES) $(INCLUDES) $(FDEFS) $(DEFINE_PREPEND)$(PREC) -c $<
+#+END_EXAMPLE
+** COMPILATION OF QRM_STARPU:
+#+BEGIN_EXAMPLE
+(cd src; make dprec)
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src'
+(cd C; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/C'
+(make objs PREC=-Ddprec ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/C'
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_colamd_wrap.c
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_get_wtime.c
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_metis_wrap.c
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_pthread_wrap.c
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_atomic.c
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c magma_dgeqrf_stair.c
+ar -cur ../../lib/libqrm_common.a qrm_colamd_wrap.o qrm_get_wtime.o qrm_metis_wrap.o qrm_pthread_wrap.o qrm_atomic.o magma_dgeqrf_stair.o	 	
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/C'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/C'
+(cd F77; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/F77'
+(make objs PREC=-Ddprec ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/F77'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dgeqrt_stair.f
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dgemqrt_stair.f
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dtpqrt_stair.f
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dtpmqrt_stair.f
+ar -cur ../../lib/libdqrm.a dgeqrt_stair.o dgemqrt_stair.o dtpqrt_stair.o dtpmqrt_stair.o 	
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/F77'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/F77'
+(cd modules; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/modules'
+(make objs PREC=-Ddprec  ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/modules'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_const_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_error_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_pthread_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_mem_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_adata_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_string_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_common_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_trace_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_c_comm_interface.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_sort_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_starpu_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_fdata_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_sdata_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_spmat_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_utils_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_analysis_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_factorization_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_solve_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_methods_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_queue_mod.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_c_interface.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_starpu_factorization_mod.F90
+(cp *.mod ../../include)
+ar -cur ../../lib/libdqrm.a dqrm_spmat_mod.o dqrm_mod.o dqrm_utils_mod.o dqrm_analysis_mod.o dqrm_factorization_mod.o dqrm_fdata_mod.o dqrm_sdata_mod.o dqrm_solve_mod.o dqrm_queue_mod.o dqrm_c_interface.o dqrm_methods_mod.o dqrm_starpu_mod.o dqrm_starpu_factorization_mod.o 
+ar -cur ../../lib/libqrm_common.a qrm_error_mod.o qrm_mem_mod.o qrm_adata_mod.o qrm_common_mod.o qrm_trace_mod.o qrm_c_comm_interface.o qrm_pthread_mod.o qrm_string_mod.o qrm_sort_mod.o qrm_const_mod.o 
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/modules'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/modules'
+(cd StarPU; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/StarPU'
+(make objs PREC=-Ddprec ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/StarPU'
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_starpu_kernels.c
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_starpu_wrap.c
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_starpu_factorization.F90
+gcc   -O3  -I/home/guermouc/qrm_starpu/metis-5.0.2/include  -I/home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/include/starpu/1.3/ -I/home/guermouc/qrm_starpu/COLAMD/Include -I/home/guermouc/qrm_starpu/UFconfig -I/home/guermouc/qrm_starpu/SuiteSparse_config  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_starpu_sched.c
+ar -cur ../../lib/libdqrm.a dqrm_starpu_kernels.o dqrm_starpu_wrap.o dqrm_starpu_factorization.o 	
+ar -cur ../../lib/libqrm_common.a qrm_starpu_sched.o 	
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/StarPU'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/StarPU'
+(cd utils; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/utils'
+(make objs PREC=-Ddprec  ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/utils'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_readmat.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_matmul.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_matnrm.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_vecnrm.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_remap_pnt.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_prnt_array.F90
+ar -cur ../../lib/libdqrm.a dqrm_readmat.o dqrm_matmul.o dqrm_matnrm.o dqrm_vecnrm.o dqrm_remap_pnt.o 
+ar -cur ../../lib/libqrm_common.a qrm_prnt_array.o  
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/utils'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/utils'
+(cd analysis; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/analysis'
+(make objs PREC=-Ddprec  ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/analysis'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_compute_graph.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_do_colamd.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_ata_graph.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_do_metis.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_do_scotch.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_do_ordering.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_elim_tree.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_rowcount.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_rowperm.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_symbolic.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_compute_memory.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_print_tree.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_postorder.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_amalg_tree.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_compress_data.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_prune_tree.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_reorder_tree.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c qrm_check_cperm.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_analyse.F90
+ar -cur ../../lib/libdqrm.a dqrm_analyse.o dqrm_compute_graph.o dqrm_do_ordering.o dqrm_do_colamd.o dqrm_elim_tree.o dqrm_rowcount.o dqrm_rowperm.o dqrm_do_metis.o dqrm_ata_graph.o dqrm_do_scotch.o dqrm_symbolic.o dqrm_compute_memory.o 
+ar -cur ../../lib/libqrm_common.a qrm_print_tree.o qrm_postorder.o qrm_amalg_tree.o qrm_compress_data.o qrm_prune_tree.o qrm_reorder_tree.o qrm_check_cperm.o 
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/analysis'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/analysis'
+(cd factorization; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/factorization'
+(make objs PREC=-Ddprec  ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/factorization'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_init_front.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_clean_front.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_do_subtree.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_assemble_block.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_recpanel.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_activate_front.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_factorization_core.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_factorization_init.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_factorize.F90
+ar -cur ../../lib/libdqrm.a dqrm_factorize.o dqrm_init_front.o dqrm_factorization_core.o dqrm_factorization_init.o dqrm_do_subtree.o dqrm_recpanel.o dqrm_clean_front.o dqrm_assemble_block.o dqrm_activate_front.o 
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/factorization'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/factorization'
+(cd solve; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/solve'
+(make objs PREC=-Ddprec  ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/solve'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_solve_r.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_solve_rt.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_solve_sing_front.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_solve.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_apply_qt.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_apply_q.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_apply.F90
+ar -cur ../../lib/libdqrm.a dqrm_solve.o dqrm_apply_qt.o dqrm_apply.o dqrm_solve_r.o dqrm_solve_rt.o dqrm_apply_q.o dqrm_solve_sing_front.o 
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/solve'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/solve'
+(cd methods; make dprec)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/methods'
+(make objs PREC=-Ddprec  ARITH=d)
+make[3]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/methods'
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_least_squares.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_min_norm.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_residual_norm.F90
+gfortran    -O3	  -I../../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair -Ddprec -c dqrm_residual_orth.F90
+ar -cur ../../lib/libdqrm.a dqrm_least_squares.o dqrm_min_norm.o dqrm_residual_norm.o dqrm_residual_orth.o 
+make[3]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/methods'
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src/methods'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/src'
+(cd include; make dprec)
+make[1]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/include'
+(make heads ARITH=d)
+make[2]: Entering directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/include'
+make[2]: Nothing to be done for `heads'.
+make[2]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/include'
+make[1]: Leaving directory `/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/include'
+#+END_EXAMPLE
+** COMPILATION OF EXAMPLE:
+#+BEGIN_EXAMPLE
+gfortran    -O3	  -I../include -I. -Dhave_colamd -Dhave_metis -Ddo_stair  -c dqrm_test.F90
+gfortran    -O3	  -o dqrm_test dqrm_test.o \
+	/home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/lib/libdqrm.a /home-ext/stanisic/starpu-simgrid/src/qrm_starpu_2d/lib/libqrm_common.a  -L/opt/intel/composer_xe_2013_sp1.3.174/mkl/lib/intel64 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm  -L/home/guermouc/qrm_starpu/COLAMD/Lib -lcolamd -L/home/guermouc/qrm_starpu/metis-5.0.2/build/Linux-x86_64/libmetis -lmetis   /home-ext/stanisic/starpu-simgrid/src/StarPU/build-native/lib/libstarpu-1.3.a  -lpthread -lhwloc -lrt -L/opt/cluster/plafrim-dev/fxt/0.2.13/lib -lfxt     
+#+END_EXAMPLE
+** INPUT FILE:
+#+BEGIN_EXAMPLE
+matfile      '../matrices/europar2013/e18.mtx'
+qrm_nthreads 8
+qrm_ounit    6
+qrm_ordering 3
+qrm_sing     0
+qrm_nb       120
+qrm_ib       120
+qrm_keeph    1
+qrm_exact_mem 0
+end
+#+END_EXAMPLE
+* RUNNING OPTIONS
+#+BEGIN_EXAMPLE
+STARPU_HOME=/home-ext/stanisic/trace.archive/data/qrm_starpu/e18 STARPU_GENERATE_TRACE=1 STARPU_CALIBRATE=1 STARPU_NCPU=8 STARPU_NCUDA=0 STARPU_NOPENCL=0 numactl -i all ./dqrm_test < input.txt
+#+END_EXAMPLE
+* ELAPSED TIME
+#+BEGIN_EXAMPLE
+Elapsed:    52.942401409 seconds
+#+END_EXAMPLE
+* STDERR OUTPUT
+#+BEGIN_EXAMPLE
+[starpu][starpu_initialize] Warning: StarPU was configured with --with-fxt, which slows down a bit
+[starpu][check_bus_config_file] No performance model for the bus, calibrating...
+[starpu][check_bus_config_file] ... done
+#+END_EXAMPLE
+* STDOUT OUTPUT
+#+BEGIN_EXAMPLE
+Makespan (in ms): ==============================
+Reading Matrix: ../matrices/europar2013/e18.mtx                             
+Matrix read.
+Transpose
+Starting Analysis
+  Estimated nonzeroes in R            :            107550051
+  Estimated nonzeroes in H            :            166069489
+  Estimated total flops at facto      :        3399590084730
+  Estimated memory peak at facto (MB) :             2466.421
+  nnodes  :                 1015
+  nleaves :                   17
+Starting Factorization
+Done.
+ 
+ 
+  Time to do the analysis  :  1.461E-01
+  Time to do the facto     :  5.206E+01
+  Time to compute solution :  6.013-154
+  Nonzeroes in R           :            107550051
+  Nonzeroes in H           :                    0
+  Total flops at facto     :                    0
+  Total unallocated memory :                -8128
+  Memory peak              :  6018.944 MB
+#+END_EXAMPLE
+* CALIBRATION
+** fourmi.latency
+#+BEGIN_EXAMPLE
+/home-ext/stanisic/trace.archive/data/qrm_starpu/e18/.starpu/sampling/bus/fourmi.latency
+ # to 0		to 1		to 2		to 3		
+0.000000	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+#+END_EXAMPLE
+** fourmi.bandwidth
+#+BEGIN_EXAMPLE
+/home-ext/stanisic/trace.archive/data/qrm_starpu/e18/.starpu/sampling/bus/fourmi.bandwidth
+ # to 0		to 1		to 2		to 3		
+0.000000	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+nan	nan	nan	nan
+#+END_EXAMPLE
+** fourmi.config
+#+BEGIN_EXAMPLE
+/home-ext/stanisic/trace.archive/data/qrm_starpu/e18/.starpu/sampling/bus/fourmi.config
+ # Current configuration
+8 # Number of CPUs
+0 # Number of CUDA devices
+0 # Number of OpenCL devices
+0 # Number of MIC devices
+#+END_EXAMPLE
+** fourmi.platform.xml
+#+BEGIN_EXAMPLE
+/home-ext/stanisic/trace.archive/data/qrm_starpu/e18/.starpu/sampling/bus/fourmi.platform.xml
+ <?xml version='1.0'?>
+ <!DOCTYPE platform SYSTEM 'http://simgrid.gforge.inria.fr/simgrid.dtd'>
+ <platform version='3'>
+ <config id='General'>
+   <prop id='network/TCP_gamma' value='-1'></prop>
+   <prop id='network/latency_factor' value='1'></prop>
+   <prop id='network/bandwidth_factor' value='1'></prop>
+ </config>
+ <AS  id='AS0'  routing='Full'>
+   <host id='MAIN' power='1'/>
+   <host id='CPU0' power='2000000000'/>
+   <host id='CPU1' power='2000000000'/>
+   <host id='CPU2' power='2000000000'/>
+   <host id='CPU3' power='2000000000'/>
+   <host id='CPU4' power='2000000000'/>
+   <host id='CPU5' power='2000000000'/>
+   <host id='CPU6' power='2000000000'/>
+   <host id='CPU7' power='2000000000'/>
+
+   <host id='RAM' power='1'/>
+
+   <link id='Share' bandwidth='0.000000' latency='0.000000'/>
+
+ </AS>
+ </platform>
+#+END_EXAMPLE
+* MAKESPAN APPROXIMATION FROM PAJE TRACE [ms]:
+#+BEGIN_EXAMPLE
+50845
+#+END_EXAMPLE

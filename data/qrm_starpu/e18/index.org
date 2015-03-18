@@ -1,0 +1,12 @@
+* General information
+** Output file
+See [[info.org][info.org]] for details.
+** Authors
+** Application
+** Machine description 
+** Purpose of the experiment
+* ZENODO content (written automatically)
+https://zenodo.org/record/16160/files/qrm_starpu-e18.tar.gz
+
+* Discussions
+
