@@ -3,7 +3,11 @@
 This archive is structured as follows:
 - Trace metadata are stored in this git repository, according to
   structure described in the [[README.org][README]].
-- Trace files are stored on [[https://zenodo.org/][Zenodo]], within the =TODO= community.
+- Trace files are stored on [[https://zenodo.org/][Zenodo]], within the [[https://zenodo.org/collection/user-inria-traces][Inria Traces]] community.
+** Clone this repository
+#+begin_src 
+git clone git@github.com:inria-traces/trace.archive.git
+#+end_src
 ** Create an account on Zenodo
 - Go to [[https://zenodo.org/][Zenodo]]
 - Sign up
@@ -23,10 +27,11 @@ with Zenodo, you need to get a personal token.
   MORE. You will need this in the following steps.
 - Press the Save button.
 ** Guidelines for writing a script for running experiments
-- Create a new script for running experiments in one of the =/src=
-  subfolders. 
+- To run your experiments, you need to create a new script in one of
+  the =/src= subfolders.
   - See, for example, =/src/starpu/runxp_starpu.sh=.
-- This script should create all its ouptut in a subfolder of =/data=.
+- This script should create all its ouptut in a subfolder of =/data=,
+  corresponding to the generated type of trace.
 - Beside the generated traces, the output of the script should include
   a file =info.org= and a file =index.org=, similar to the ones in
   =/data/TODO=.
@@ -110,6 +115,4 @@ For all the script details, refer to the output of:
 python zenodo_retrieve --help
 #+end_src
 
-* TODO draft
-- [ ] use urlib in python scripts
-- [ ] create a new shared community and update the 2 links
+

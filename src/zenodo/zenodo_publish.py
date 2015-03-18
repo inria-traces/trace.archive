@@ -47,7 +47,7 @@ def zenodo_api_check(url, token):
 def load_user_conf():
     """ Load Zenodo User's Configuration"""
     if os.path.isfile(ZENODO_CONF_FILE) == False :
-        with open(ZENODO_CONF_FILE, 'wb') as f:
+        with open(ZENODO_CONF_FILE, 'w') as f:
             json.dump({'user': 'Doe, John', 'affiliation':'NASA', 'token': 'this-is-a-dummy-token'}, f)
             return None
     else:

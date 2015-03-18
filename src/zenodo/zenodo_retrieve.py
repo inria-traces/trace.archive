@@ -11,9 +11,14 @@ arguments:
 import argparse
 import json
 import re
-from urllib import urlretrieve
+
 from zenodo_utils import *
 
+if PY3:
+    from urllib.request import urlretrieve
+else:
+    from urllib import urlretrieve
+    
 __author__ = "Generoso Pagano"
 __email__ = "generoso.pagano@inria.fr"
 

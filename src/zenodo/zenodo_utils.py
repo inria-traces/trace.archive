@@ -3,6 +3,7 @@
 """Common utilities and constants for Zenodo scripts"""
 
 import os.path
+import sys
 
 __author__ = "Generoso Pagano"
 __email__ = "generoso.pagano@inria.fr"
@@ -12,6 +13,7 @@ DIR=os.path.dirname(os.path.realpath(__file__)) # Script directory
 ZENODO_CONF_FILE=DIR+"/zenodo_conf.json"
 DEPOSIT_URL="https://zenodo.org/api/deposit/depositions"
 ZENODO_SEPARATOR="* ZENODO content (written automatically)"
+PY3 = sys.version > '3'
 
 # Utilities
 def log(do, string):
