@@ -69,7 +69,7 @@ tar -cvzf qrm_starpu-e18.tar.gz paje.trace *.dot *.data
 #+end_src
 Ideally, the name of the archive should be explicit enough to
 recognize the trace.
-**** Publishing the archive
+**** Archive publication
 To publish the archive on Zenodo, you can either do it via the [[https://zenodo.org/deposit/?c=inria-traces][web interface]], 
 or use the python script =/src/zenodo/zenodo_publish=.
 
@@ -85,7 +85,7 @@ A default one has been created. PLEASE EDIT THE VALUES!
 #+END_EXAMPLE
 This means that you have to edit the specified configuration file,
 writing your name, your affiliation, and your personal zenodo token,
-obtained as [[*Create%20a%20Zenodo%20personal%20token][described]].
+obtained as described above.
 
 For all the script details, refer to the output of:
 #+begin_src 
