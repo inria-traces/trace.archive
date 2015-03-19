@@ -53,7 +53,8 @@ with Zenodo, you need to get a personal token.
 git clone git@github.com:inria-traces/trace.archive.git
 #+end_src
 - Create a new script for running experiments in one of the =/src=
-  subfolders following the guidelines described above. 
+  subfolders, following the guidelines described in the corresponding
+  [[https://github.com/inria-traces/trace.archive/blob/master/guidelines.org#guidelines-for-writing-a-script-for-running-experiments][section]].
 - Make sure to commit all your scripts.
 *** Generate the trace
 - Execute your script for running experiments.
@@ -85,7 +86,7 @@ A default one has been created. PLEASE EDIT THE VALUES!
 #+END_EXAMPLE
 This means that you have to edit the specified configuration file,
 writing your name, your affiliation, and your personal zenodo token,
-obtained as described above.
+obtained as described in the corresponding [[https://github.com/inria-traces/trace.archive/blob/master/guidelines.org#create-a-zenodo-personal-token][section]].
 
 For all the script details, refer to the output of:
 #+begin_src 
