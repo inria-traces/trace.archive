@@ -30,7 +30,7 @@ with Zenodo, you need to get a personal token.
   corresponding to the generated type of trace.
 - Beside the generated traces, the output of the script should include
   a file =info.org= and a file =index.org=, similar to the ones in
-  =/data/TODO=.
+  =/data/qrm_starpu/e18/=.
 - To obtain an =info.org= with the required information, your script
   must do the following:
   1. Capture all the relevant metadata. For example, your script for
