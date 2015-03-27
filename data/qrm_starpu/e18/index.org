@@ -1,12 +1,22 @@
 * General information
 ** Output file
-See [[info.org][info.org]] for details.
+See [[file:info.org][info.org]] for details.
 ** Authors
+- Luka Stanisic <luka.stanisic@imag.fr>, MESCAL/Grenoble
+- Arnaud Legrand <arnaud.legrand@imag.fr>, MESCAL/Grenoble
 ** Application
+This a trace from =qrm_starpu=, a specific implementation of [[http://buttari.perso.enseeiht.fr/qr_mumps/][the QR
+MUMPS approach]] using [[http://starpu.gforge.inria.fr/][StarPU]]. In this particular example, we ran
+=qrm_starpu= on the [[http://www.cise.ufl.edu/research/sparse/matrices/Meszaros/e18.html][e18 matrix]]. StarPU was configured to use the default
+[[http://starpu.gforge.inria.fr/doc/html/HowToOptimizePerformanceWithStarPU.html][dmda]] scheduler.
 ** Machine description 
+The experiment was conducted on the [[https://plafrim.bordeaux.inria.fr/doku.php?id%3Dplateforme:configurations:fourmi][fourmi]] cluster from
+[[https://plafrim.bordeaux.inria.fr][PLAFRIM/Bordeaux]]. We used a whole node, i.e., 2 Quad-core Nehalem
+Intel® Xeon® X5550 @ 2,66 GHz.
 ** Purpose of the experiment
+There is no particular purpose here, except to show how to to report
+experimental data on this trace archive.
 * ZENODO content (written automatically)
 https://zenodo.org/record/16160/files/qrm_starpu-e18.tar.gz
-
 * Discussions
 
