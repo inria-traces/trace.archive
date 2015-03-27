@@ -1,6 +1,17 @@
+# -*- coding: utf-8 -*-
+#+STARTUP: overview indent inlineimages logdrawer
+#+EXPORT_EXCLUDE_TAGS: noexport
+
 * Inria Parallel Program Trace Archive
 This is the Inria Parallel Program Trace Archive. This is joint
 project between the Grenoble [[http://mescal.imag.fr/][MESCAL]] team and the Bordeaux [[https://team.inria.fr/hiepacs/][Hiepacs]] and
 [[http://runtime.bordeaux.inria.fr/][Storm/Runtime]] teams.
 * Directory structure
-TODO
+** StarPU Based Applications
+*** Dense Linear Algebra
+*** Sparse Linear Algebra
+- [[file:data/qrm_starpu/e18/index.org][Factorization of the =e18= matrix with =qrm_starpu= on fourmi]] 
+** MPI Based Applications
+*** NASPB
+*** BigDFT
+*** Ondes3D
