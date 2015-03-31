@@ -59,23 +59,106 @@ Here is the corresponding analysis:
     However, what could be interesting to see is the total time spent idle or doing scheduling, in order to evaluate the efficiency of the StarPU.
 *** Reply by Luka
     Well scheduler seems to be quite good, just check the [[file:Screenshot_e18_2.png][screenshot]]. The application spends 95% of the time running different kernels, which means that overhead of the runtime is minimal and that the scheduling was done very efficiently. I wonder how this would scale on larger NUMA machines, like [[https://plafrim.bordeaux.inria.fr/doku.php?id=plateforme:configurations:machine_sgi][manumanu]]?
-** Analysis by Arnaud Legrand <arnaud.legrand@imag.fr>
+** Explanation of the trace structure by Arnaud Legrand <arnaud.legrand@imag.fr>
 Discussions with Lucas Schnorr, Vincent Danjean and Vinicius Garcia
-Pinto
+Pinto on 31 March 2015
 
 After I downloaded and unpacked the trace from zenodo, I wanted to
 show the others there was actually a lot of information in these
 traces:
-
-#+begin_src sh :results output raw :exports both
-  cd /tmp/
-  mkdir qrm_e18;
-  cd qrm_e18
-  tar zxf ../qrm_starpu-e18.tar.gz
-  dot -Tpdf atree.dot > atree.pdf
-  echo file://`pwd`/atree.pdf
+#+begin_src sh :results output :exports both
+  wget https://zenodo.org/record/16160/files/qrm_starpu-e18.tar.gz
+  tar zxf qrm_starpu-e18.tar.gz
+  ls -lah `tar ztf qrm_starpu-e18.tar.gz`
 #+end_src
 
 #+RESULTS:
-file:///tmp/qrm_e18/atree.pdf
+: -rw-r--r-- 1 alegrand alegrand 3,0M mars  16 16:14 activity.data
+: -rw-r--r-- 1 alegrand alegrand 8,7K mars  16 16:14 atree.dot
+: -rw-r--r-- 1 alegrand alegrand 3,8M mars  16 16:14 dag.dot
+: -rw-r--r-- 1 alegrand alegrand 851K mars  16 16:14 distrib.data
+: -rw-r--r-- 1 alegrand alegrand  15M mars  16 16:14 paje.trace
 
+The =atree.dot= file is the elimination tree:
+#+begin_src sh :results output raw :exports both
+  dot -Tpdf atree.dot > atree.pdf
+  convert atree.pdf atree.jpg
+  echo file:./atree.jpg
+#+end_src
+
+#+RESULTS:
+file:./atree.jpg
+
+Each node of this tree is expanded into a DAG of tasks and the
+combination of these tasks is available in =dag.dot=. In total, this
+results in a huge graph that cannot really be visualized with
+standard techniques:
+
+#+begin_src sh :results output :exports both
+  grep task dag.dot | sed -e 's/->.*//' -e 's/\s*//g' -e 's/\[.*//g' | sort | uniq | wc -l
+#+end_src
+
+#+RESULTS:
+: 28593
+
+The structure of =dag.dot= actually comes from =atree.dot=
+
+Each task of =dag.dot= has a unique ID. E.g,
+#+begin_src sh :results output :exports both
+grep -e 'WS\s*GEQRT' paje.trace | head
+#+end_src
+
+#+RESULTS:
+#+begin_example
+6	GEQRT	WS	GEQRT	"0.000000 0.600000 0.400000" 
+20	763.777165000	w3	WS	GEQRT	307200	M160x120x8_M160x120x8_0_1	776a780a	0000000000000000	6
+20	766.857028000	w3	WS	GEQRT	537600	M280x120x8_M280x120x8_2	9705ac31	0000000000000000	25
+20	793.967080000	w3	WS	GEQRT	960000	M500x120x8_M500x120x8_3	360044be	0000000000000000	43
+20	815.868522000	w3	WS	GEQRT	1123200	M585x120x8_M585x120x8_4	a6e9a301	0000000000000000	60
+20	819.154246000	w0	WS	GEQRT	284160	M148x120x8_M148x120x8_0_1	f08bab29	0000000000000000	625
+20	821.688483000	w0	WS	GEQRT	514560	M268x120x8_M268x120x8_2	8982ae88	0000000000000000	645
+20	826.943381000	w1	WS	GEQRT	349440	M182x120x8_M182x120x8_0_1	5a910b65	0000000000000000	10806
+20	828.128033000	w6	WS	GEQRT	382080	M199x120x8_M199x120x8_0_1	49f8c5d2	0000000000000000	2767
+20	829.780895000	w1	WS	GEQRT	583680	M304x120x8_M304x120x8_2	9ce99e2e	0000000000000000	10830
+#+end_example
+
+This show some of the =GEQRT= tasks (one specific kernel type) along
+with their starting date (=763.77...=), the parameters of the kernels
+concatenated in a long string (=M160x120x8_M160x120x8_0_1=). This means
+that that two matrices of dimension 160 by 120 were given and I guess
+the 8 is the size of the type, i.e. a double here.
+
+Note that I don't know how to relate this task id (=776a780a=) to the
+elimination tree (=atree.dot=) or to the whole DAG (=dag.dot=). I also
+don't know how stable it is from one execution to another.
+
+Note that =GEQRT= is one type of tasks but that there are others:
+#+begin_src sh :results output :exports both
+grep -e 'WS\s*GEQRT' paje.trace | wc -l
+grep -e 'WS\s*GEMQRT' paje.trace | wc -l
+#+end_src
+
+#+RESULTS:
+: 527
+: 20894
+
+Here are all the task types registered in the Paje trace but most of
+them are called with specific parameters that allow to explain their
+execution time.
+#+begin_src sh :results output :exports both
+grep -e 'WS\s*' paje.trace | sed -e 's/.*WS\s*//g' -e 's/\s.*//g' | sort | uniq
+#+end_src
+
+#+RESULTS:
+: ASM
+: CLEAN
+: Do_subtree
+: GEMQRT
+: GEQRT
+: I
+: Idle
+: INIT
+: W
+
+Ideally a good visualization would also exploit such task parameters
+and the DAG structure.
