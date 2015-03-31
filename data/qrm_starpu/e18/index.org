@@ -83,11 +83,11 @@ The =atree.dot= file is the elimination tree:
 #+begin_src sh :results output raw :exports both
   dot -Tpdf atree.dot > atree.pdf
   convert atree.pdf atree.jpg
-  echo file:./atree.jpg
+  echo [[file:./atree.jpg][dot graph of the elimination tree]]
 #+end_src
 
 #+RESULTS:
-file:./atree.jpg
+[[file:./atree.jpg][dot graph of the elimination tree]]
 
 Each node of this tree is expanded into a DAG of tasks and the
 combination of these tasks is available in =dag.dot=. In total, this
