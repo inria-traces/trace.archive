@@ -79,15 +79,15 @@ traces:
 : -rw-r--r-- 1 alegrand alegrand 851K mars  16 16:14 distrib.data
 : -rw-r--r-- 1 alegrand alegrand  15M mars  16 16:14 paje.trace
 
-The =atree.dot= file is the elimination tree:
+The =atree.dot= file corresponds to the elimination tree:
 #+begin_src sh :results output raw :exports both
   dot -Tpdf atree.dot > atree.pdf
   convert atree.pdf atree.jpg
-  echo [[file:./atree.jpg][dot graph of the elimination tree]]
+  echo '- *[[file:./atree.jpg][Dot graph of the elimination tree.]]*'
 #+end_src
 
 #+RESULTS:
-[[file:./atree.jpg][dot graph of the elimination tree]]
+- *[[file:./atree.jpg][Dot graph of the elimination tree.]]*
 
 Each node of this tree is expanded into a DAG of tasks and the
 combination of these tasks is available in =dag.dot=. In total, this
