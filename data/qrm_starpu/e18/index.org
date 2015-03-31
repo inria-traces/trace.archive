@@ -1,4 +1,4 @@
-#+STARTUP: overview indent inlineimages
+#+STARTUP: overview inlineimages
 
 * General information
 ** Output file
@@ -38,7 +38,6 @@ Pjdump that I have on my machine is the following:
 #+begin_src sh :results output :exports both
 cd ~/Repository/pajeng
 git log -1
-cd -
 #+end_src
 
 #+RESULTS:
@@ -47,11 +46,12 @@ cd -
 : Date:   Thu Feb 26 14:14:19 2015 -0300
 : 
 :     probabilistic simulator report (use -p filter in pj_dump to use it)
-: /home/stanisic/Repository/trace.archive/data/qrm_starpu/e18
 
 Once the trace have been loaded in FrameSoc I tried to find something interesting with Gantt chart or Ocelotl. However, this execution with qrm_starpu was very stable so these views didn't help. What I discovered using Pie chart is that the GEMQRT kernel takes almost 94% of the total time spent executing (when all idle time and overheads are ignored). Is this surprising? 
  
-Here is the corresponding [[file:Screenshot_e18.png][analysis]].
+Here is the corresponding analysis:
+
+[[file:Screenshot_e18.png]]
 
 *** Reply by Arnaud Legrand <arnaud.legrand@imag.fr>
     Actually this is not surprising at all since indeed qrm_starpu spends most of its time running GEMQRT. 
