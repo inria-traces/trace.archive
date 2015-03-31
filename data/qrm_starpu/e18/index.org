@@ -59,4 +59,23 @@ Here is the corresponding [[file:Screenshot_e18.png][analysis]].
     However, what could be interesting to see is the total time spent idle or doing scheduling, in order to evaluate the efficiency of the StarPU.
 *** Reply by Luka
     Well scheduler seems to be quite good, just check the [[file:Screenshot_e18_2.png][screenshot]]. The application spends 95% of the time running different kernels, which means that overhead of the runtime is minimal and that the scheduling was done very efficiently. I wonder how this would scale on larger NUMA machines, like [[https://plafrim.bordeaux.inria.fr/doku.php?id=plateforme:configurations:machine_sgi][manumanu]]?
+** Analysis by Arnaud Legrand <arnaud.legrand@imag.fr>
+Discussions with Lucas Schnorr, Vincent Danjean and Vinicius Garcia
+Pinto
+
+After I downloaded and unpacked the trace from zenodo, I wanted to
+show the others there was actually a lot of information in these
+traces:
+
+#+begin_src sh :results output raw :exports both
+  cd /tmp/
+  mkdir qrm_e18;
+  cd qrm_e18
+  tar zxf ../qrm_starpu-e18.tar.gz
+  dot -Tpdf atree.dot > atree.pdf
+  echo file://`pwd`/atree.pdf
+#+end_src
+
+#+RESULTS:
+file:///tmp/qrm_e18/atree.pdf
 
